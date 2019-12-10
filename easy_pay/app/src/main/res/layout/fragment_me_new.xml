@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF6F7F8"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_blue_me_fragment_top"
+        android:orientation="vertical">
+
+        <com.frico.easy_pay.widget.TranslucentActionBar
+            android:id="@+id/actionbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00ffffff" />
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="185dp"
+            android:background="@drawable/bg_fragment_me_top_new"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="10dp">
+
+                    <ImageView
+                        android:id="@+id/iv_fragment_me_head"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/bg_header" />
+                    <TextView
+                        android:id="@+id/tv_fragment_me_lv"
+                        android:textColor="@color/colorWhite"
+                        android:gravity="center"
+                        android:textSize="11sp"
+                        tools:text="黄金会员"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/shape_yellow_lv"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"/>
+
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_fragment_me_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="16sp"
+                        tools:text="无限大大大" />
+
+                    <TextView
+                        android:id="@+id/tv_fragment_me_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="16sp"
+                        tools:text="id:1212121" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_fragment_me_all_coin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        tools:text="500.00" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textSize="12sp"
+                        android:text="总币数量(USCT)" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:background="@color/fddd" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_fragment_me_usable_coin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        tools:text="500.00" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textSize="12sp"
+                        android:text="可用数量(USCT)" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/fddd" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_fragment_me_today_gain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        tools:text="500.00" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textSize="12sp"
+                        android:text="今日收益(USCT)" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorWhite"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:id="@+id/tv_fragment_me_auto"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/icon_fragment_me_auto"
+            android:drawablePadding="9dp"
+            android:gravity="center_vertical"
+            android:text="自动收单"
+            android:textColor="@color/f666"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/iv_fragment_me_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/close1" />
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_fragment_me_team"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorWhite"
+        android:drawableLeft="@drawable/icon_fragment_me_group"
+        android:drawableRight="@drawable/mb_me_right2x"
+        android:drawablePadding="9dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="我的团队"
+        android:textColor="@color/f666"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_fragment_me_wallet"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/colorWhite"
+        android:drawableLeft="@drawable/icon_fragment_me_wallet"
+        android:drawableRight="@drawable/mb_me_right2x"
+        android:drawablePadding="9dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="易钱包"
+        android:textColor="@color/f666"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_fragment_me_pay_way"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/colorWhite"
+        android:drawableLeft="@drawable/icon_fragment_me_bank"
+        android:drawableRight="@drawable/mb_me_right2x"
+        android:drawablePadding="9dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="收款方式"
+        android:textColor="@color/f666"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_fragment_me_share"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/colorWhite"
+        android:drawableLeft="@drawable/icon_fragment_me_share"
+        android:drawableRight="@drawable/mb_me_right2x"
+        android:drawablePadding="9dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="我的分享"
+        android:textColor="@color/f666"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_fragment_me_service"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/colorWhite"
+        android:drawableLeft="@drawable/icon_fragment_me_service"
+        android:drawableRight="@drawable/mb_me_right2x"
+        android:drawablePadding="9dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="联系客服"
+        android:textColor="@color/f666"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_fragment_me_exit"
+            android:layout_width="120dp"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:text="退出登录"
+            android:textColor="@color/color_6"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

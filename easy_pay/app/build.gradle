@@ -1,0 +1,225 @@
+apply plugin: 'com.android.application'
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd_HH-mm", TimeZone.getTimeZone("GMT+08:00"))
+}
+android {
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+
+    signingConfigs {
+        prod {
+            storeFile file("easypay.jks")
+            storePassword "ep123321"
+            keyAlias "easypay"
+            keyPassword "ep123321"
+        }
+    }
+    productFlavors {
+        def prodSigningVariable = signingConfigs.prod
+        //测试版本
+        dev {
+            applicationId "com.frico.easy_paytest"
+            signingConfig prodSigningVariable
+            manifestPlaceholders = [
+                    APP_ENV                : "dev",
+                    APP_NAME               : "测试USCT数字银行",
+                    APP_HOST               : "192.168.1.189",
+                    APP_PORT               : 8001,
+                    DEFAULT_HTTP_SERVER_URL: "http://192.168.1.189:8001/",
+                    DEFAULT_H5_SERVER_URL: "http://192.168.1.189:8003/",//最新的H5的域名
+
+
+//                    APP_ENV                : "prod",
+//                    APP_NAME               : "USCT数字银行",
+//                    APP_HOST               : "47.56.202.247",//最新的ip
+//                    APP_PORT               : 7272,
+//                    DEFAULT_HTTP_SERVER_URL: "https://usct.gxyvre.com/",//最新的域名
+//                    DEFAULT_H5_SERVER_URL: "https://uscth5.gxyvre.com/",//最新的H5的域名
+
+
+//                        APP_ENV                : "prod",
+//                        APP_NAME               : "测CDN USCT数字银行",
+//                        APP_HOST               : "47.56.202.247",//最新的ip
+//                        APP_PORT               : 7272,
+//                        DEFAULT_HTTP_SERVER_URL: "https://usct1.gxyvre.com/",//最新的域名
+//                        DEFAULT_H5_SERVER_URL: "https://uscth5.gxyvre.com/",//最新的H5的域名
+
+                    NOTIFICATION_ID:1001
+            ]
+        }
+        //商用发布版本
+        customers {
+            applicationId "com.frico.easy_pay"
+            signingConfig prodSigningVariable
+            manifestPlaceholders = [
+                        APP_ENV                : "prod",
+                        APP_NAME               : "易支付",
+                        APP_HOST               : "121.78.2.132",//最新的ip
+                        APP_PORT               : 7272,
+                        DEFAULT_HTTP_SERVER_URL: "https://api.yzf.life/",//最新的域名
+                        DEFAULT_H5_SERVER_URL: "https://shareh5.yzf.life",//最新的H5的域名
+                        NOTIFICATION_ID:1003
+            ]
+        }
+        //内部版本
+        internal {
+            applicationId "com.nmw.sctnb"
+            signingConfig prodSigningVariable
+            manifestPlaceholders = [
+                    APP_ENV                : "prod",
+                    APP_NAME               : "内部USCT数字银行",
+                    APP_HOST               : "120.79.242.180",
+                    APP_PORT               : 7272,
+                    DEFAULT_HTTP_SERVER_URL: "http://pay.fricobloc.com/",
+                    DEFAULT_H5_SERVER_URL: "https://scth5.fricobloc.com/",//最新的H5的域名
+                    NOTIFICATION_ID:1003
+                  /* APP_ENV                : "dev",
+                   APP_NAME               : "测试USCT数字银行",
+                   APP_HOST               : "192.168.1.189",
+                   APP_PORT               : 8001,
+                   DEFAULT_HTTP_SERVER_URL: "http://192.168.1.189:8001/",
+                   DEFAULT_H5_SERVER_URL: "http://192.168.1.189:8003/",//最新的H5的域名*/
+            ]
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+    defaultConfig {
+        applicationId "com.frico.easy_pay"
+        minSdkVersion 20
+        targetSdkVersion 26
+        versionCode 1             //测试 106003   正式的1.0.7
+        versionName "1.0.0"
+        flavorDimensions "versionCode"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi-v7a'
+        }
+
+        sourceSets {
+            main {
+                jniLibs.srcDirs = ['libs']
+            }
+        }
+
+        buildTypes {
+            //是否开启zip优化
+//            zipAlignEnabled true
+
+            debug {
+                minifyEnabled false
+                signingConfig signingConfigs.prod
+                signingConfig signingConfigs.prod
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                buildConfigField "boolean", "IS_SHOW_LOG", SHOW_LOG
+            }
+
+            release {
+                minifyEnabled false
+                signingConfig signingConfigs.prod
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                buildConfigField "boolean", "IS_SHOW_LOG", NOT_SHOW_LOG
+            }
+
+            android.applicationVariants.all { variant ->
+                variant.outputs.all {
+//                    def outputFile = output.outputFile
+//                    def fileName
+//                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        // 输出apk名称为XXapp1.4.0_2017-02-14.apk
+//                        if (variant.buildType.name.equals('release')) {
+                            outputFileName = "app_${productFlavors[0].name}_${defaultConfig.versionName}_${variant.buildType.name}_c${defaultConfig.versionCode}_${releaseTime()}.apk"
+//                        } else (variant.buildType.name.equals('debug')) {
+//                            outputFileName = "SCT_app${defaultConfig.versionName}_${releaseTime()}_debug.apk"
+//                        }
+//                        output.outputFile = new File(outputFile.parent, fileName)
+//                        outputFileName = fileName
+//                    }
+                }
+            }
+        }
+
+    }
+
+    dependencies {
+        implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+        implementation 'com.android.support:support-v4:27.1.1'
+        implementation 'com.android.support:support-compat:27.1.1'
+        implementation 'com.android.support:design:27.1.1'
+        implementation 'com.android.support:gridlayout-v7:27.1.1'
+        implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+        implementation 'com.android.support:multidex:1.0.3'
+        implementation 'com.android.support:cardview-v7:27.1.1'
+        //rxjava2
+        implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+        implementation('com.hwangjr.rxbus:rxbus:2.0.0-beta') {
+            exclude(group: 'io.reactivex')
+        }
+        /*通讯*/
+        implementation 'io.netty:netty-all:4.1.39.Final'
+        implementation 'com.squareup.retrofit2:retrofit:2.2.0'
+        implementation 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+        implementation 'com.squareup.retrofit2:converter-gson:2.0.0'
+        implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+        implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+        /*butterknife*/
+        implementation 'com.jakewharton:butterknife:8.8.1'
+        annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+        /*相册库*/
+        implementation 'com.lzy.widget:imagepicker:0.5.5'
+        /*圆形头像*/
+        implementation 'de.hdodenhof:circleimageview:2.2.0'
+        /*网络请求库*/
+        implementation 'com.squareup.okio:okio:1.13.0'
+        implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+        implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
+        implementation 'com.zhy:okhttputils:2.6.2'
+        implementation 'com.youth.banner:banner:1.4.9'
+        /*检查权限*/
+        implementation 'pub.devrel:easypermissions:0.4.0'
+        /*图片裁剪*/
+        implementation 'com.github.yalantis:ucrop:2.2.2'
+        /*图片压缩*/
+        implementation 'top.zibin:Luban:1.1.3'
+        /*glide*/
+        implementation 'com.github.bumptech.glide:glide:4.8.0'
+        /*条件选择器*/
+        implementation 'com.contrarywind:Android-PickerView:3.2.4'
+        /*各种样式tablayout*/
+        implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+        implementation 'commons-codec:commons-codec:1.10'
+        implementation 'com.github.chrisbanes:PhotoView:2.0.0'
+        implementation 'com.facebook.fresco:fresco:1.2.0'
+        /*支持 GIF 动图，需要添加*/
+        implementation 'com.facebook.fresco:animated-gif:1.2.0'
+        testImplementation 'junit:junit:4.12'
+        androidTestImplementation 'com.android.support.test:runner:1.0.2'
+        androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+        implementation project(':matisse')
+//        implementation project(':zxing')
+        implementation project(':qzzxing')
+        implementation 'com.daimajia.swipelayout:library:1.2.0@aar'
+        implementation 'com.google.code.gson:gson:2.8.0'
+        implementation 'com.github.zcweng:switch-button:0.0.3@aar'
+        //gif
+        implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
+
+    }
+}

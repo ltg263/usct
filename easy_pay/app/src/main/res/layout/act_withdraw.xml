@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorWhite"
+    >
+
+    <com.frico.easy_pay.widget.TranslucentActionBar
+        android:id="@+id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/page_left_right_margin"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="@dimen/page_left_right_margin"
+                android:background="@drawable/bg_withdraw_bank_bg"
+                android:orientation="horizontal"
+                android:padding="26dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_bank_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        tools:text="浦发银行" />
+
+                    <TextView
+                        android:id="@+id/tv_bank_user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        tools:text="张大白" />
+
+                    <TextView
+                        android:id="@+id/tv_bank_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="19sp"
+                        tools:text="**** **** *** 7639" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    >
+                    <TextView
+                        android:id="@+id/tv_withdraw_switch_bank_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="切换"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorWhite"
+                        android:drawableLeft="@drawable/icon_switcher"
+                        android:drawablePadding="5dp"
+                        />
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+
+                        />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_bank_normal"
+                        android:gravity="bottom|right"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/color_f7f7f7"
+                android:layout_marginTop="16dp"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                >
+                <TextView
+                    android:id="@+id/tv_withdraw_can_withdraw_sct_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="可提现USCT: "
+                    android:textColor="@color/color_3"
+                    android:textSize="16sp"
+                    />
+                <TextView
+                    android:id="@+id/tv_withdraw_can_withdraw_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="1890.7878 = 137894.9876元"
+                    android:textColor="@color/color_fe840c"
+                    android:textSize="16sp"
+                    />
+
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_f7f7f7"
+                android:layout_marginLeft="@dimen/page_left_right_margin"
+                android:layout_marginRight="@dimen/page_left_right_margin"
+                android:layout_marginTop="10dp"
+
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/page_left_right_margin"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="提现数量:   USCT"
+                    android:textSize="16sp"
+                    android:textColor="@color/color_3"
+                    />
+                <EditText
+                    android:id="@+id/et_withdraw_input_money"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入提现数量"
+                    android:textSize="15sp"
+                    android:textColor="@color/color_3"
+                    android:background="@null"
+                    android:layout_marginLeft="5dp"
+                    android:inputType="numberDecimal"
+                    android:textColorHint="@color/color_dbdbdb"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_withdraw_select_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="全部"
+                    android:textColor="@color/color_3786fd"
+                    android:textSize="16sp"
+                    android:gravity="right"
+                    />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_f7f7f7"
+                android:layout_marginLeft="@dimen/page_left_right_margin"
+                android:layout_marginRight="@dimen/page_left_right_margin"
+                android:layout_marginTop="10dp"
+
+                />
+
+            <TextView
+                android:id="@+id/tv_withdraw_count_and_rate_intro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="本次提现手续费0.00元"
+                android:layout_marginLeft="@dimen/page_left_right_margin"
+                android:layout_marginRight="@dimen/page_left_right_margin"
+                android:textSize="14sp"
+                android:layout_marginTop="10dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_withdraw_bottom_intro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*说明：单次提现最小50 USCT。"
+                android:textSize="12sp"
+                android:textColor="@color/color_9"
+                android:layout_marginLeft="@dimen/page_left_right_margin"
+                android:layout_marginRight="@dimen/page_left_right_margin"
+                android:layout_marginTop="46dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_withdraw_bottom_intro_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="提现到账时间为工作日：9:00 - 17:00"
+                android:textSize="12sp"
+                android:textColor="@color/color_9"
+                android:layout_marginLeft="@dimen/page_left_right_margin"
+                android:layout_marginRight="@dimen/page_left_right_margin"
+                android:layout_marginTop="10dp"
+                />
+
+            <Button
+                android:id="@+id/btn_withdraw_bottom_commit"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:background="@drawable/selector_withdraw_bottom_btn"
+                android:text="确认提现"
+                android:textColor="@color/colorWhite"
+                android:textSize="17sp"
+                android:gravity="center"
+                android:layout_marginTop="80dp"
+                android:enabled="false"
+                android:layout_marginBottom="30dp"
+                />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

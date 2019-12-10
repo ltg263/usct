@@ -1,0 +1,30 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
+        mavenCentral()
+        google()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'com.novoda:bintray-release:0.8.0'
+    }
+}
+
+subprojects {
+    repositories {
+        mavenLocal()
+        jcenter()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven {
+            url 'https://maven.google.com/'
+        }
+        maven { url "http://mvn.tourerp.cn/nexus/content/groups/public" }
+        maven { url 'https://jitpack.io' }
+        maven { url 'http://developer.huawei.com/repo/' }
+    }
+}

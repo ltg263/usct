@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context="com.frico.easy_pay.ui.activity.LoginActivity">
+
+    <com.frico.easy_pay.widget.TranslucentActionBar
+        android:id="@+id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:visibility="gone"
+        android:background="@mipmap/ic_launch_image" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        >
+        <LinearLayout
+            android:id="@+id/top_intro_login_normal_lay"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            >
+            <TextView
+                android:id="@+id/top_intro_login_normal_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="普通登录"
+                android:textColor="@color/color_c"
+                android:textSize="15sp"
+
+                />
+            <View
+                android:id="@+id/top_intro_login_normal_b_line_v"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/color_c"
+                android:layout_marginTop="10dp"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/top_intro_login_code_lay"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            >
+            <TextView
+                android:id="@+id/top_intro_login_code_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="验证码登录"
+                android:textColor="@color/main_bule"
+                android:textSize="15sp"
+                />
+            <View
+                android:id="@+id/top_intro_login_code_b_line_v"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/main_bule"
+                android:layout_marginTop="10dp"
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/login_input_normal_lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+
+        <com.frico.easy_pay.widget.ClearWriteEditText
+            android:id="@+id/user_et_phone"
+            style="@style/MyEditText"
+            android:layout_width="265dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
+            android:background="@null"
+            android:drawableLeft="@drawable/ic_login_phone2x"
+            android:drawablePadding="15dp"
+            android:hint="请输入手机号/用户名/会员码"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:inputType="number"
+            android:maxLength="11"
+            android:textColor="@color/color_3"
+            android:textColorHint="@color/edit_da_color"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:textSize="14dp" />
+
+        <View
+            style="@style/line"
+            android:layout_width="265dp"
+            android:layout_gravity="center_horizontal" />
+
+        <com.frico.easy_pay.widget.ClearWriteEditText
+            android:id="@+id/user_et_pwd"
+            style="@style/MyEditText"
+            android:layout_width="265dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:background="@null"
+            android:drawableLeft="@drawable/ic_login_pwd2x"
+            android:drawablePadding="15dp"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:digits="0123456789abcdefghigklmnopqrstuvwxyzQWERTYUIOPASDFGHJKLZXCVBNM"
+            android:maxLength="12"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/color_3"
+            android:textColorHint="@color/edit_da_color"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:textSize="14dp" />
+
+        <View
+            style="@style/line"
+            android:layout_width="265dp"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/login_input_code_lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:gravity="center_horizontal"
+        >
+
+        <com.frico.easy_pay.widget.ClearWriteEditText
+            android:id="@+id/code_user_et_phone_cwe"
+            style="@style/MyEditText"
+            android:layout_width="265dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:background="@null"
+            android:drawableLeft="@drawable/ic_login_phone2x"
+            android:drawablePadding="15dp"
+            android:hint="请输入手机号"
+            android:maxLength="11"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:inputType="number"
+            android:textColor="@color/color_3"
+            android:textColorHint="@color/edit_da_color"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:textSize="14dp" />
+
+        <View
+            style="@style/line"
+            android:layout_width="265dp"
+            android:layout_gravity="center_horizontal" />
+
+
+        <LinearLayout
+            android:layout_width="265dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp">
+
+            <com.frico.easy_pay.widget.ClearWriteEditText
+                android:id="@+id/et_msg_code"
+                style="@style/MyEditText"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawableLeft="@drawable/ic_msg_code2x"
+                android:drawablePadding="15dp"
+                android:hint="@string/please_et_code"
+                android:inputType="number"
+                android:textColor="@color/color_3"
+                android:textColorHint="@color/edit_da_color"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:textSize="14dp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="18dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/line" />
+
+            <TextView
+                android:id="@+id/get_code"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:minWidth="90dp"
+                android:text="@string/get_ver_code"
+                android:textColor="@color/main_bule"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <View
+            style="@style/line"
+            android:layout_width="265dp"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/user_login"
+        android:layout_width="265dp"
+        android:layout_height="39dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/bg_login"
+        android:gravity="center"
+        android:text="@string/login"
+        android:textColor="@color/colorWhite"
+        android:textSize="16dp" />
+
+    <LinearLayout
+        android:layout_width="265dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:id="@+id/user_tv_regist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/register_account"
+            android:textColor="@color/color_c"
+            android:textSize="12dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="11dp"
+            android:layout_weight="1"
+            android:background="@drawable/mb_vertical_line_white" />
+
+        <TextView
+            android:id="@+id/user_tv_forget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:paddingLeft="5dp"
+            android:paddingTop="2dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="2dp"
+            android:text="@string/forget_password"
+            android:textColor="@color/color_c"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="28dp"
+        android:src="@drawable/ic_logo"
+        android:layout_marginBottom="50dp"
+        android:layout_gravity="center_horizontal"
+        />
+
+</LinearLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    >
+
+    <TextView
+        android:id="@+id/tv_history_order_fillter_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="收款成功订单"
+        android:textSize="17sp"
+        android:textColor="@color/color_3"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:gravity="center_horizontal"
+        />
+
+    <TextView
+        android:id="@+id/tv_history_order_fillter_over_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="已过期订单"
+        android:textSize="17sp"
+        android:textColor="@color/color_3"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:gravity="center_horizontal"
+        />
+
+
+
+</LinearLayout>

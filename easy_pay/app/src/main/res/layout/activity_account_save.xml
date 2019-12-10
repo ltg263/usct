@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background_gray"
+    android:orientation="vertical">
+
+    <com.frico.easy_pay.widget.TranslucentActionBar
+        android:id="@id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp">
+
+        <TextView
+            android:id="@+id/tv_set_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:background="@drawable/btn_item_bg"
+            android:drawableRight="@drawable/mb_me_right2x"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="设置登录密码"
+            android:textColor="@color/color_3"
+            android:textSize="15dp" />
+
+    </FrameLayout>
+
+
+    <View
+        style="@style/line"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp">
+
+        <TextView
+            android:id="@+id/tv_set_pay_pw"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:background="@drawable/btn_item_bg"
+            android:drawableRight="@drawable/mb_me_right2x"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="设置支付密码"
+            android:textColor="@color/color_3"
+            android:textSize="15dp" />
+
+
+    </FrameLayout>
+
+
+    <View
+        style="@style/line"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp">
+
+        <TextView
+            android:id="@+id/tv_bind_mail"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:background="@drawable/btn_item_bg"
+            android:drawableRight="@drawable/mb_me_right2x"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="绑定邮箱"
+            android:textColor="@color/color_3"
+            android:textSize="15dp" />
+
+
+    </FrameLayout>
+
+
+    <View
+        style="@style/line"
+        android:visibility="gone"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp" />
+
+    <FrameLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="49dp">
+
+        <TextView
+            android:id="@+id/tv_add_new_pay_way"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:background="@drawable/btn_item_bg"
+            android:drawableRight="@drawable/mb_me_right2x"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="添加收款方式"
+            android:textColor="@color/color_3"
+            android:textSize="15dp" />
+
+    </FrameLayout>
+
+
+    <TextView
+        android:visibility="gone"
+        android:layout_width="345dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="15dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="提示：所有资料补全后，系统将发放8个USCT（约50RMB）到你的钱包,可在“赠送数量”中查看。"
+        android:textColor="#ff999999"
+        android:textSize="12sp" />
+
+</LinearLayout>

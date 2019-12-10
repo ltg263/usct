@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background_gray"
+    android:orientation="vertical">
+
+    <com.frico.easy_pay.widget.TranslucentActionBar
+        android:id="@id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <TextView
+        android:id="@+id/tv_bank"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="@drawable/btn_item_bg"
+        android:drawableRight="@drawable/mb_me_right2x"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="银行卡"
+        android:textColor="@color/color_3"
+        android:textSize="15dp" />
+
+    <View
+        style="@style/line"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/tv_code"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="49dp"-->
+<!--        android:background="@drawable/btn_item_bg"-->
+<!--        android:drawableRight="@drawable/mb_me_right2x"-->
+<!--        android:drawablePadding="10dp"-->
+<!--        android:gravity="center_vertical"-->
+<!--        android:paddingLeft="15dp"-->
+<!--        android:paddingRight="15dp"-->
+<!--        android:text="收款码"-->
+<!--        android:textColor="@color/color_3"-->
+<!--        android:textSize="15dp" />-->
+
+
+    <TextView
+        android:id="@+id/tv_pay_wx"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="@drawable/btn_item_bg"
+        android:drawableRight="@drawable/mb_me_right2x"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="微信"
+        android:textColor="@color/color_3"
+        android:textSize="15dp" />
+
+    <View
+        style="@style/line"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp" />
+
+    <TextView
+        android:id="@+id/tv_pay_zfb"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="@drawable/btn_item_bg"
+        android:drawableRight="@drawable/mb_me_right2x"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="支付宝"
+        android:textColor="@color/color_3"
+        android:textSize="15dp" />
+
+</LinearLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+
+        <LinearLayout
+            android:id="@+id/desc_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="让购物更便捷"
+                android:textColor="#666666"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/status_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="下拉刷新..."
+                android:textColor="#666666"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/desc_ll"
+            android:clipChildren="true">
+
+            <ImageView
+                android:id="@+id/donghua"
+                android:layout_width="43dp"
+                android:layout_height="43dp"
+                android:src="@drawable/refresh_down_icon" />
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

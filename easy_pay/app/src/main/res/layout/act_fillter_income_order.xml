@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <com.frico.easy_pay.widget.TranslucentActionBar
+        android:id="@+id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/page_left_right_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="收款方式"
+            android:textStyle="bold"
+            android:textColor="@color/color_3"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_income_type_wx"
+                style="@style/style_income_fillter_item_n"
+                android:layout_alignParentLeft="true"
+                android:text="微信" />
+
+            <TextView
+                android:id="@+id/tv_income_type_zfb"
+                style="@style/style_income_fillter_item_n"
+                android:layout_centerInParent="true"
+                android:text="支付宝" />
+
+            <TextView
+                android:id="@+id/tv_income_type_lsm"
+                style="@style/style_income_fillter_item_n"
+                android:layout_alignParentRight="true"
+                android:text="农商码" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_income_type_zsm"
+                style="@style/style_income_fillter_item_n"
+                android:layout_alignParentLeft="true"
+                android:text="赞赏码" />
+
+            <TextView
+                android:id="@+id/tv_income_type_ysf"
+                style="@style/style_income_fillter_item_n"
+                android:layout_centerInParent="true"
+                android:text="聚合码" />
+
+            <TextView
+                android:id="@+id/tv_income_type_yhk"
+                style="@style/style_income_fillter_item_n"
+                android:layout_alignParentRight="true"
+                android:text="银行卡" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="收款时间"
+            android:textStyle="bold"
+            android:textColor="@color/color_3"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_income_time_today"
+                style="@style/style_income_fillter_item_n"
+                android:layout_alignParentLeft="true"
+                android:text="今天" />
+
+            <TextView
+                android:id="@+id/tv_income_time_yesterday"
+                style="@style/style_income_fillter_item_n"
+                android:layout_centerInParent="true"
+                android:text="昨天" />
+
+            <TextView
+                android:id="@+id/tv_income_time_three"
+                style="@style/style_income_fillter_item_n"
+                android:layout_alignParentRight="true"
+                android:text="最近三天" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:id="@+id/tv_income_time_week"
+                style="@style/style_income_fillter_item_n"
+                android:layout_alignParentLeft="true"
+                android:text="最近一周" />
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="订单状态"
+            android:textStyle="bold"
+            android:textColor="@color/color_3"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:id="@+id/tv_income_status_success"
+                style="@style/style_income_fillter_item_n"
+                android:layout_alignParentLeft="true"
+                android:text="收款成功" />
+
+            <TextView
+                android:id="@+id/tv_income_status_over_time"
+                style="@style/style_income_fillter_item_n"
+                android:layout_centerInParent="true"
+                android:text="已过期" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/reset"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:background="@color/color_e4eefd"
+            android:gravity="center"
+            android:text="重置"
+            android:textColor="@color/color_3786fd"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/sure"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:background="@color/color_3786fd"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/colorWhite"
+            android:textSize="17sp" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

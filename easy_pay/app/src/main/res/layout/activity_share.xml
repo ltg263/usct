@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background_gray"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <com.frico.easy_pay.widget.TranslucentActionBar
+        android:id="@+id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/colorWhite"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="方法一:"
+                android:textColor="@color/color_9"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="分享链接给好友"
+                android:textColor="@color/color_3"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/tv_share_copy"
+                android:layout_width="33dp"
+                android:layout_height="20dp"
+                android:background="@drawable/mb_kuang_gray_3dp"
+                android:gravity="center"
+                android:text="复制"
+                android:textColor="@color/color_6"
+                android:textSize="11dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_share_link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:lineSpacingExtra="5dp"
+            android:textColor="@color/color_9"
+            android:textSize="14dp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="方法二:"
+                android:textColor="@color/color_9"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="分享二维码给好友"
+                android:textColor="@color/color_3"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/tv_share_ewm"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="提示:长按保存二维码"
+            android:textColor="@color/color_9"
+            android:textSize="10dp" />
+
+    </LinearLayout>
+</LinearLayout>

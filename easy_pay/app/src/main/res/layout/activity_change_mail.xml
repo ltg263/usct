@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background_gray"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <com.frico.easy_pay.widget.TranslucentActionBar
+        android:id="@+id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="@color/colorWhite"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="邮箱账号"
+            android:textColor="@color/color_3"
+            android:textSize="15dp" />
+
+        <EditText
+            android:id="@+id/et_mail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="请输入邮箱账号"
+            android:paddingLeft="20dp"
+            android:paddingRight="15dp"
+            android:textColor="@color/color_3"
+            android:textColorHint="@color/edit_hint_color"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+    <View style="@style/line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="@color/colorWhite"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="验证码    "
+            android:textColor="@color/color_3"
+            android:textSize="15dp" />
+
+        <EditText
+            android:id="@+id/et_mail_code"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="请输入邮箱验证码"
+            android:paddingLeft="20dp"
+            android:paddingRight="15dp"
+            android:textColor="@color/color_3"
+            android:textColorHint="@color/edit_hint_color"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/get_code"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/get_ver_code"
+            android:textColor="@color/main_bule"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+
+    <TextView
+        android:id="@+id/tv_next"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/selector_bg_btn_blue"
+        android:enabled="false"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="@color/colorWhite"
+        android:textSize="16dp" />
+</LinearLayout>
+

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 设置图片显示列宽 -->
+    <dimen name="grid_expected_size">100dp</dimen>
+    <!--页面边距-->
+    <dimen name="page_left_right_margin">16dp</dimen>
+
+</resources>

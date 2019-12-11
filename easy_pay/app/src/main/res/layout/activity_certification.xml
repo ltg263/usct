@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <com.frico.easy_pay.widget.TranslucentActionBar
+        android:id="@id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <View
+        android:background="@color/fddd"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorWhite"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="姓名"
+                android:gravity="center_vertical"
+                android:textSize="14sp"
+                android:layout_width="90dp"
+                android:layout_height="40dp"/>
+            <EditText
+                android:id="@+id/et_certification_name"
+                android:hint="请填写身份证姓名"
+                android:textSize="14sp"
+                android:maxLines="1"
+                android:background="@null"
+                android:textColorHint="#FFCCCCCC"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+
+
+        </LinearLayout>
+        <View
+            android:background="@color/fddd"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+
+                android:text="身份证号"
+                android:gravity="center_vertical"
+                android:textSize="14sp"
+                android:layout_width="90dp"
+                android:layout_height="40dp"/>
+            <EditText
+                android:id="@+id/et_certification_num"
+                android:hint="请填写身份证号码"
+                android:textSize="14sp"
+                android:maxLines="1"
+                android:background="@null"
+                android:textColorHint="#FFCCCCCC"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+
+
+        </LinearLayout>
+        <View
+            android:background="@color/fddd"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+        <LinearLayout
+            android:paddingTop="13dp"
+            android:paddingBottom="15dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="身份证正面"
+                android:textSize="14sp"
+                android:layout_width="90dp"
+                android:layout_height="40dp"/>
+            <ImageView
+                android:id="@+id/iv_certification_front"
+                android:src="@drawable/id_card_front"
+                android:layout_width="140dp"
+                android:layout_height="79dp"/>
+        </LinearLayout>
+        <View
+            android:background="@color/fddd"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:paddingTop="13dp"
+            android:paddingBottom="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="身份证反面"
+                android:textSize="14sp"
+                android:layout_width="90dp"
+                android:layout_height="40dp"/>
+            <ImageView
+                android:id="@+id/iv_certification_reverse"
+                android:src="@drawable/id_card_reverse"
+                android:layout_width="140dp"
+                android:layout_height="79dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_submit"
+        android:text="提交"
+        android:textSize="12sp"
+        android:layout_marginBottom="30dp"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/shape_blue_submit"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_width="250dp"
+        android:layout_height="35dp"/>
+
+
+
+</LinearLayout>

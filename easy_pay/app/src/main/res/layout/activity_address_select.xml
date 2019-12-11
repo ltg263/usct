@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.frico.easy_pay.widget.TranslucentActionBar
+        android:id="@+id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <View
+        android:background="@color/fddd"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <TextView
+        android:text="位置选择"
+        android:textSize="14sp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="14dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/ll_select_province"
+            android:background="@drawable/shape_text_bg"
+            android:layout_width="match_parent"
+            android:paddingRight="6dp"
+            android:layout_marginRight="15dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_city"
+                android:text="请选择城市"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_pull_down"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/iv_select_address"
+            android:layout_gravity="center"
+            android:src="@drawable/selector_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_marginLeft="6.5dp"
+            android:text="是否开启同城接单"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_commit"
+        android:text="确认"
+        android:textSize="12sp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/shape_blue_submit"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_width="250dp"
+        android:layout_height="35dp"/>
+</LinearLayout>

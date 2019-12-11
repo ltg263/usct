@@ -129,6 +129,7 @@ public class NewLaunchActivity extends BaseActivity implements CountDownTimerFin
     }
 
     private void goMain() {
+        LogUtils.e("Token",Prefer.getInstance().getToken());
         if (TextUtils.isEmpty(Prefer.getInstance().getToken())) {
             startActivity(new Intent(this, LoginActivity.class));
         } else {

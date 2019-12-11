@@ -16,6 +16,7 @@ import com.frico.easy_pay.impl.FileDownLaodListener;
 import com.frico.easy_pay.ui.activity.base.BaseActivity;
 import com.frico.easy_pay.utils.CopyUtils;
 import com.frico.easy_pay.utils.FileSaveUtils;
+import com.frico.easy_pay.utils.LogUtils;
 import com.frico.easy_pay.utils.ToastUtil;
 import com.frico.easy_pay.widget.TranslucentActionBar;
 
@@ -92,6 +93,7 @@ public class ShareActivity extends BaseActivity implements ActionBarClickListene
 
                     @Override
                     public void onNext(Result<MbShareVO> result) {
+                        LogUtils.e(result.toString());
                         dismiss();
                         if (result.getCode() == 1) {
                             MbShareVO data = result.getData();

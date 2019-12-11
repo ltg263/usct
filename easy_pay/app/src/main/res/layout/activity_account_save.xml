@@ -34,12 +34,10 @@
 
     </FrameLayout>
 
-
     <View
         style="@style/line"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp" />
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="49dp">
@@ -55,6 +53,33 @@
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:text="设置支付密码"
+            android:textColor="@color/color_3"
+            android:textSize="15dp" />
+
+
+    </FrameLayout>
+
+    <View
+        style="@style/line"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp" />
+
+    <FrameLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="49dp">
+
+        <TextView
+            android:id="@+id/tv_set_approve"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:background="@drawable/btn_item_bg"
+            android:drawableRight="@drawable/mb_me_right2x"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="实名认证"
             android:textColor="@color/color_3"
             android:textSize="15dp" />
 

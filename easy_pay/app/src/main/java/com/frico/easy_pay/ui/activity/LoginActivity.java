@@ -356,6 +356,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
                     @Override
                     public void onNext(Result<MbpUserVO> result) {
+                        LogUtils.e("Token",result.toString());
                         dismiss();
                         if (result.getCode() == 1) {
                             MbpUserVO data = result.getData();

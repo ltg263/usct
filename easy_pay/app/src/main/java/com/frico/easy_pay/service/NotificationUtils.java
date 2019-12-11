@@ -99,7 +99,7 @@ public class NotificationUtils extends ContextWrapper {
             getManager().notify(msgId, notification);
             //(msgTypeInt >= 3 && msgTypeInt <= 8) || msgTypeInt == 12
 
-            if(((msgId >= 2 && msgId <= 8) || msgId == 12) && Prefer.getInstance().getRingSwitchIsOpen()){
+            if(((msgId >= 2 && msgId <= 5)||msgId==8 || msgId == 12) && Prefer.getInstance().getRingSwitchIsOpen()){
                 //只有交易信息才会提示
                 try {
                     Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.my_ring_552857);

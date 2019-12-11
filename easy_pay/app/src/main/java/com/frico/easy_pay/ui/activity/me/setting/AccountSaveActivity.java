@@ -26,6 +26,8 @@ public class AccountSaveActivity extends BaseActivity implements ActionBarClickL
     TextView tvBindMail;
     @BindView(R.id.tv_add_new_pay_way)
     TextView tvAddNewPayWay;
+    @BindView(R.id.tv_set_approve)
+    TextView tvSetApprove;
 
     @Override
     protected int setLayout() {
@@ -46,6 +48,7 @@ public class AccountSaveActivity extends BaseActivity implements ActionBarClickL
         tvSetPayPw.setOnClickListener(this);
         tvBindMail.setOnClickListener(this);
         tvAddNewPayWay.setOnClickListener(this);
+        tvSetApprove.setOnClickListener(this);
     }
 
     @Override
@@ -64,7 +67,9 @@ public class AccountSaveActivity extends BaseActivity implements ActionBarClickL
                 //绑定邮箱
                 launch(ChangeMailActivity.class);
                 break;
-
+            case R.id.tv_set_approve:
+                launch(CertificationActivity.class);
+                break;
             case R.id.tv_add_new_pay_way:
                 //添加收款方式
                 launch(AddPayWayActivity.class);
@@ -111,7 +116,6 @@ public class AccountSaveActivity extends BaseActivity implements ActionBarClickL
     protected void onResume() {
         super.onResume();
     }
-
 
 
 }

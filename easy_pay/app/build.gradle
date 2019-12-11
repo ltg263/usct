@@ -54,7 +54,7 @@ android {
             manifestPlaceholders = [
                         APP_ENV                : "prod",
                         APP_NAME               : "易支付",
-                        APP_HOST               : "121.78.2.132",//最新的ip
+                        APP_HOST               : "173.248.225.100",//最新的ip
                         APP_PORT               : 7272,
                         DEFAULT_HTTP_SERVER_URL: "https://api.yzf.life/",//最新的域名
                         DEFAULT_H5_SERVER_URL: "https://shareh5.yzf.life",//最新的H5的域名

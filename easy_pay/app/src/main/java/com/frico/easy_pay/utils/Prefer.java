@@ -46,7 +46,7 @@ public class Prefer {
     private final String KEY_NEED_GUIDE = "KEY_NEED_GUIDE";
     private final String KEY_MEMBER_LEVEL = "KEY_MEMBER_LEVEL";
     private final String KEY_REDUCE_MEMBER_LEVEL = "KEY_REDUCE_MEMBER_LEVEL";
-    public  final String KEY_ADDRESS_BEAN = "KEY_ADDRESS_BEAN";
+    public final String KEY_ADDRESS_BEAN = "KEY_ADDRESS_BEAN";
     private final String KEY_RONG_TOKEN = "KEY_RONG_TOKEN";
     private final String KEY_RONG_CUSTOMER_ID = "KEY_RONG_CUSTOMER_ID";
     private final String KEY_USER_NAME = "KEY_USER_NAME";
@@ -64,9 +64,65 @@ public class Prefer {
     private final String KEY_SWITCH_RING = "KEY_SWITCH_RING";
     private final String KEY_SOCKET_IP = "KEY_SOCKET_IP";       //socket的ip
 
+    private final String CITY = "CITY_CITY_CITY";
+    private final String PROVINCE = "PROVINCE_PROVINCE_PROVINCE";
+    private final String CITY_INDEX = "CITY";
+    private final String PROVINCE_INDEX = "PROVINCE";
+    private final String LOCAL = "CITY-WIDE";
+
+    public Boolean isLocal(){
+        return mPref.getBoolean(LOCAL,false);
+    }
+
+    public void setLocal(boolean isLocal){
+        SharedPreferences.Editor editor = mPref.edit();
+        editor.putBoolean(LOCAL, isLocal);
+        editor.commit();
+    }
+
+
+    public String getCity() {
+        return mPref.getString(CITY, "");
+    }
+
+    public String getProvince() {
+        return mPref.getString(PROVINCE, "");
+    }
+
+    public int getCityIndex() {
+        return mPref.getInt(CITY_INDEX, 0);
+    }
+
+    public int getProvinceIndex() {
+        return mPref.getInt(PROVINCE_INDEX, 0);
+    }
+
+    public void setCity(String city) {
+        SharedPreferences.Editor editor = mPref.edit();
+        editor.putString(CITY, city);
+        editor.commit();
+    }
+
+    public void setProvince(String province) {
+        SharedPreferences.Editor editor = mPref.edit();
+        editor.putString(PROVINCE, province);
+        editor.commit();
+    }
+
+    public void setCityIndex(int cityIndex) {
+        SharedPreferences.Editor editor = mPref.edit();
+        editor.putInt(CITY_INDEX, cityIndex);
+        editor.commit();
+    }
+
+    public void setProvinceIndex(int provinceIndex) {
+        SharedPreferences.Editor editor = mPref.edit();
+        editor.putInt(PROVINCE_INDEX, provinceIndex);
+        editor.commit();
+    }
+
 
     private final String KEY_NOTIFICATION_CACHE = "KEY_NOTIFICATION_CACHE"; //缓存的没发出去的通知消息
-
 
 
     public static Prefer getInstance() {
@@ -204,7 +260,7 @@ public class Prefer {
     /**
      * 邀请码Id
      */
-    public void setInviteId(String inviteId){
+    public void setInviteId(String inviteId) {
         SharedPreferences.Editor editor = mPref.edit();
         editor.putString(KEY_INVITE_ID, inviteId);
         editor.commit();
@@ -217,7 +273,7 @@ public class Prefer {
     /**
      * 通知铃声的开关
      */
-    public void setRingSwitch(boolean ringSwitchIsOpen){
+    public void setRingSwitch(boolean ringSwitchIsOpen) {
         SharedPreferences.Editor editor = mPref.edit();
         editor.putBoolean(KEY_SWITCH_RING, ringSwitchIsOpen);
         editor.commit();
@@ -460,6 +516,7 @@ public class Prefer {
 
     /**
      * 获取缓存的没上传成功的消息
+     *
      * @return
      */
     public String getAllNotificationMsges() {

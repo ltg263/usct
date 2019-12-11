@@ -102,6 +102,17 @@
         <activity
             android:name=".ui.activity.AdActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activity.me.setting.SettingActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".ui.activity.me.AddressSelectActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.activity.me.setting.CertificationActivity"
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".ui.activity.GuideActivity"
             android:screenOrientation="portrait"

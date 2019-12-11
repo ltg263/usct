@@ -1,6 +1,7 @@
 package com.frico.easy_pay.ui.activity.me;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,9 +34,11 @@ import com.frico.easy_pay.ui.activity.base.BaseFragment;
 import com.frico.easy_pay.ui.activity.me.group.MyGroupActivity;
 import com.frico.easy_pay.ui.activity.me.payway.PayWayListActivity;
 import com.frico.easy_pay.ui.activity.me.setting.AccountSaveActivity;
+import com.frico.easy_pay.ui.activity.me.setting.SettingActivity;
 import com.frico.easy_pay.ui.activity.me.wallet.BalanceTransferActivity;
 import com.frico.easy_pay.ui.activity.me.wallet.NewWalletActivity;
 import com.frico.easy_pay.utils.AnalyticsUtils;
+import com.frico.easy_pay.utils.LogUtils;
 import com.frico.easy_pay.utils.Prefer;
 import com.frico.easy_pay.utils.ToastUtil;
 import com.frico.easy_pay.utils.Util;
@@ -92,6 +95,8 @@ public class NewMeFragment extends BaseFragment implements ActionBarClickListene
     ImageView ivFragmentMeSwitch;
     @BindView(R.id.tv_fragment_me_lv)
     TextView tvFragmentMeLv;
+    @BindView(R.id.tv_fragment_me_address)
+    TextView tvFragmentMeAddress;
 
 
     private View view;
@@ -121,10 +126,10 @@ public class NewMeFragment extends BaseFragment implements ActionBarClickListene
         actionbar.addTvRight2(R.drawable.icon_fragment_me_setting, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launch(AccountSaveActivity.class);
+                launch(SettingActivity.class);
             }
         });
-        actionbar.setBackgroundAlpha();
+        actionbar.setColorBackground(Color.parseColor("#FF70A0FF"));
     }
 
     public static NewMeFragment newInstance() {
@@ -241,11 +246,14 @@ public class NewMeFragment extends BaseFragment implements ActionBarClickListene
         unbinder.unbind();
     }
 
-    @OnClick({R.id.tv_fragment_me_auto, R.id.iv_fragment_me_switch, R.id.tv_fragment_me_team, R.id.tv_fragment_me_wallet, R.id.tv_fragment_me_pay_way, R.id.tv_fragment_me_share, R.id.tv_fragment_me_service, R.id.tv_fragment_me_exit})
+    @OnClick({R.id.tv_fragment_me_address,R.id.tv_fragment_me_auto, R.id.iv_fragment_me_switch, R.id.tv_fragment_me_team, R.id.tv_fragment_me_wallet, R.id.tv_fragment_me_pay_way, R.id.tv_fragment_me_share, R.id.tv_fragment_me_service, R.id.tv_fragment_me_exit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_fragment_me_auto:
 
+                break;
+            case R.id.tv_fragment_me_address:
+                launch(AddressSelectActivity.class);
                 break;
             case R.id.iv_fragment_me_switch:
                 //自动收款开关
@@ -378,12 +386,13 @@ public class NewMeFragment extends BaseFragment implements ActionBarClickListene
             return;
         }
 
-        String shareViewUrl = Constants.BASE_URL_H5 + "#/login?token=" + Prefer.getInstance().getToken();
+        String shareViewUrl = Constants.BASE_URL_H5 + "/share_acq.html?invitecode=" + mUserInfoData.getRegcode();
 //        String shareViewUrl = "http://www.baidu.com/";
 //        String shareViewUrl = "http://192.168.1.51:8085/#/registe/";
 //        String shareViewUrl = "http://192.168.1.51:8084/?token="+ Prefer.getInstance().getToken();//http://192.168.1.51:8084
 //        String shareViewUrl = "http://sct.fricobloc.com/acq_register?invitecode=AAAAAA";
 
+        LogUtils.e(shareViewUrl);
         WebUrlActivity.start(getActivity(), true, "邀请好友", shareViewUrl);
     }
     /**

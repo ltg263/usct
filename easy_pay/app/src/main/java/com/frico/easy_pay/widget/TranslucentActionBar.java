@@ -236,4 +236,7 @@ public final class TranslucentActionBar extends LinearLayout {
     public void  setBackgroundAlpha(){
         layRoot.setBackgroundColor(Color.parseColor("#00ffffff"));
     }
+    public void  setColorBackground(int color){
+        layRoot.setBackgroundColor(color);
+    }
 }

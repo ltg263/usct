@@ -32,8 +32,8 @@ import com.frico.easy_pay.ui.activity.LoginActivity;
 import com.frico.easy_pay.ui.activity.MainActivity;
 import com.frico.easy_pay.ui.activity.base.BaseFragment;
 import com.frico.easy_pay.ui.activity.me.group.MyGroupActivity;
+import com.frico.easy_pay.ui.activity.me.info.MyAccountInfoActivity;
 import com.frico.easy_pay.ui.activity.me.payway.PayWayListActivity;
-import com.frico.easy_pay.ui.activity.me.setting.AccountSaveActivity;
 import com.frico.easy_pay.ui.activity.me.setting.SettingActivity;
 import com.frico.easy_pay.ui.activity.me.wallet.BalanceTransferActivity;
 import com.frico.easy_pay.ui.activity.me.wallet.NewWalletActivity;
@@ -62,7 +62,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class NewMeFragment extends BaseFragment implements ActionBarClickListener {
 
-    private static  String KEY_ACQID ="acqid" ;
+    private static String KEY_ACQID = "acqid";
     @BindView(R.id.actionbar)
     TranslucentActionBar actionbar;
     @BindView(R.id.iv_fragment_me_head)
@@ -205,10 +205,10 @@ public class NewMeFragment extends BaseFragment implements ActionBarClickListene
             nickName = TextUtils.isEmpty(mUserInfoData.getUsername()) ? "--" : mUserInfoData.getUsername();
         }
         tvFragmentMeName.setText(nickName);
-        tvFragmentMeId.setText("ID:" +mUserInfoData.getAcqid());
-        setSpan(mUserInfoData.getTotal_amount(),tvFragmentMeAllCoin,16,12);
-        setSpan(mUserInfoData.getAvailable_money(),tvFragmentMeUsableCoin,16,12);
-        setSpan(mUserInfoData.getProfit_money(),tvFragmentMeTodayGain,16,12);
+        tvFragmentMeId.setText("ID:" + mUserInfoData.getAcqid());
+        setSpan(mUserInfoData.getTotal_amount(), tvFragmentMeAllCoin, 16, 12);
+        setSpan(mUserInfoData.getAvailable_money(), tvFragmentMeUsableCoin, 16, 12);
+        setSpan(mUserInfoData.getProfit_money(), tvFragmentMeTodayGain, 16, 12);
         if (TextUtils.isEmpty(mUserInfoData.getmHeaderImgUrl())) {
             new ImageLoaderImpl().loadImageCircle(getActivity(), R.drawable.header_default).into(ivFragmentMeHead);
         } else {
@@ -246,7 +246,7 @@ public class NewMeFragment extends BaseFragment implements ActionBarClickListene
         unbinder.unbind();
     }
 
-    @OnClick({R.id.tv_fragment_me_address,R.id.tv_fragment_me_auto, R.id.iv_fragment_me_switch, R.id.tv_fragment_me_team, R.id.tv_fragment_me_wallet, R.id.tv_fragment_me_pay_way, R.id.tv_fragment_me_share, R.id.tv_fragment_me_service, R.id.tv_fragment_me_exit})
+    @OnClick({R.id.tv_fragment_me_address,R.id.iv_fragment_me_head, R.id.tv_fragment_me_name, R.id.tv_fragment_me_auto, R.id.iv_fragment_me_switch, R.id.tv_fragment_me_team, R.id.tv_fragment_me_wallet, R.id.tv_fragment_me_pay_way, R.id.tv_fragment_me_share, R.id.tv_fragment_me_service, R.id.tv_fragment_me_exit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_fragment_me_auto:
@@ -307,6 +307,14 @@ public class NewMeFragment extends BaseFragment implements ActionBarClickListene
                     }
                 });
                 simpleDialog.show();
+                break;
+            case R.id.iv_fragment_me_head:
+                // 个人信息页面
+                MyAccountInfoActivity.start(getActivity(), mUserInfoData);
+                break;
+            case R.id.tv_fragment_me_name:
+                // 个人信息页面
+                MyAccountInfoActivity.start(getActivity(), mUserInfoData);
                 break;
         }
     }
@@ -395,6 +403,7 @@ public class NewMeFragment extends BaseFragment implements ActionBarClickListene
         LogUtils.e(shareViewUrl);
         WebUrlActivity.start(getActivity(), true, "邀请好友", shareViewUrl);
     }
+
     /**
      * 根据消息刷新数据
      *
@@ -410,20 +419,21 @@ public class NewMeFragment extends BaseFragment implements ActionBarClickListene
     }
 
     /**
-     *  将 @param target 分成两种大小的文字布局在@param textView上
+     * 将 @param target 分成两种大小的文字布局在@param textView上
+     *
      * @param target
      * @param textView
      * @param firstDip
      * @param secondDip
      */
 
-    private void setSpan(String target,TextView textView,int firstDip,int secondDip){
+    private void setSpan(String target, TextView textView, int firstDip, int secondDip) {
         String str1 = Util.splitSctCount(target)[0];
         String str2 = Util.splitSctCount(target)[1];
 
         Spannable sp = new SpannableString(target);
-        sp.setSpan(new AbsoluteSizeSpan(firstDip,true),0,str1.length()-1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        sp.setSpan(new AbsoluteSizeSpan(secondDip,true),str1.length(),target.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sp.setSpan(new AbsoluteSizeSpan(firstDip, true), 0, str1.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sp.setSpan(new AbsoluteSizeSpan(secondDip, true), str1.length(), target.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         textView.setText(sp);
     }
 
@@ -437,10 +447,10 @@ public class NewMeFragment extends BaseFragment implements ActionBarClickListene
                 String url = data.getStringExtra(CodeUtils.RESULT_STRING);
                 String code = "";
 //                ToastUtil.showToast(getActivity(),"结果 = " + code);
-                if(url.contains("http") && url.contains(KEY_ACQID)){
+                if (url.contains("http") && url.contains(KEY_ACQID)) {
                     //如果是扫码的聚合码地址，就解析出code来
                     code = getToUserIdFromUrl(url);
-                }else if(url.length() == 6){
+                } else if (url.length() == 6) {
                     //认为是老版本的二维码，就是id
                     code = url;
                 }
@@ -448,6 +458,7 @@ public class NewMeFragment extends BaseFragment implements ActionBarClickListene
             }
         }
     }
+
     private void gotoTransfer(String toUserId) {
         //转账
         BalanceTransferActivity.start(getActivity(), toUserId);
@@ -459,4 +470,6 @@ public class NewMeFragment extends BaseFragment implements ActionBarClickListene
         String type = uri.getQueryParameter(KEY_ACQID);
         return type;
     }
+
+
 }

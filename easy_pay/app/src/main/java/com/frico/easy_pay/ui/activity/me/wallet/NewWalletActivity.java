@@ -91,7 +91,7 @@ public class NewWalletActivity extends BaseActivity implements ActionBarClickLis
     @Override
     public void initTitle() {
         actionbar.setBackground(R.drawable.bg_shadow_blue);
-        actionbar.setData("USCT钱包", R.drawable.ic_left_back_white, null, 0, null, this);
+        actionbar.setData("易钱包", R.drawable.ic_left_back_white, null, 0, null, this);
         //actionbar.setNeedTranslucent(true,false);
         actionbar.setTvTitleColor(Color.parseColor("#FEFEFE"));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

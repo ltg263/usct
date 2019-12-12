@@ -217,6 +217,21 @@ public final class ViewfinderView extends View {
     // 扫描框边角宽度
     private int innercornerwidth;
 
+    public void setInnercornercolor(int innercornercolor) {
+        this.innercornercolor = innercornercolor;
+        invalidate();
+    }
+
+    public void setInnercornerwidth(int innercornerwidth) {
+        this.innercornerwidth = innercornerwidth;
+        invalidate();
+    }
+
+    public void setInnercornerlength(int innercornerlength) {
+        this.innercornerlength = innercornerlength;
+        invalidate();
+    }
+
     /**
      * 绘制取景框边框
      *

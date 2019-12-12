@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.AnimationDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,10 +20,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.hwangjr.rxbus.RxBus;
-import com.hwangjr.rxbus.annotation.Subscribe;
-import com.hwangjr.rxbus.annotation.Tag;
 import com.frico.easy_pay.R;
 import com.frico.easy_pay.SctApp;
 import com.frico.easy_pay.core.api.RetrofitUtil;
@@ -48,11 +45,17 @@ import com.frico.easy_pay.ui.activity.adapter.IncomeListAdapter;
 import com.frico.easy_pay.ui.activity.adapter.base.BaseQuickAdapter;
 import com.frico.easy_pay.ui.activity.base.BaseFragment;
 import com.frico.easy_pay.ui.activity.income.HistoryOrderActivity;
-import com.frico.easy_pay.ui.activity.me.ShowMyQrcodeActivity;
+import com.frico.easy_pay.ui.activity.me.wallet.BalanceTransferActivity;
+import com.frico.easy_pay.ui.activity.qrcode.NewCaptureActivity;
+import com.frico.easy_pay.ui.activity.qrcode.ShowQrCodeActivity;
 import com.frico.easy_pay.utils.LogUtils;
 import com.frico.easy_pay.utils.ToastUtil;
 import com.frico.easy_pay.widget.IncomeOrderCountDownTimer;
 import com.frico.easy_pay.widget.TranslucentActionBar;
+import com.google.gson.Gson;
+import com.hwangjr.rxbus.RxBus;
+import com.hwangjr.rxbus.annotation.Subscribe;
+import com.hwangjr.rxbus.annotation.Tag;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,8 +73,11 @@ import io.reactivex.schedulers.Schedulers;
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 
+import static android.app.Activity.RESULT_OK;
+
 public class NewHomeFragment extends BaseFragment implements ActionBarClickListener, BaseQuickAdapter.RequestLoadMoreListener, PtrHandler {
 
+    private static String KEY_ACQID = "acqid";
     @BindView(R.id.gif_collect)
     GifImageView gifCollect;
     Unbinder unbinder;
@@ -313,12 +319,12 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
                 if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA}, 1);
                 } else {
-                    Intent intent = new Intent(getActivity(), CaptureActivity.class);
+                    Intent intent = new Intent(getActivity(), NewCaptureActivity.class);
                     startActivityForResult(intent, CodeUtils.RESULT_SUCCESS);
                 }
                 break;
             case R.id.tv_home_qr_code:
-                ShowMyQrcodeActivity.start(getActivity());
+                ShowQrCodeActivity.start(getActivity());
                 break;
         }
     }
@@ -990,5 +996,38 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
 //        addTextToScrollTextView(data);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CodeUtils.RESULT_SUCCESS) {
+            if (resultCode != RESULT_OK) {
+                return;
+            }
+            if (data != null) {
+                String url = data.getStringExtra(CodeUtils.RESULT_STRING);
+                String code = "";
+                LogUtils.e(url);
+//                ToastUtil.showToast(getActivity(),"结果 = " + code);
+                if (url.contains("http") && url.contains(KEY_ACQID)) {
+                    //如果是扫码的聚合码地址，就解析出code来
+                    code = getToUserIdFromUrl(url);
+                } else if (url.length() == 6) {
+                    //认为是老版本的二维码，就是id
+                    code = url;
+                }
+                gotoTransfer(code);
+            }
+        }
+    }
+    private void gotoTransfer(String toUserId) {
+        //转账
+        BalanceTransferActivity.start(getActivity(), toUserId);
+    }
 
+
+    private String getToUserIdFromUrl(String url) {
+        Uri uri = Uri.parse(url);
+        String type = uri.getQueryParameter(KEY_ACQID);
+        return type;
+    }
 }

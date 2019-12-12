@@ -2,6 +2,7 @@ package chargepail.qz.www.qzzxing.activity;
 
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.hardware.Camera;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -80,7 +81,8 @@ public class CaptureFragment extends Fragment implements SurfaceHolder.Callback 
         this.viewfinderView = (ViewfinderView)view.findViewById(R.id.viewfinder_view);
         this.surfaceView = (SurfaceView)view.findViewById(R.id.preview_view);
         this.surfaceHolder = this.surfaceView.getHolder();
-
+        this.viewfinderView.setInnercornercolor(Color.parseColor("#ffffff"));
+        this.viewfinderView.setInnercornerwidth(8);
         return view;
     }
 
@@ -264,7 +266,7 @@ public class CaptureFragment extends Fragment implements SurfaceHolder.Callback 
         this.callBack = callBack;
     }
 
-    interface CameraInitCallBack {
+    public interface CameraInitCallBack {
         /**
          * Callback for Camera init result.
          * @param e If is's null,means success.otherwise Camera init failed with the Exception.

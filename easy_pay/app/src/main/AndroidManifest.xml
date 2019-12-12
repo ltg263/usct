@@ -113,6 +113,16 @@
         <activity android:name=".ui.activity.me.setting.CertificationActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".ui.activity.qrcode.NewCaptureActivity"
+            android:screenOrientation="portrait">
+
+           <!-- <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
         <activity
             android:name=".ui.activity.GuideActivity"
             android:screenOrientation="portrait"
@@ -214,6 +224,11 @@
         <activity
             android:name=".ui.activity.me.ShowMyQrcodeActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.qrcode.ShowQrCodeActivity"
+            android:screenOrientation="portrait" >
+
+        </activity>
         <activity
             android:name=".ui.activity.me.setting.SetPayPwdActivity"
             android:screenOrientation="portrait"

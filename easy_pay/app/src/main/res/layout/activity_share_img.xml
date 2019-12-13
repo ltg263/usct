@@ -53,7 +53,7 @@
                 <ImageView
                     android:layout_width="133dp"
                     android:layout_height="34dp"
-                    android:src="@drawable/ic_logo" />
+                    android:src="@drawable/launch_logo" />
 
                 <TextView
                     android:id="@+id/bottom_my_id_tv"

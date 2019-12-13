@@ -334,4 +334,16 @@
     </attr><attr format="dimension" name="tl_iconMargin"/></declare-styleable>
     <declare-styleable name="SlidingTabLayout2"><attr name="tl_indicator_color"/><attr name="tl_indicator_height"/><attr name="tl_indicator_width"/><attr name="tl_indicator_margin_left"/><attr name="tl_indicator_margin_top"/><attr name="tl_indicator_margin_right"/><attr name="tl_indicator_margin_bottom"/><attr name="tl_indicator_corner_radius"/><attr name="tl_indicator_gravity"/><attr name="tl_indicator_style"/><attr name="tl_indicator_width_equal_title"/><attr name="tl_underline_color"/><attr name="tl_underline_height"/><attr name="tl_underline_gravity"/><attr name="tl_divider_color"/><attr name="tl_divider_width"/><attr name="tl_divider_padding"/><attr name="tl_tab_padding"/><attr name="tl_tab_space_equal"/><attr name="tl_tab_width"/><attr name="tl_textsize"/><attr name="tl_textSelectSize"/><attr name="tl_textSelectColor"/><attr name="tl_textUnselectColor"/><attr name="tl_textBold"/><attr name="tl_textAllCaps"/></declare-styleable>
 
+
+        <declare-styleable name="SwitchMultiButton">
+            <attr name="strokeRadius" format="dimension" />
+            <attr name="strokeWidth" format="dimension" />
+            <attr name="textSize" format="dimension" />
+            <attr name="selectedTab" format="integer" />
+            <attr name="selectedColor" format="color|reference" />
+            <attr name="switchTabs" format="reference" />
+            <attr name="typeface" format="string" />
+            <attr name="disableColor" format="color|reference" />
+        </declare-styleable>
+
 </resources>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/v_statusbar"
+        android:layout_width="match_parent"
+        android:layout_height="0.0dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+
+        <com.frico.easy_pay.widget.SwitchMultiButton
+            android:layout_width="161dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            app:disableColor="@color/colorWhite"
+            app:selectedColor="#FF6699FF"
+            app:selectedTab="1"
+            app:strokeRadius="4dp"
+            app:strokeWidth="1dp"
+            app:switchTabs="@array/switch_tabs"
+            app:textSize="14sp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_coin_variety"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

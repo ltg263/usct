@@ -763,6 +763,15 @@ public interface ApiService {
 
     /**
      * 会员间转账
+     *
+     * @return
+     */
+    @POST("api_transfer")
+    @FormUrlEncoded
+    Observable<Result<MyGroupMemberListVO>> transferBalance(@Field("acqid") String acqid, @Field("amount") String amount, @Field("paypassword") String paypassword,@Field("isnum") int isnum);
+
+    /**
+     * 会员间转账
      * 收款码ID
      * 类型:2=支付宝,3=微信
      *

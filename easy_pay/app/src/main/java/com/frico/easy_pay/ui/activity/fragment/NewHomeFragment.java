@@ -18,6 +18,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
 
 import com.frico.easy_pay.R;
@@ -1029,5 +1030,14 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
         Uri uri = Uri.parse(url);
         String type = uri.getQueryParameter(KEY_ACQID);
         return type;
+    }
+
+    //TODO 两个gif淡入淡出
+    private void setAnimation(View view,int start,int end){
+
+        AlphaAnimation alphaAnimation;
+        alphaAnimation = new AlphaAnimation(start, end);
+        alphaAnimation.setDuration(1000);
+        view.setAnimation(alphaAnimation);
     }
 }

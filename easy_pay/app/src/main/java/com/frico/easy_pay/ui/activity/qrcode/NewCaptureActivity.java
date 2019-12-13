@@ -63,9 +63,10 @@ public class NewCaptureActivity extends BaseActivity implements ActionBarClickLi
     @Override
     public void initTitle() {
         actionBar.setData("扫一扫", R.drawable.ic_left_back2x, null,
-               // R.drawable.icon_menu,
-                0,
-                null, this);
+                R.drawable.icon_menu,
+              //  0,
+                null,
+                this);
         //actionbar.setNeedTranslucent(true,false);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             actionBar.setStatusBarHeight(getStatusBarHeight());
@@ -113,7 +114,7 @@ public class NewCaptureActivity extends BaseActivity implements ActionBarClickLi
 
     @Override
     public void onRightClick() {
-        //showPop();
+        showPop();
     }
     private CustomPopWindow popWindow;
     private static final int PERMISSION_CAMERA = 110;
@@ -213,8 +214,10 @@ public class NewCaptureActivity extends BaseActivity implements ActionBarClickLi
             if (data != null) {
                 switch (requestCode) {
                     case IMAGE_SELECT:
-                        Uri uri = Matisse.obtainResult(data).get(0);
 
+                        String path = Matisse.obtainPathResult(data).get(0);
+                       // String path = uri
+                        CodeUtils.analyzeBitmap(path,analyzeCallback);
                         break;
                     default:
                         throw new IllegalStateException("Unexpected value: " + requestCode);

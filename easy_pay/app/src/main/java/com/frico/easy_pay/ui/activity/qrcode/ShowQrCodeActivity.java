@@ -2,6 +2,7 @@ package com.frico.easy_pay.ui.activity.qrcode;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -147,6 +148,10 @@ public class ShowQrCodeActivity extends BaseActivity implements ActionBarClickLi
                     @Override
                     public void onResponse(File response, int id) {
                       //  dismiss();
+                        Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                        Uri uri = Uri.fromFile(response);
+                        intent.setData(uri);
+                        ShowQrCodeActivity.this.sendBroadcast(intent);
                         ToastUtil.showToast(ShowQrCodeActivity.this,"下载成功");
 
                     }

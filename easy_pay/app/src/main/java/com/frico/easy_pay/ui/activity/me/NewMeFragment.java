@@ -430,6 +430,8 @@ public class NewMeFragment extends BaseFragment implements ActionBarClickListene
     private void setSpan(String target, TextView textView, int firstDip, int secondDip) {
         String str1 = Util.splitSctCount(target)[0];
         String str2 = Util.splitSctCount(target)[1];
+        str2 = str2.substring(0,2);
+        target = str1+"."+str2;
 
         Spannable sp = new SpannableString(target);
         sp.setSpan(new AbsoluteSizeSpan(firstDip, true), 0, str1.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);

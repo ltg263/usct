@@ -21,6 +21,7 @@ import com.frico.easy_pay.ui.activity.base.BaseActivity;
 import com.frico.easy_pay.ui.activity.me.WithdrawActivity;
 import com.frico.easy_pay.ui.activity.me.payway.AddBankActivity;
 import com.frico.easy_pay.utils.ToastUtil;
+import com.frico.easy_pay.utils.Util;
 import com.frico.easy_pay.widget.TranslucentActionBar;
 
 import java.util.List;
@@ -168,7 +169,8 @@ public class NewWalletActivity extends BaseActivity implements ActionBarClickLis
                             MbpUserVO data = mbpUserVOResult.getData();
                             SctApp.mUserInfoData = mbpUserVOResult.getData();
 
-                            tvWalletSumCoin.setText(data.getTotal_amount());
+
+                            tvWalletSumCoin.setText(subStr(data.getTotal_amount()));
 
                             tvWalletTodayEarning.setText(data.getProfit_money());
                             tvWalletTotalEarn.setText("累计收益: "+data.getTotal_profit_money()+" USCT");
@@ -342,4 +344,13 @@ public class NewWalletActivity extends BaseActivity implements ActionBarClickLis
                 });
     }
 
+    //保留两位小数
+    private String subStr(String before){
+        String after = "";
+        String str1 = Util.splitSctCount(before)[0];
+        String str2 = Util.splitSctCount(before)[1];
+        str2 = str2.substring(0,2);
+        after = str1+"."+str2;
+        return after;
+    }
 }

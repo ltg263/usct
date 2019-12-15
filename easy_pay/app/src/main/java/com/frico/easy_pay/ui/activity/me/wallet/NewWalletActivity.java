@@ -349,10 +349,10 @@ public class NewWalletActivity extends BaseActivity implements ActionBarClickLis
         String after = "";
         String str1 = Util.splitSctCount(before)[0];
         String str2 = Util.splitSctCount(before)[1];
-        if (str2.lenth()>=2){
+        if (str2.length()>=2){
             str2 = str2.substring(0,2);
         }else {
-            str2 = "00"
+            str2 = "00";
         }
         after = str1+"."+str2;
         return after;

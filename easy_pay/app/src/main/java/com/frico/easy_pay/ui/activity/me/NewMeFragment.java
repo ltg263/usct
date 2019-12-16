@@ -433,8 +433,10 @@ public class NewMeFragment extends BaseFragment implements ActionBarClickListene
         if (str2.length()>=2){
             str2 = str2.substring(0,2);
             target = str1+"."+str2;
+        }else if (str2.length()==1){
+            str2 = str2+"0";
+            target = str1+"."+str2;
         }
-
 
         Spannable sp = new SpannableString(target);
         sp.setSpan(new AbsoluteSizeSpan(firstDip, true), 0, str1.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);

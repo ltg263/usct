@@ -26,4 +26,6 @@ public class Constant {
     public static final String LISTENING_TARGET_YSF_PKG = "com.unionpay";//云闪付
 
     public static final double RATE = 1;//USCT的汇率是1
+
+    public static final String BULY_ID="11722feca8";
 }

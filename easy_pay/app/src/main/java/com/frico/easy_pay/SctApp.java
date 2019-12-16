@@ -16,9 +16,11 @@ import android.support.multidex.MultiDexApplication;
 import android.text.TextUtils;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.frico.easy_pay.config.Constant;
 import com.frico.easy_pay.core.api.RetrofitUtil;
 import com.frico.easy_pay.core.entity.MbpUserVO;
 import com.frico.easy_pay.core.entity.Result;
+import com.frico.easy_pay.core.netty.Connector;
 import com.frico.easy_pay.core.netty.NettyHandler;
 import com.frico.easy_pay.core.utils.ConfigUtil;
 import com.frico.easy_pay.impl.CountDownTimerIncomeLootListener;
@@ -38,6 +40,7 @@ import com.frico.easy_pay.widget.IncomeOrderCountDownTimer;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.smtt.sdk.QbSdk;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -115,6 +118,8 @@ public class SctApp extends MultiDexApplication implements Thread.UncaughtExcept
         //ZXing必须要做的初始化工作
         ZXingLibrary.initDisplayOpinion(this);
 
+        //Bugly
+        CrashReport.initCrashReport(getApplicationContext(), Constant.BULY_ID, false);
 
         initBackgroundCallBack();
 

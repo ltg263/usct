@@ -41,6 +41,9 @@
     <!-- 兼容 flyme5.0 以下版本，魅族内部集成 pushSDK 必填，不然无法收到 消息 -->
     <uses-permission android:name="com.meizu.flyme.push.permission.RECEIVE" />
 
+    <uses-permission android:name="android.permission.READ_LOGS" />
+
+
     <permission
         android:name=".push.permission.MESSAGE"
         android:protectionLevel="signature" />
@@ -88,6 +91,7 @@
             android:name="NOTIFICATION_ID"
             android:value="${NOTIFICATION_ID}" />
 
+
         <activity
             android:name=".ui.activity.NewLaunchActivity"
             android:screenOrientation="portrait"
@@ -107,21 +111,24 @@
             android:name=".ui.activity.me.setting.SettingActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".ui.activity.me.AddressSelectActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.me.AddressSelectActivity"
+            android:screenOrientation="portrait" />
 
-        <activity android:name=".ui.activity.me.setting.CertificationActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.me.setting.CertificationActivity"
+            android:screenOrientation="portrait" />
 
-        <activity android:name=".ui.activity.qrcode.NewCaptureActivity"
+        <activity
+            android:name=".ui.activity.qrcode.NewCaptureActivity"
             android:screenOrientation="portrait">
 
-           <!-- <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" />
+            <!-- <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+                 <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>-->
         </activity>
         <activity
             android:name=".ui.activity.GuideActivity"
@@ -226,7 +233,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.qrcode.ShowQrCodeActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
 
         </activity>
         <activity

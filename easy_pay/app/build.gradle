@@ -96,8 +96,8 @@ android {
         applicationId "com.frico.easy_pay"
         minSdkVersion 20
         targetSdkVersion 26
-        versionCode 1             //测试 106003   正式的1.0.7
-        versionName "1.0.0"
+        versionCode 3
+        versionName "1.0.2"
         flavorDimensions "versionCode"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
@@ -220,6 +220,11 @@ android {
         implementation 'com.github.zcweng:switch-button:0.0.3@aar'
         //gif
         implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
+
+        //bugly
+        implementation 'com.tencent.bugly:crashreport:3.1.0'
+
+        implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
 
     }
 }

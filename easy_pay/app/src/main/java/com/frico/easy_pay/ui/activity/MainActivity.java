@@ -24,6 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.frico.easy_pay.ui.activity.fragment.HomeLobbyFragment;
 import com.frico.easy_pay.ui.activity.me.NewMeFragment;
 import com.google.gson.Gson;
 import com.hwangjr.rxbus.annotation.Subscribe;
@@ -103,6 +104,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private int mSelectIndex = -1;
     private NewMeFragment newMeFragment;
+
+    private HomeLobbyFragment lobbyFragment;
 
     public static void start(Activity activity) {
         Intent intent = new Intent(activity, MainActivity.class);
@@ -295,6 +298,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 //        homeFragment = HomeFragment.newInstance();
         orderFragment = OrderFragment.newInstance();
         traderFragment = MyAdvertisingFragment.newInstance();
+
+        lobbyFragment = HomeLobbyFragment.newInstance();
+
+
       //  meFragment = MeFragment.newInstance();
         newMeFragment = NewMeFragment.newInstance();
         //nowFragment = incomeFragment;
@@ -380,10 +387,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         ivMe.setSelected(false);
         tvTrader.setSelected(true);
         ivTrader.setSelected(true);
-        switchFragment(nowFragment, traderFragment, "Ta");
-        if(isFromWallet){
+        //switchFragment(nowFragment, traderFragment, "Ta");
+        switchFragment(nowFragment,lobbyFragment,"Ta");
+      /*  if(isFromWallet){
             traderFragment.showBuyFragment();
-        }
+        }*/
     }
 
 

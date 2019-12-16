@@ -21,3 +21,6 @@
 #-renamesourcefileattribute SourceFile
 
 -keepattributes Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LineNumberTable,*Annotation*,EnclosingMethod
+
+-dontwarn com.tencent.bugly.**
+-keep public class com.tencent.bugly.**{*;}

@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.frico.easy_pay.dialog.SimpleDialog;
 import com.google.gson.Gson;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
@@ -53,9 +54,7 @@ public class PayWayListActivity extends BaseActivity implements ActionBarClickLi
     private PayWayListAdapter payWayListAdapter;
     private List<PayWayListVO.ListBean> listBeanList = new ArrayList<PayWayListVO.ListBean>();
     private List<BankVO.ListBean> banklistBeanList = new ArrayList<BankVO.ListBean>();
-
-    private int mPaywayListCount;
-
+    List<String> listDeleteIds = new ArrayList<>();
     @Override
     protected int setLayout() {
         return R.layout.activity_pay_way_list;
@@ -63,7 +62,7 @@ public class PayWayListActivity extends BaseActivity implements ActionBarClickLi
 
     @Override
     public void initTitle() {
-        actionbar.setData("收款方式", R.drawable.ic_left_back2x, null, 0, null, this);
+        actionbar.setData("收款方式", R.drawable.ic_left_back2x, null, 0, "编辑", this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             actionbar.setStatusBarHeight(getStatusBarHeight());
         }
@@ -80,6 +79,29 @@ public class PayWayListActivity extends BaseActivity implements ActionBarClickLi
         tvAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                LogUtils.w(listDeleteIds.toString());
+                if(listDeleteIds.size()==0){
+                    new SimpleDialog(PayWayListActivity.this,"删除项不为空").show();
+                    return;
+                }
+                if(tvAdd.getText().toString().equals("删除")){
+                    SimpleDialog simpleDialog = new SimpleDialog(PayWayListActivity.this,
+                            "是否确定删除?", "提示", "取消", "确定", new SimpleDialog.OnButtonClick() {
+                        @Override
+                        public void onNegBtnClick() {
+
+                        }
+
+                        @Override
+                        public void onPosBtnClick() {
+                            show(PayWayListActivity.this, "删除中...");
+                            deleteBanks(listDeleteIds.get(0),0);
+                        }
+                    });
+                    simpleDialog.setCanceledOnTouchOutside(false);
+                    simpleDialog.show();
+                    return;
+                }
                 launch(AddPayWayActivity.class);
             }
         });
@@ -128,6 +150,13 @@ public class PayWayListActivity extends BaseActivity implements ActionBarClickLi
                         PayWayListVO.ListBean  listBeanItem = listBeanList.get(position);
                         boolean isAliPay = listBean.getType() == 2;
                         setNormalCode(listBeanItem.getId(),isAliPay);
+                    }
+                    break;
+                case R.id.cb_select_del:
+                    if(listDeleteIds.contains(listBean.getId())){
+                        listDeleteIds.remove(listBean.getId());
+                    }else{
+                        listDeleteIds.add(listBean.getId());
                     }
                     break;
             }
@@ -353,9 +382,24 @@ public class PayWayListActivity extends BaseActivity implements ActionBarClickLi
         finish();
     }
 
+    public String getActionBarText(){
+        return actionbar.getRightText();
+    }
+
     @Override
     public void onRightClick() {
-
+        if(listBeanList==null || listBeanList.size()==0){
+            return;
+        }
+        if (actionbar.getRightText().equals("编辑")) {
+            actionbar.setRight("取消");
+            tvAdd.setText("删除");
+        } else {
+            actionbar.setRight("编辑");
+            tvAdd.setText("+添加");
+        }
+        payWayListAdapter.getData().clear();
+        payWayListAdapter.addData(createAdapterListFromCodeList(listBeanList));
     }
 
     private List<BasePayWayListItemBean> createAdapterListFromBankList(List<BankVO.ListBean> list){
@@ -402,6 +446,50 @@ public class PayWayListActivity extends BaseActivity implements ActionBarClickLi
         return resultList;
     }
 
+    private void deleteBanks(String id,int pos){
+        RetrofitUtil.getInstance().apiService()
+                .bankdel(id)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<Result>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Result result) {
+                        if(pos < listDeleteIds.size()-1){
+                            deleteBanks(listDeleteIds.get(pos+1),pos+1);
+                            return;
+                        }
+                        dismiss();
+                        if (result.getCode() == 1) {
+                            if(pos == listDeleteIds.size()-1){
+                                ToastUtil.showToast(PayWayListActivity.this, "删除成功");
+                            }
+                            getPayCodeList();
+                        } else if (result.getCode() == 2) {
+                            ToastUtil.showToast(PayWayListActivity.this, "登录失效，请重新登录");
+                            SctApp.getInstance().gotoLoginActivity();
+                            finish();
+                        } else {
+                            ToastUtil.showToast(PayWayListActivity.this, result.getMsg());
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        dismiss();
+                        ToastUtil.showToast(PayWayListActivity.this, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
 
 
     private void deleteBank(String id) {

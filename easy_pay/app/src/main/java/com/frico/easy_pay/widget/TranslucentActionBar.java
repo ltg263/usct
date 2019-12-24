@@ -118,6 +118,10 @@ public final class TranslucentActionBar extends LinearLayout {
         }
     }
 
+    public String getRightText(){
+        return tvRight.getText().toString();
+    }
+
     /**
      * 设置Right图片
      *

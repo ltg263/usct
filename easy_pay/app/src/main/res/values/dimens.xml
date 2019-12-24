@@ -6,4 +6,6 @@
     <!--页面边距-->
     <dimen name="page_left_right_margin">16dp</dimen>
 
+    <!--收款方式-->
+    <dimen name="bg_btn_pay_way">15dp</dimen>
 </resources>

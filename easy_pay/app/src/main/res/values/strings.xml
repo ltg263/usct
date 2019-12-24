@@ -22,6 +22,9 @@
     <string name="shink" translatable="false">收起</string>
     <string name="income_loot_top_intro" translatable="false">今日已成功抢单 &lt;font color=#FFA64C&gt;%1$s&lt;/font&gt; 次, 累计收款 &lt;font color=#FFA64C&gt;%2$s&lt;/font&gt;  USCT </string>
 
+    <string name="group_num" translatable="false">&lt;font color=#FFB266 &gt;%1$s&lt;/font&gt;  人 </string>
+    <string name="group_num_no" translatable="false">&lt;font color=#FFB266 &gt;%1$s&lt;/font&gt;</string>
+
     <string name="withdraw_rate_count_intro" translatable="false">本次提现&lt;font color=#FFA64C&gt;%1$s&lt;/font&gt;元（手续费&lt;font color=#FFA64C&gt;%2$s&lt;/font&gt;元）</string>
     <string name="time_duo_down" translatable="false">倒计时：&lt;font color=#FFA54D &gt;%1$s&lt;/font&gt;</string>
     <string name="collection" translatable="false">收款：&lt;font color=#FF7F7F &gt;%1$s  CNY&lt;/font&gt;</string>

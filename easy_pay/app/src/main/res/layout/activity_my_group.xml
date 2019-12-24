@@ -1,70 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
+
+
+    <com.frico.easy_pay.widget.TranslucentActionBar
+        android:id="@+id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        >
+        android:foregroundGravity="right">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="55dp"
             android:background="@drawable/bg_group_top" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/page_left_right_margin"
-                android:paddingRight="@dimen/page_left_right_margin">
-
-                <ImageView
-                    android:id="@+id/iv_tarbar_back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:src="@drawable/icon_left_back" />
-
-                <TextView
-                    android:id="@+id/tv_tarbar_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="我的团队"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
 
             <!--我的团队（团队首页）-->
             <LinearLayout
-                android:visibility="visible"
                 android:id="@+id/ll_director_lay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:background="@drawable/bg_item_group"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="@dimen/page_left_right_margin">
+                android:padding="@dimen/page_left_right_margin"
+                android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
 
@@ -72,17 +51,15 @@
                         android:id="@+id/iv_group_tag"
                         android:layout_width="53dp"
                         android:layout_height="53dp"
-                        android:src="@drawable/tag_group_director"
-
-                        />
+                        android:src="@drawable/tag_group_director" />
 
                     <TextView
                         android:id="@+id/tv_group_tag_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="董事"
                         android:textColor="@color/color_3"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        tools:text="董事" />
 
 
                 </LinearLayout>
@@ -90,23 +67,25 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="直推"
-                        android:textColor="@color/color_9"
-                        android:textSize="15dp" />
 
                     <TextView
                         android:id="@+id/tv_my_group_first_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="129人"
                         android:textColor="@color/color_3"
-                        android:textSize="18dp" />
+                        android:textSize="18dp"
+                        tools:text="129人" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="直推"
+                        android:textColor="@color/color_9"
+                        android:textSize="15dp" />
 
 
                 </LinearLayout>
@@ -115,23 +94,25 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="团队"
-                        android:textColor="@color/color_9"
-                        android:textSize="15dp" />
 
                     <TextView
                         android:id="@+id/tv_my_group_count_all"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="629人"
                         android:textColor="@color/color_3"
-                        android:textSize="18dp" />
+                        android:textSize="18dp"
+                        tools:text="629人" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="团队"
+                        android:textColor="@color/color_9"
+                        android:textSize="15dp" />
 
 
                 </LinearLayout>
@@ -140,26 +121,27 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="团队收益"
-                        android:textColor="@color/color_9"
-                        android:textSize="15dp" />
 
                     <TextView
                         android:id="@+id/tv_my_group_sct_amount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="6888.9866"
                         android:textColor="@color/color_3"
-                        android:textSize="18dp" />
+                        android:textSize="18dp"
+                        tools:text="666" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="团队收益"
+                        android:textColor="@color/color_9"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
-
 
             </LinearLayout>
 
@@ -173,15 +155,15 @@
                 android:background="@drawable/bg_item_group"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
-                android:padding="@dimen/page_left_right_margin">
+                android:padding="@dimen/page_left_right_margin"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    >
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:id="@+id/iv_member_my_group_header"
@@ -191,27 +173,25 @@
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginLeft="20dp"
                         android:layout_gravity="center_vertical"
-                        >
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tv_user_id"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:text="会员ID:600156(总监)"
                             android:textSize="17dp"
-                            />
+                            tools:text="会员ID:600156(总监)" />
+
                         <TextView
                             android:id="@+id/tv_phone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:text="157****2312"
                             android:textSize="13dp"
-                            />
+                            tools:text="157****2312" />
 
                     </LinearLayout>
 
@@ -220,10 +200,8 @@
                         android:id="@+id/im_my_tag"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/icon_manager"
                         android:layout_marginRight="10dp"
-                        />
-
+                        android:src="@drawable/icon_manager" />
 
 
                 </LinearLayout>
@@ -253,9 +231,9 @@
                             android:id="@+id/tv_member_my_group_first_count"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:text="129人"
                             android:textColor="@color/color_3"
-                            android:textSize="18dp" />
+                            android:textSize="18dp"
+                            tools:text="129人" />
 
 
                     </LinearLayout>
@@ -278,9 +256,9 @@
                             android:id="@+id/tv_member_my_group_count_all"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:text="629人"
                             android:textColor="@color/color_3"
-                            android:textSize="18dp" />
+                            android:textSize="18dp"
+                            tools:text="629人" />
 
 
                     </LinearLayout>
@@ -303,9 +281,9 @@
                             android:id="@+id/tv_member_my_group_sct_amount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:text="6888.9866"
                             android:textColor="@color/color_3"
-                            android:textSize="18dp" />
+                            android:textSize="18dp"
+                            tools:text="6888.9866" />
 
                     </LinearLayout>
 
@@ -314,7 +292,7 @@
 
             </LinearLayout>
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </FrameLayout>
 

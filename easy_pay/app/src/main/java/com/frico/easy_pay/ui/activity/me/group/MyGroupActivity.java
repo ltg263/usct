@@ -2,9 +2,11 @@ package com.frico.easy_pay.ui.activity.me.group;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.frico.easy_pay.impl.ActionBarClickListener;
+import com.frico.easy_pay.widget.TranslucentActionBar;
 import com.google.gson.Gson;
 import com.frico.easy_pay.R;
 import com.frico.easy_pay.SctApp;
@@ -77,15 +81,12 @@ public class MyGroupActivity extends BaseActivity implements BaseQuickAdapter.Re
     TextView tvMemberMyGroupSctAmount;
     @BindView(R.id.ll_member_lay)
     LinearLayout llMemberLay;
-    @BindView(R.id.iv_tarbar_back)
-    ImageView ivTarbarBack;
-    @BindView(R.id.tv_tarbar_title)
-    TextView tvTarbarTitle;
     @BindView(R.id.home_recy)
     RecyclerView homeRecy;
     @BindView(R.id.rotate_header_list_view_frame)
     RefreshGitHeaderView rotateHeaderListViewFrame;
-
+    @BindView(R.id.actionbar)
+    TranslucentActionBar actionbar;
     private MyGroupListAdapter myGroupListAdapter;
     private boolean mIsMyGroup;
 
@@ -102,7 +103,7 @@ public class MyGroupActivity extends BaseActivity implements BaseQuickAdapter.Re
      * @param activity
      * @param isMyGroup 是否是我的团队  （区分 我的团队  和 我的儿子辈的团队）
      */
-    public static void start(Activity activity, boolean isMyGroup, String acqid,MyGroupItemVO myGroupItemVO) {
+    public static void start(Activity activity, boolean isMyGroup, String acqid, MyGroupItemVO myGroupItemVO) {
         Intent intent = new Intent(activity, MyGroupActivity.class);
         intent.putExtra(KEY_IS_MY_GROUP, isMyGroup);
         intent.putExtra(KEY_ACQID, acqid);
@@ -117,19 +118,28 @@ public class MyGroupActivity extends BaseActivity implements BaseQuickAdapter.Re
 
     @Override
     public void initTitle() {
-        ivTarbarBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        actionbar.setData("我的团队", R.drawable.ic_left_back2x, null, 0, null,
+                new ActionBarClickListener() {
+                    @Override
+                    public void onLeftClick() {
+                        finish();
+                    }
+
+                    @Override
+                    public void onRightClick() {
+
+                    }
+                });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            actionbar.setStatusBarHeight(getStatusBarHeight());
+        }
     }
 
     @Override
     protected void initData() {
         mIsMyGroup = getIntent().getBooleanExtra(KEY_IS_MY_GROUP, false);
         mAcqid = getIntent().getStringExtra(KEY_ACQID);
-        if(! mIsMyGroup) {
+        if (!mIsMyGroup) {
             mCurrentGroupItemV0 = (MyGroupItemVO) getIntent().getSerializableExtra(KEY_GROUP_ITEM);
         }
         if (mIsMyGroup) {
@@ -203,7 +213,7 @@ public class MyGroupActivity extends BaseActivity implements BaseQuickAdapter.Re
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 //进入子数据页面
-                MyGroupActivity.start(MyGroupActivity.this, false, myGroupListAdapter.getItem(position).getAcqid(),myGroupListAdapter.getItem(position));
+                MyGroupActivity.start(MyGroupActivity.this, false, myGroupListAdapter.getItem(position).getAcqid(), myGroupListAdapter.getItem(position));
             }
         });
     }
@@ -236,11 +246,11 @@ public class MyGroupActivity extends BaseActivity implements BaseQuickAdapter.Re
                             if (page == 1) {
                                 myGroupListAdapter.getData().clear();
                             }
-                            if(orderVOList != null) {
+                            if (orderVOList != null) {
                                 orderVOList.clear();
                             }
                             orderVOList = result.getData().getData();
-                            if(orderVOList != null && orderVOList.size() > 0) {
+                            if (orderVOList != null && orderVOList.size() > 0) {
                                 myGroupListAdapter.addData(orderVOList);
 
                                 myGroupListAdapter.loadMoreComplete();
@@ -255,12 +265,12 @@ public class MyGroupActivity extends BaseActivity implements BaseQuickAdapter.Re
                                         myGroupListAdapter.setEmptyView(R.layout.empty_layout);
                                     }
                                 }
-                            }else{
+                            } else {
                                 if (rotateHeaderListViewFrame != null) {
                                     rotateHeaderListViewFrame.refreshComplete();
                                 }
                                 myGroupListAdapter.loadMoreEnd();
-                                if (page == 1 ) {
+                                if (page == 1) {
                                     myGroupListAdapter.setEmptyView(R.layout.empty_layout);
                                 }
                             }
@@ -305,48 +315,48 @@ public class MyGroupActivity extends BaseActivity implements BaseQuickAdapter.Re
                         dismiss();
                         if (result.getCode() == 1) {
                             MyGroupInfoVO data = result.getData();
-                            if(mIsMyGroup){
-                                //我的团队
+                            if (mIsMyGroup) {
+                                //我的团队130
                                 tvGroupTagName.setText(data.getTeamleveltext());
-                                tvMyGroupFirstCount.setText(data.getDirect_nums()+"人");
-                                tvMyGroupCountAll.setText(data.getTeam_nums()+"人");
-                                tvMyGroupSctAmount.setText(data.getTotal_profit());
+                                tvMyGroupFirstCount.setText(Html.fromHtml(getResources().getString(R.string.group_num, data.getDirect_nums())));
+                                tvMyGroupCountAll.setText(Html.fromHtml(getResources().getString(R.string.group_num, data.getTeam_nums() + "")));
+                                tvMyGroupSctAmount.setText(Html.fromHtml(getResources().getString(R.string.group_num_no, data.getTotal_profit())));
 
-                                if(data.getTeam_level() == 0){
+                                if (data.getTeam_level() == 0) {
                                     ivGroupTag.setImageResource(R.drawable.tag_group_normal);
-                                }else if(data.getTeam_level() == 1){
+                                } else if (data.getTeam_level() == 1) {
                                     ivGroupTag.setImageResource(R.drawable.tag_group_manager);
-                                }else if(data.getTeam_level() == 2){
+                                } else if (data.getTeam_level() == 2) {
                                     ivGroupTag.setImageResource(R.drawable.tag_group_chief);
-                                }else if(data.getTeam_level() == 3){
+                                } else if (data.getTeam_level() == 3) {
                                     ivGroupTag.setImageResource(R.drawable.tag_group_director);
                                 }
 
-                            }else{
+                            } else {
                                 //子团队
-                                if(TextUtils.isEmpty(mCurrentGroupItemV0.getAgentname())){
-                                    tvUserId.setText("会员ID:"+ mCurrentGroupItemV0.getAcqid());
-                                }else {
+                                if (TextUtils.isEmpty(mCurrentGroupItemV0.getAgentname())) {
+                                    tvUserId.setText("会员ID:" + mCurrentGroupItemV0.getAcqid());
+                                } else {
                                     tvUserId.setText("会员ID:" + mCurrentGroupItemV0.getAcqid() + " (" + mCurrentGroupItemV0.getAgentname() + ")");
                                 }
                                 tvPhone.setText(Util.hintPhoneNumber(mCurrentGroupItemV0.getMobile()));
 
-                                tvMemberMyGroupFirstCount.setText(data.getDirect_nums()+"人");
-                                tvMemberMyGroupCountAll.setText(data.getTeam_nums()+"人");
+                                tvMemberMyGroupFirstCount.setText(data.getDirect_nums() + "人");
+                                tvMemberMyGroupCountAll.setText(data.getTeam_nums() + "人");
                                 tvMemberMyGroupSctAmount.setText(data.getTotal_profit());
-                                if(data.getTeam_level() == 0){
+                                if (data.getTeam_level() == 0) {
                                     imMyTag.setImageResource(R.drawable.icon_normal);
-                                }else if(data.getTeam_level() == 1){
+                                } else if (data.getTeam_level() == 1) {
                                     imMyTag.setImageResource(R.drawable.icon_manager);
-                                }else if(data.getTeam_level() == 2){
+                                } else if (data.getTeam_level() == 2) {
                                     imMyTag.setImageResource(R.drawable.icon_chief);
-                                }else if(data.getTeam_level() == 3){
+                                } else if (data.getTeam_level() == 3) {
                                     imMyTag.setImageResource(R.drawable.icon_director);
                                 }
                                 if (TextUtils.isEmpty(mCurrentGroupItemV0.getAvater())) {
                                     int resId = R.drawable.header_default_1;
                                     new ImageLoaderImpl().loadImageCircle(MyGroupActivity.this, resId).into(imMemberHeader);
-                                }else{
+                                } else {
                                     new ImageLoaderImpl().loadImageCircle(MyGroupActivity.this, mCurrentGroupItemV0.getAvater()).into(imMemberHeader);
                                 }
 

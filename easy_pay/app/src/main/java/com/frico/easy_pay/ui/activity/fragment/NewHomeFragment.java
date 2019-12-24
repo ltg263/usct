@@ -11,14 +11,21 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.frico.easy_pay.R;
@@ -39,7 +46,6 @@ import com.frico.easy_pay.impl.ActionBarClickListener;
 import com.frico.easy_pay.impl.CountDownTimerIncomeLootListener;
 import com.frico.easy_pay.impl.PtrHandler;
 import com.frico.easy_pay.refresh.PtrFrameLayout;
-import com.frico.easy_pay.refresh.RefreshGitHeaderView;
 import com.frico.easy_pay.ui.activity.MainActivity;
 import com.frico.easy_pay.ui.activity.adapter.HomeFragmentListAdapter;
 import com.frico.easy_pay.ui.activity.adapter.IncomeListAdapter;
@@ -65,7 +71,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import chargepail.qz.www.qzzxing.activity.CaptureActivity;
 import chargepail.qz.www.qzzxing.activity.CodeUtils;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -76,7 +81,7 @@ import pl.droidsonroids.gif.GifImageView;
 
 import static android.app.Activity.RESULT_OK;
 
-public class NewHomeFragment extends BaseFragment implements ActionBarClickListener, BaseQuickAdapter.RequestLoadMoreListener, PtrHandler {
+public class NewHomeFragment extends BaseFragment implements ActionBarClickListener, BaseQuickAdapter.RequestLoadMoreListener, PtrHandler, NestedScrollView.OnScrollChangeListener, View.OnTouchListener {
 
     private static String KEY_ACQID = "acqid";
     @BindView(R.id.gif_collect)
@@ -94,12 +99,39 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
     TextView tvHomeTrading;
     @BindView(R.id.home_recycle)
     RecyclerView homeRecycle;
-    @BindView(R.id.rotate_header_list_view_frame)
-    RefreshGitHeaderView rotateHeaderListViewFrame;
+    /* @BindView(R.id.rotate_header_list_view_frame)
+     RefreshGitHeaderView rotateHeaderListViewFrame;*/
     @BindView(R.id.tv_home_scan)
     TextView tvHomeScan;
     @BindView(R.id.tv_home_qr_code)
     TextView tvHomeQrCode;
+    @BindView(R.id.scrollview_root)
+    NestedScrollView scrollviewRoot;
+    @BindView(R.id.ll_load_more)
+    LinearLayout llLoadMore;
+    @BindView(R.id.iv_home_top_scan)
+    ImageView ivHomeTopScan;
+    @BindView(R.id.iv_home_top_qrcode)
+    ImageView ivHomeTopQrcode;
+    @BindView(R.id.tv_home_top_click_to_buy)
+    TextView tvHomeTopClickToBuy;
+    @BindView(R.id.iv_home_top_switch_button_close)
+    ImageView ivHomeTopSwitchButtonClose;
+    @BindView(R.id.iv_home_top_switch_button_open)
+    ImageView ivHomeTopSwitchButtonOpen;
+    @BindView(R.id.ll_home_top_switch_button)
+    RelativeLayout llHomeTopSwitchButton;
+    @BindView(R.id.ll_title_bar)
+    LinearLayout llTitleBar;
+    @BindView(R.id.tv_income_notify_top_content)
+    TextView tvIncomeNotifyTopContent;
+    @BindView(R.id.iv_income_top_notify_close_btn)
+    ImageView ivIncomeTopNotifyCloseBtn;
+    @BindView(R.id.ll_income_top_notify_lay)
+    LinearLayout llIncomeTopNotifyLay;
+    @BindView(R.id.tv_remind)
+    TextView tvRemind;
+
 
 
     private View view;
@@ -117,6 +149,8 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
     private boolean mIsRefreshListData;//是否正在刷新数据
 
     private int mActivateMoney;//激活金额
+
+    private boolean isRefresh = false;
 
 
     public static NewHomeFragment newInstance() {
@@ -281,18 +315,22 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
 
 
     private void initView() {
+        llLoadMore.setVisibility(View.GONE);
         gifDrawable = (GifDrawable) gifCollect.getDrawable();
         gifDrawable.start();
         homeRecycle.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        homeRecycle.addItemDecoration(new HorizDecoration(10));
-        rotateHeaderListViewFrame.setPtrHandler(this);
 
+        homeRecycle.addItemDecoration(new HorizDecoration(10));
+        //rotateHeaderListViewFrame.setPtrHandler(this);
+        scrollviewRoot.setOnScrollChangeListener(this::onScrollChange);
+        scrollviewRoot.setOnTouchListener(this);
         headerView = LayoutInflater.from(activity).inflate(R.layout.home_header_layout, homeRecycle, false);
         if (SctApp.mUserInfoData != null) {
             tvHomeUsableCoin.setText("可用USCT: " + SctApp.mUserInfoData.getAvailable_money());
         }
 
     }
+
 
     @Override
     public void onDestroyView() {
@@ -301,9 +339,10 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
         unbinder.unbind();
     }
 
-    @OnClick({R.id.gif_collect, R.id.tv_home_click_to_buy, R.id.tv_home_trading,R.id.tv_home_scan, R.id.tv_home_qr_code})
+    @OnClick({R.id.gif_collect, R.id.tv_home_click_to_buy, R.id.tv_home_trading, R.id.tv_home_scan, R.id.tv_home_qr_code,R.id.iv_home_top_scan, R.id.iv_home_top_qrcode, R.id.tv_home_top_click_to_buy, R.id.ll_home_top_switch_button})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.ll_home_top_switch_button:
             case R.id.gif_collect:
                 if (SctApp.mUserInfoData.isPaymentStatusOpen()) {
                     changePaymentStatusClose();
@@ -311,11 +350,14 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
                     changePaymentStatusOpen();
                 }
                 break;
+            case R.id.tv_home_top_click_to_buy:
             case R.id.tv_home_click_to_buy:
+                //
                 break;
             case R.id.tv_home_trading:
                 launch(HistoryOrderActivity.class);
                 break;
+            case R.id.iv_home_top_scan:
             case R.id.tv_home_scan:
                 if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA}, 1);
@@ -324,6 +366,7 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
                     startActivityForResult(intent, CodeUtils.RESULT_SUCCESS);
                 }
                 break;
+            case R.id.iv_home_top_qrcode:
             case R.id.tv_home_qr_code:
                 ShowQrCodeActivity.start(getActivity());
                 break;
@@ -455,11 +498,13 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
         if (isOpen) {
             switchOpen();
             tvHomeClickToBuy.setText("正在抢单中");
+            tvHomeTopClickToBuy.setText("抢单中");
             //startAnim();
         } else {
             //stopAnim();
             switchClose();
             tvHomeClickToBuy.setText("点击开始抢单");
+            tvHomeTopClickToBuy.setText("开始抢单");
         }
        /* if( (!isActivate) && activateMoney > 0 ) {
             //只有没激活，且金额大于0才启动激活引导
@@ -536,11 +581,15 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
         //开着的
         gifCollect.setImageResource(R.drawable.collecting);
         //btnIncomeLootSwitch.setText("停止抢单");
+        ivHomeTopSwitchButtonClose.setVisibility(View.GONE);
+        ivHomeTopSwitchButtonOpen.setVisibility(View.VISIBLE);
     }
 
     private void switchClose() {
         gifCollect.setImageResource(R.drawable.collect);
         //btnIncomeLootSwitch.setText("开始抢单");
+        ivHomeTopSwitchButtonClose.setVisibility(View.VISIBLE);
+        ivHomeTopSwitchButtonOpen.setVisibility(View.GONE);
     }
 
     private void initTodayInfo(int orderCount, double allMoney) {
@@ -556,6 +605,9 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
      * @param page
      */
     private void initNetData(int page, boolean isResetRefresh) {
+        if (isRefresh) {
+            return;
+        }
         RetrofitUtil.getInstance().apiService()
                 .orderlist(page, 2, 0, null, null)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -571,6 +623,7 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
                         if (isResetRefresh) {
                             mIsRefreshListData = false;
                         }
+
                         LogUtils.e("--收单列表--" + new Gson().toJson(result));
                         if (result.getCode() == 1) {
                             if (page == 1) {
@@ -584,9 +637,9 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
                             // mLastAdapterDataCount = incomeListAdapter.getItemCount();
 
                             adapter.loadMoreComplete();
-                            if (rotateHeaderListViewFrame != null) {
+                            /*if (rotateHeaderListViewFrame != null) {
                                 rotateHeaderListViewFrame.refreshComplete();
-                            }
+                            }*/
 
                             if (orderVOList.size() < result.getData().getPer_page()) {
                                 adapter.loadMoreEnd();
@@ -595,6 +648,9 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
                                     adapter.setEmptyView(R.layout.empty_layout);
                                 }
                             }
+                            if (llLoadMore.getVisibility() == View.VISIBLE) {
+                                hideRefresh();
+                            }
 
                             //列表有数据就倒计时刷新
                             if (adapter.getItemCount() > 0) {
@@ -602,15 +658,16 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
                             } else {
                                 cancelCountDownTimer();
                             }
+
                         } else if (result.getCode() == 2) {
                             ToastUtil.showToast(activity, "登录失效，请重新登录");
                             SctApp.getInstance().gotoLoginActivity();
                             activity.finish();
                         } else {
                             adapter.loadMoreFail();
-                            if (rotateHeaderListViewFrame != null) {
+                            /*if (rotateHeaderListViewFrame != null) {
                                 rotateHeaderListViewFrame.refreshComplete();
-                            }
+                            }*/
                         }
                     }
 
@@ -620,9 +677,9 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
                             mIsRefreshListData = false;
                         }
                         adapter.loadMoreFail();
-                        if (rotateHeaderListViewFrame != null) {
+                       /* if (rotateHeaderListViewFrame != null) {
                             rotateHeaderListViewFrame.refreshComplete();
-                        }
+                        }*/
                         ToastUtil.showToast(activity, e.getMessage());
                     }
 
@@ -955,7 +1012,7 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
     @Override
     public void onDestroy() {
         super.onDestroy();
-       RxBus.get().unregister(this);
+        RxBus.get().unregister(this);
        /* if (unbinder != null) {
             unbinder.unbind();
         }*/
@@ -964,6 +1021,7 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
         }*/
         cancelCountDownTimer();
     }
+
     /**
      * 根据消息刷新数据
      *
@@ -972,6 +1030,7 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
     @Subscribe(
             tags = {
                     @Tag(BusAction.ORDER_LIST)
+
             }
     )
     public void getOrderList(String data) {
@@ -1020,6 +1079,7 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
             }
         }
     }
+
     private void gotoTransfer(String toUserId) {
         //转账
         BalanceTransferActivity.start(getActivity(), toUserId);
@@ -1033,11 +1093,149 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
     }
 
     //TODO 两个gif淡入淡出
-    private void setAnimation(View view,int start,int end){
+    private void setAnimation(View view, int start, int end) {
+
+        AlphaAnimation alphaAnimation;
+        alphaAnimation = new AlphaAnimation(start, end);
+
+        alphaAnimation.setDuration(1000);
+        view.setAnimation(alphaAnimation);
+    }
+
+
+    private void setAnimation(View view, int start, int end, Animation.AnimationListener listener) {
 
         AlphaAnimation alphaAnimation;
         alphaAnimation = new AlphaAnimation(start, end);
         alphaAnimation.setDuration(1000);
+        alphaAnimation.setAnimationListener(listener);
         view.setAnimation(alphaAnimation);
+
     }
+
+
+    private boolean isTop = true;
+    private boolean canRefresh = true;
+
+    @Override
+    public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+        String TAG = "scroll";
+        LogUtils.e(TAG, "onScrollChange scrollX" + scrollX);
+        LogUtils.e(TAG, "onScrollChange scrollY" + scrollY);
+        LogUtils.e(TAG, "onScrollChange oldScrollX" + oldScrollX);
+        LogUtils.e(TAG, "onScrollChange oldScrollY" + oldScrollY);
+
+        if (scrollY > oldScrollY) {
+            LogUtils.i(TAG, "Scroll DOWN");
+        }
+        if (scrollY < oldScrollY) {
+            LogUtils.i(TAG, "Scroll UP");
+        }
+        if (scrollY >= tvHomeClickToBuy.getBottom() && llTitleBar.getVisibility() != View.VISIBLE) {
+            //隐藏头部显示
+            llTitleBar.setVisibility(View.VISIBLE);
+            setAnimation(llTitleBar, 0, 100);
+
+        } else if (scrollY < tvHomeClickToBuy.getBottom() && llTitleBar.getVisibility() == View.VISIBLE) {
+            //setAnimation(llTitleBar, 100, 0);
+            llTitleBar.setVisibility(View.GONE);
+        }
+        if (scrollY == 0) {
+            isTop = true;
+        } else {
+            isTop = false;
+            canRefresh = false;
+        }
+
+        // isTop = (scrollY==0);
+
+        if (scrollY == (v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight())) {
+            LogUtils.i(TAG, "BOTTOM SCROLL");
+        }
+    }
+
+    float startY;
+    float endY;
+
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                //这里若是滑动位置在recycleView上，事件会被消费
+                startY = event.getY();
+                LogUtils.e("ACTION_DOWN" + event.getY());
+                break;
+            case MotionEvent.ACTION_MOVE:
+                LogUtils.e("ACTION_MOVE" + event.getY());
+                LogUtils.e("ACTION_MOVE" + startY);
+                if (isTop && canRefresh) {
+                    float diffY = event.getY() - startY;
+                    if (diffY > 50) {
+                        //LogUtils.e("endY - startY " + (endY - startY));
+                        if (isRefresh) {
+                            break;
+                        }
+                        //点在rv上并且还没向下滑，退出循环
+                        if (startY == 0) {
+                            startY = event.getY();
+                            break;
+                        }
+
+                        initNetData(1, false);
+                        showRefresh();
+
+                    } else {
+                        LogUtils.e("下移");
+                    }
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                endY = event.getY();
+                //startY置零，防止DOWN事件被消费后diffY大于100触发刷新
+                startY = 0;
+                LogUtils.e("ACTION_UP" + event.getY());
+                if (endY - startY > 0 && isTop) {
+                    canRefresh = true;
+                }
+                break;
+        }
+        return false;
+    }
+
+    private void showRefresh() {
+        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.down_refresh_start);
+        animation.setFillAfter(true);
+        isRefresh = true;
+        tvRemind.setText("正在加载...");
+        llLoadMore.setVisibility(View.VISIBLE);
+        llLoadMore.startAnimation(animation);
+    }
+
+    private void hideRefresh() {
+        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.down_refresh_finish);
+        llLoadMore.startAnimation(animation);
+        animation.setFillAfter(false);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                llLoadMore.setVisibility(View.GONE);
+                tvRemind.setText("加载完成 √");
+                isRefresh = false;
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+    }
+
+
 }

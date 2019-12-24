@@ -174,7 +174,7 @@ public class AffirmOrderActivity extends BaseActivity implements ActionBarClickL
      *
      * @param advertNo
      */
-    private void goPay(String advertNo) {
+    public void goPay(String advertNo) {
         show(AffirmOrderActivity.this, "加载中...");
         RetrofitUtil.getInstance().apiService()
                 .gopay(advertNo)

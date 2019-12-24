@@ -11,7 +11,7 @@ import com.frico.easy_pay.impl.PtrUIHandler;
 /**
  * 下拉刷新HeaderView
  */
-public class RefreshGitHeaderView extends PtrFrameLayout implements PtrUIHandler {
+public class RefreshGitHeaderView extends PtrFrameLayout implements PtrUIHandler  {
 
     /**
      * 提醒文本

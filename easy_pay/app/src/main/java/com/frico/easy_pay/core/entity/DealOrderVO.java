@@ -26,6 +26,16 @@ public class DealOrderVO {
     private String tradeway;
     private TradeinfoBean tradeinfo;
 
+    public DealOrderVO(String amount, String price, String cnymoney, String orderno, int difftime, String tradeway, TradeinfoBean tradeinfo) {
+        this.amount = amount;
+        this.price = price;
+        this.cnymoney = cnymoney;
+        this.orderno = orderno;
+        this.difftime = difftime;
+        this.tradeway = tradeway;
+        this.tradeinfo = tradeinfo;
+    }
+
     public String getAmount() {
         return amount;
     }
@@ -83,12 +93,21 @@ public class DealOrderVO {
     }
 
     public static class TradeinfoBean {
+        public TradeinfoBean(_$1Bean _$1, _$2Bean _$2, _$2Bean _$3, _$2Bean _$4, _$2Bean _$5) {
+            this._$1 = _$1;
+            this._$2 = _$2;
+            this._$3 = _$3;
+            this._$4 = _$4;
+            this._$5 = _$5;
+        }
+
         /**
          * 1 : {"alias":"123","bankname":"中国银行","accountname":"123","cardnumber":"123"}
          * 2 : {"alias":"123","accountname":"1","img":"http://pay.localtest.me/uploads/2019_07_19/5d318d7c45681.jpg"}
          * 3 : {"alias":"","accountname":"","img":""}
          * 4 : {"alias":"","accountname":"","img":""}
          */
+
 
         @SerializedName("1")
         private _$1Bean _$1;
@@ -155,6 +174,14 @@ public class DealOrderVO {
             private String cardnumber;
             private String subbranch;//支行名称
 
+            public _$1Bean(String alias, String bankname, String accountname, String cardnumber, String subbranch) {
+                this.alias = alias;
+                this.bankname = bankname;
+                this.accountname = accountname;
+                this.cardnumber = cardnumber;
+                this.subbranch = subbranch;
+            }
+
             public String getAlias() {
                 return alias;
             }
@@ -206,6 +233,12 @@ public class DealOrderVO {
             private String alias;
             private String accountname;
             private String img;
+
+            public _$2Bean(String alias, String accountname, String img) {
+                this.alias = alias;
+                this.accountname = accountname;
+                this.img = img;
+            }
 
             public String getAlias() {
                 return alias;

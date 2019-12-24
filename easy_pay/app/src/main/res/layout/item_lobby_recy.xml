@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="111dp">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingTop="15dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/iv_lobby_rv_user_head"
+                    tools:src="@drawable/icon_trans"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"/>
+                <TextView
+                    android:id="@+id/tv_lobby_rv_username"
+                    tools:text="username"
+                    android:textSize="14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/tv_num"
+                tools:text="数量：50000.00"
+                android:textSize="14sp"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tv_section"
+                tools:text="限额：50000.00"
+                android:textSize="14sp"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_trading_num"
+                tools:text="成交120"
+                android:textSize="12sp"
+                android:textColor="@color/f999"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:layout_marginTop="7dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/iv_alipay"
+                    android:src="@drawable/icon_alipay_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:id="@+id/iv_we_chat"
+                    android:layout_marginLeft="4dp"
+                    android:src="@drawable/icon_we_chat_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:id="@+id/iv_bank"
+                    android:src="@drawable/icon_bank_small"
+                    android:layout_marginLeft="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_buy"
+                android:text="出售"
+                android:layout_marginTop="7dp"
+                android:textSize="14sp"
+                android:textColor="@color/colorWhite"
+                android:gravity="center"
+                android:background="@drawable/shape_blue_buy"
+                android:layout_width="70dp"
+                android:layout_height="27dp"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <View
+        android:background="@color/fddd"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+
+</LinearLayout>

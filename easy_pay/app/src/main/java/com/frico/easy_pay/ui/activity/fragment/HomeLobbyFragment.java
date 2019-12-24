@@ -19,6 +19,7 @@ import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.frico.easy_pay.R;
 import com.frico.easy_pay.core.entity.CoinVO;
 import com.frico.easy_pay.ui.activity.base.BaseFragment;
+import com.frico.easy_pay.utils.LogUtils;
 import com.frico.easy_pay.utils.ToastUtil;
 import com.frico.easy_pay.widget.SwitchMultiButton;
 
@@ -98,6 +99,12 @@ public class HomeLobbyFragment extends BaseFragment implements OnTabSelectListen
     private final int SALE = 2002;
     private int lobbyStatus = BUY;
 
+    private final int NONE = 3000;
+    private final int ALI_PAY = 3001;
+    private final int WE_CHAT_PAY = 3002;
+    private final int BANK_PAY = 3003;
+    private int payWay = NONE;
+
 
     public static HomeLobbyFragment newInstance() {
         Bundle args = new Bundle();
@@ -138,6 +145,7 @@ public class HomeLobbyFragment extends BaseFragment implements OnTabSelectListen
             //tabLobby.setTabSpaceEqual(true);
         }
         tabLobby.setTabData(coinVOList);
+        tabLobby.setOnTabSelectListener(this);
         //设置默认选中tab为购买
         switchBtnLobby.setSelectedTab(0);
         changeStatus(0);
@@ -154,12 +162,21 @@ public class HomeLobbyFragment extends BaseFragment implements OnTabSelectListen
 
     @Override
     public void onTabSelect(int position) {
+        LogUtils.e(String.valueOf(position));
+        if (position >= 1) {
+            ToastUtil.showToast(getActivity(), "敬请期待");
+            tabLobby.setCurrentTab(0);
+        }
 
     }
 
     @Override
     public void onTabReselect(int position) {
-
+        LogUtils.e(String.valueOf(position));
+        if (position >= 1) {
+            ToastUtil.showToast(getActivity(), "敬请期待");
+            tabLobby.setCurrentTab(0);
+        }
     }
 
 
@@ -173,14 +190,14 @@ public class HomeLobbyFragment extends BaseFragment implements OnTabSelectListen
             case 0:
                 //购买状态
                 ToastUtil.showToast(getActivity(), "购买");
-                lobbyStatus=BUY;
+                lobbyStatus = BUY;
                 llRootBuy.setVisibility(View.VISIBLE);
                 llRootSale.setVisibility(View.GONE);
                 break;
             case 1:
                 //出售状态
                 ToastUtil.showToast(getActivity(), "出售");
-                lobbyStatus=SALE;
+                lobbyStatus = SALE;
                 llRootBuy.setVisibility(View.GONE);
                 llRootSale.setVisibility(View.VISIBLE);
                 break;
@@ -191,12 +208,15 @@ public class HomeLobbyFragment extends BaseFragment implements OnTabSelectListen
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_buy_alipay:
+                payWay = (buyWay != ALI_PAY) ? ALI_PAY : NONE;
                 changeViewStatus(ivBuyAlipay);
                 break;
             case R.id.iv_buy_we_chat:
+                payWay = (buyWay != WE_CHAT_PAY) ? WE_CHAT_PAY : NONE;
                 changeViewStatus(ivBuyWeChat);
                 break;
             case R.id.iv_buy_bank:
+                payWay = (buyWay != BANK_PAY) ? BANK_PAY : NONE;
                 changeViewStatus(ivBuyBank);
                 break;
             case R.id.tv_change_buy_way:
@@ -229,17 +249,34 @@ public class HomeLobbyFragment extends BaseFragment implements OnTabSelectListen
         }
     }
 
+    //一键购买
     private void commitBuy() {
-
+        switch (buyWay){
+            case NONE:
+                ToastUtil.showToast(getActivity(),"请选择支付方式");
+                break;
+            case ALI_PAY:
+                //跳转支付宝
+                break;
+            case BANK_PAY:
+                //跳转银行卡
+                break;
+            case WE_CHAT_PAY:
+                //跳转微信支付
+                break;
+        }
     }
 
+    //全部出售，把余额都填入edit
     private void saleAllNum() {
     }
 
+    //更多
     private void showMorePop() {
 
     }
 
+    //一键出售
     private void commitSale() {
 
     }
@@ -249,18 +286,20 @@ public class HomeLobbyFragment extends BaseFragment implements OnTabSelectListen
             case BUY_WAY_NUM:
                 if (lobbyStatus == BUY) {
                     textView.setText("使用数量购买");
+                    tvBuySort.setText("USCT");
                 } else if (lobbyStatus == SALE) {
                     textView.setText("使用数量出售");
                 }
-                buyWay=BUY_WAY_MONEY;
+                buyWay = BUY_WAY_MONEY;
                 break;
             case BUY_WAY_MONEY:
                 if (lobbyStatus == BUY) {
                     textView.setText("使用金额购买");
+                    tvBuySort.setText("CNY");
                 } else if (lobbyStatus == SALE) {
                     textView.setText("使用金额出售");
                 }
-                buyWay=BUY_WAY_NUM;
+                buyWay = BUY_WAY_NUM;
                 break;
 
         }
@@ -268,9 +307,28 @@ public class HomeLobbyFragment extends BaseFragment implements OnTabSelectListen
 
     private void changeViewStatus(ImageView imageView) {
         imageView.setSelected(!imageView.isSelected());
+        changePayStatus();
     }
 
-    private void initData(){
+    private void changePayStatus() {
+        switch (payWay) {
+            case ALI_PAY:
+                ivBuyBank.setSelected(false);
+                ivBuyWeChat.setSelected(false);
+                break;
+            case WE_CHAT_PAY:
+                ivBuyBank.setSelected(false);
+                ivBuyAlipay.setSelected(false);
+                break;
+            case BANK_PAY:
+                ivBuyAlipay.setSelected(false);
+                ivBuyWeChat.setSelected(false);
+                break;
+        }
+
+    }
+
+    private void initData() {
 
     }
 }

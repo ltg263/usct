@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.frico.easy_pay.R;
 import com.frico.easy_pay.impl.PtrHandler;
 import com.frico.easy_pay.impl.PtrUIHandler;
+import com.frico.easy_pay.utils.LogUtils;
 
 /**
  * This layout view for "Pull to Refresh(Ptr)" support all of the view, you can contain everything you want.

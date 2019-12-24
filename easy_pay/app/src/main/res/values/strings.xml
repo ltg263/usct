@@ -35,6 +35,7 @@
     <string name="bring" translatable="false">USCT提币</string>
     <string name="transfer_balance" translatable="false">转余额</string>
     <string name="click_to_buy" translatable="false">点击开始抢单</string>
+    <string name="load_more_text">加载更多</string>
 
 
 </resources>

@@ -97,6 +97,8 @@ public class NewMeFragment extends BaseFragment implements ActionBarClickListene
     TextView tvFragmentMeLv;
     @BindView(R.id.tv_fragment_me_address)
     TextView tvFragmentMeAddress;
+    @BindView(R.id.iv_is_vip)
+    ImageView ivIsVIp;
 
 
     private View view;
@@ -168,6 +170,7 @@ public class NewMeFragment extends BaseFragment implements ActionBarClickListene
                     public void onNext(Result<MbpUserVO> result) {
                         if (result.getCode() == 1) {
                             mUserInfoData = result.getData();
+                            LogUtils.e(result.getData().toString());
                             SctApp.mUserInfoData = result.getData();
                             initViewData(mUserInfoData);
                         } else if (result.getCode() == 2) {
@@ -203,6 +206,14 @@ public class NewMeFragment extends BaseFragment implements ActionBarClickListene
             nickName = "未设置昵称";
         } else {
             nickName = TextUtils.isEmpty(mUserInfoData.getUsername()) ? "--" : mUserInfoData.getUsername();
+        }
+        LogUtils.e(mUserInfoData.toString());
+        if (null!=mUserInfoData.getIsVip()&&mUserInfoData.getIsVip().equals("0")){
+         //不是vip
+            ivIsVIp.setVisibility(View.GONE);
+        }else if (null!=mUserInfoData.getIsVip()&&mUserInfoData.getIsVip().equals("1")){
+            //vip
+            ivIsVIp.setVisibility(View.VISIBLE);
         }
         tvFragmentMeName.setText(nickName);
         tvFragmentMeId.setText("ID:" + mUserInfoData.getAcqid());

@@ -142,6 +142,29 @@ public class AdVO {
             private String createtime;
             private String tradeway_text;
 
+            public DataBean(int id, String advertno, int userid, String tradetype, String total_amount, String amount, String frozenamount, String tradeamount, String amountmin, String amountmax, String sell_rate, String tradeway, String status, Object completetime, Object cancleip, Object cancletime, String createtip, String updatetime, String createtime, String tradeway_text) {
+                this.id = id;
+                this.advertno = advertno;
+                this.userid = userid;
+                this.tradetype = tradetype;
+                this.total_amount = total_amount;
+                this.amount = amount;
+                this.frozenamount = frozenamount;
+                this.tradeamount = tradeamount;
+                this.amountmin = amountmin;
+                this.amountmax = amountmax;
+                this.sell_rate = sell_rate;
+                this.tradeway = tradeway;
+                this.status = status;
+                this.completetime = completetime;
+                this.cancleip = cancleip;
+                this.cancletime = cancletime;
+                this.createtip = createtip;
+                this.updatetime = updatetime;
+                this.createtime = createtime;
+                this.tradeway_text = tradeway_text;
+            }
+
             public int getId() {
                 return id;
             }

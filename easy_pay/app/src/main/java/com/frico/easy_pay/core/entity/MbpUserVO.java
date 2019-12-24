@@ -76,6 +76,66 @@ public class MbpUserVO implements Serializable {
     private int is_activate ;                   // 是否激活:0=未激活,1=已激活
     private int is_activate_money;              // 激活金额
 
+    private String is_vip;
+
+
+    public void setIsVip(String isVip) {
+        this.is_vip = isVip;
+    }
+
+    public String getIsVip() {
+        return is_vip;
+    }
+
+    @Override
+    public String toString() {
+        return "MbpUserVO{" +
+                "id='" + id + '\'' +
+                ", regcode='" + regcode + '\'' +
+                ", acqid='" + acqid + '\'' +
+                ", level='" + level + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", token='" + token + '\'' +
+                ", available_money='" + available_money + '\'' +
+                ", frozen_money='" + frozen_money + '\'' +
+                ", give_money='" + give_money + '\'' +
+                ", total_give_money='" + total_give_money + '\'' +
+                ", profit_money='" + profit_money + '\'' +
+                ", total_profit_money='" + total_profit_money + '\'' +
+                ", max='" + max + '\'' +
+                ", exchangerate='" + exchangerate + '\'' +
+                ", leveltext='" + leveltext + '\'' +
+                ", total_amount='" + total_amount + '\'' +
+                ", isnewmessage='" + isnewmessage + '\'' +
+                ", expiretime='" + expiretime + '\'' +
+                ", createtime='" + createtime + '\'' +
+                ", is_setpassword='" + is_setpassword + '\'' +
+                ", is_setpaypassword='" + is_setpaypassword + '\'' +
+                ", is_setemail='" + is_setemail + '\'' +
+                ", is_setpayway='" + is_setpayway + '\'' +
+                ", is_setavater='" + is_setavater + '\'' +
+                ", is_setusername='" + is_setusername + '\'' +
+                ", give_setpassword=" + give_setpassword +
+                ", give_setpaypassword=" + give_setpaypassword +
+                ", give_setemail=" + give_setemail +
+                ", give_setpayway=" + give_setpayway +
+                ", give_setavater=" + give_setavater +
+                ", give_setusername=" + give_setusername +
+                ", paymentstatus='" + paymentstatus + '\'' +
+                ", orderautostatus='" + orderautostatus + '\'' +
+                ", avater='" + avater + '\'' +
+                ", acq_withdraw_rate=" + acq_withdraw_rate +
+                ", acq_withdraw_nums=" + acq_withdraw_nums +
+                ", acq_withdraw_amount=" + acq_withdraw_amount +
+                ", ip='" + ip + '\'' +
+                ", is_activate=" + is_activate +
+                ", is_activate_money=" + is_activate_money +
+                ", isVip='" + is_vip + '\'' +
+                '}';
+    }
+
     public String getExpiretime() {
         return expiretime;
     }

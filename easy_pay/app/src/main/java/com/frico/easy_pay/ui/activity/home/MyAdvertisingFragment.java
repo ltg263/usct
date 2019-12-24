@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
+import com.frico.easy_pay.SctApp;
+import com.frico.easy_pay.utils.ToastUtil;
 import com.hwangjr.rxbus.RxBus;
 import com.frico.easy_pay.R;
 import com.frico.easy_pay.core.entity.TabEntity;
@@ -160,7 +162,12 @@ public class MyAdvertisingFragment extends BaseFragment {
      */
     @OnClick(R.id.fab_btn)
     public void gotoAd() {
-        launch(PublishAdActivity.class);
+        if (SctApp.mUserInfoData.getIsVip().equals("0")){
+            ToastUtil.showToast(getActivity(),"非vip不能发布");
+        }else {
+            launch(PublishAdActivity.class);
+        }
+
     }
 
 

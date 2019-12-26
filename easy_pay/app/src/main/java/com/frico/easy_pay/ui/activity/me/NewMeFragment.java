@@ -31,6 +31,7 @@ import com.frico.easy_pay.impl.ActionBarClickListener;
 import com.frico.easy_pay.ui.activity.LoginActivity;
 import com.frico.easy_pay.ui.activity.MainActivity;
 import com.frico.easy_pay.ui.activity.base.BaseFragment;
+import com.frico.easy_pay.ui.activity.me.agency.MyAgencyActivity;
 import com.frico.easy_pay.ui.activity.me.group.MyGroupActivity;
 import com.frico.easy_pay.ui.activity.me.info.MyAccountInfoActivity;
 import com.frico.easy_pay.ui.activity.me.payway.PayWayListActivity;
@@ -257,7 +258,11 @@ public class NewMeFragment extends BaseFragment implements ActionBarClickListene
         unbinder.unbind();
     }
 
-    @OnClick({R.id.tv_fragment_me_address,R.id.iv_fragment_me_head, R.id.tv_fragment_me_name, R.id.tv_fragment_me_auto, R.id.iv_fragment_me_switch, R.id.tv_fragment_me_team, R.id.tv_fragment_me_wallet, R.id.tv_fragment_me_pay_way, R.id.tv_fragment_me_share, R.id.tv_fragment_me_service, R.id.tv_fragment_me_exit})
+    @OnClick({R.id.tv_fragment_me_address,R.id.iv_fragment_me_head, R.id.tv_fragment_me_name,
+            R.id.tv_fragment_me_auto, R.id.iv_fragment_me_switch, R.id.tv_fragment_me_team,
+            R.id.tv_fragment_me_wallet, R.id.tv_fragment_me_pay_way, R.id.tv_fragment_me_share,
+            R.id.tv_fragment_me_service, R.id.tv_fragment_me_exit,R.id.ll_agency_partner,
+            R.id.ll_agency_vip})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_fragment_me_auto:
@@ -289,6 +294,15 @@ public class NewMeFragment extends BaseFragment implements ActionBarClickListene
             case R.id.tv_fragment_me_share:
                 //分享
                 gotoShareAct();
+                break;
+
+            case R.id.ll_agency_partner:
+                //代理合伙人
+                launch(MyAgencyActivity.class);
+                break;
+            case R.id.ll_agency_vip:
+                //代理VIP
+                launch(MyAgencyActivity.class);
                 break;
             case R.id.tv_fragment_me_service:
                 //联系客服

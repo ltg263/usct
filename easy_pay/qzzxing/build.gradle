@@ -33,5 +33,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     //添加 zxing
-    compile "com.google.zxing:core:3.3.2"
+    implementation "com.google.zxing:core:3.3.2"
 }

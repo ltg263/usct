@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="#FFF6F7F8"
     android:orientation="vertical">
+
     <com.frico.easy_pay.widget.TranslucentActionBar
         android:id="@+id/actionbar"
         android:layout_width="match_parent"
@@ -14,11 +15,13 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
 
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,24 +53,25 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/bg_header" />
+
                             <TextView
                                 android:id="@+id/tv_fragment_me_lv"
-                                android:textColor="@color/colorWhite"
-                                android:gravity="center"
-                                android:textSize="11sp"
-                                tools:text="黄金会员"
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
                                 android:layout_alignParentBottom="true"
                                 android:background="@drawable/shape_yellow_lv"
-                                android:layout_width="match_parent"
-                                android:layout_height="20dp"/>
+                                android:gravity="center"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="11sp"
+                                tools:text="黄金会员" />
 
                             <ImageView
                                 android:id="@+id/iv_is_vip"
-                                android:src="@drawable/icon_vip"
-                                android:layout_alignParentRight="true"
-                                android:layout_alignParentTop="true"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/icon_vip" />
 
                         </RelativeLayout>
 
@@ -123,8 +127,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
-                                android:textSize="12sp"
-                                android:text="总币数量(USCT)" />
+                                android:text="总币数量(USCT)"
+                                android:textSize="12sp" />
                         </LinearLayout>
 
                         <View
@@ -151,8 +155,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
-                                android:textSize="12sp"
-                                android:text="可用数量(USCT)" />
+                                android:text="可用数量(USCT)"
+                                android:textSize="12sp" />
                         </LinearLayout>
 
                         <View
@@ -181,8 +185,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
-                                android:textSize="12sp"
-                                android:text="今日收益(USCT)" />
+                                android:text="今日收益(USCT)"
+                                android:textSize="12sp" />
                         </LinearLayout>
 
 
@@ -190,89 +194,102 @@
                 </LinearLayout>
 
             </LinearLayout>
+
             <LinearLayout
-                android:layout_marginTop="1dp"
-                android:orientation="horizontal"
-                android:background="@color/colorWhite"
                 android:layout_width="match_parent"
-                android:layout_height="70dp">
+                android:layout_height="70dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
+
                 <LinearLayout
-                    android:layout_weight="1"
+                    android:id="@+id/ll_agency_partner"
                     android:layout_width="0dp"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="15dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:orientation="horizontal"
-                    android:layout_height="match_parent">
+                    android:paddingLeft="20dp"
+                    android:paddingRight="15dp">
+
                     <LinearLayout
 
-                        android:orientation="vertical"
-                        android:gravity="center_vertical"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:layout_height="match_parent">
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="商户合伙人"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:textColor="@color/f666"/>
+                            android:textColor="@color/f666"
+                            android:textSize="14sp" />
+
                         <TextView
-                            android:text="立即申请 >"
-                            android:layout_marginTop="5dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="12sp"
-                            android:textColor="@color/f69f"/>
+                            android:layout_marginTop="5dp"
+                            android:text="立即申请 >"
+                            android:textColor="@color/f69f"
+                            android:textSize="12sp" />
 
                     </LinearLayout>
+
                     <ImageView
-                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_fragment_me_left"/>
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_fragment_me_left" />
 
                 </LinearLayout>
+
                 <View
-                    android:background="@color/fddd"
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"/>
-                <LinearLayout
+                    android:layout_marginBottom="20dp"
+                    android:background="@color/fddd" />
 
-                    android:layout_weight="1"
+                <LinearLayout
+                    android:id="@+id/ll_agency_vip"
                     android:layout_width="0dp"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="15dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:orientation="horizontal"
-                    android:layout_height="match_parent">
+                    android:paddingLeft="20dp"
+                    android:paddingRight="15dp">
+
                     <LinearLayout
 
-                        android:orientation="vertical"
-                        android:gravity="center_vertical"
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:layout_height="match_parent">
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="超级VIP"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:textColor="@color/f666"/>
+                            android:textColor="@color/f666"
+                            android:textSize="14sp" />
+
                         <TextView
-                            android:text="立即申请 >"
-                            android:layout_marginTop="5dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="12sp"
-                            android:textColor="@color/f69f"/>
+                            android:layout_marginTop="5dp"
+                            android:text="立即申请 >"
+                            android:textColor="@color/f69f"
+                            android:textSize="12sp" />
 
                     </LinearLayout>
+
                     <ImageView
-                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_fragment_me_right"/>
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_fragment_me_right" />
 
                 </LinearLayout>
 
@@ -410,9 +427,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:paddingTop="30dp"
-                android:paddingBottom="30dp"
-                android:gravity="center">
+                android:paddingBottom="30dp">
 
                 <TextView
                     android:id="@+id/tv_fragment_me_exit"
@@ -431,7 +448,6 @@
 
 
     </android.support.v4.widget.NestedScrollView>
-
 
 
 </LinearLayout>

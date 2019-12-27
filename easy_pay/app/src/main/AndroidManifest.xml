@@ -120,6 +120,9 @@
         <activity
             android:name=".ui.activity.me.setting.CertificationActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.me.agency.MyAgencyActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".ui.activity.qrcode.NewCaptureActivity"

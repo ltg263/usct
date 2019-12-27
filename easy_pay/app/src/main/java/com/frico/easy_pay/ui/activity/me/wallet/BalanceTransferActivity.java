@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -19,7 +20,10 @@ import com.frico.easy_pay.dialog.BaseIncomeSureDialog;
 import com.frico.easy_pay.dialog.TransferSureDialog;
 import com.frico.easy_pay.impl.ActionBarClickListener;
 import com.frico.easy_pay.ui.activity.base.BaseActivity;
+import com.frico.easy_pay.ui.activity.fragment.NewHomeFragment;
+import com.frico.easy_pay.ui.activity.qrcode.NewCaptureActivity;
 import com.frico.easy_pay.utils.DecimalInputTextWatcher;
+import com.frico.easy_pay.utils.LogUtils;
 import com.frico.easy_pay.utils.ToastUtil;
 import com.frico.easy_pay.widget.TranslucentActionBar;
 
@@ -57,6 +61,8 @@ public class BalanceTransferActivity extends BaseActivity implements View.OnClic
     LinearLayout llToUserId;
     @BindView(R.id.tv_transfer_tip)
     TextView tvTransferTip;
+    @BindView(R.id.iv_rwm)
+    ImageView ivRwm;
 
     private TransferSureDialog mSureDialog;
 
@@ -83,6 +89,15 @@ public class BalanceTransferActivity extends BaseActivity implements View.OnClic
         mToUserId = getIntent().getStringExtra(KEY_TO_USER_ID);
         title = "转账";
         if (!TextUtils.isEmpty(mToUserId)) {
+            LogUtils.w(mToUserId);
+            if(!mToUserId.contains(NewHomeFragment.KEY_ACQID)
+                && NewCaptureActivity.bitmap != null){
+                //非本站渠道
+                ivRwm.setVisibility(View.VISIBLE);
+                ivRwm.setImageBitmap(NewCaptureActivity.bitmap);
+            }else{
+                mToUserId = NewHomeFragment.getToUserIdFromUrl(mToUserId);
+            }
             title = "付款";
             etTransferId.setEnabled(false);
             etTransferId.setFocusable(false);
@@ -98,6 +113,7 @@ public class BalanceTransferActivity extends BaseActivity implements View.OnClic
         actionbar.setData(title, R.drawable.ic_left_back2x, null, 0, null, new ActionBarClickListener() {
             @Override
             public void onLeftClick() {
+                NewCaptureActivity.bitmap = null;
                 finish();
             }
 

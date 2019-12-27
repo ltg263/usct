@@ -166,6 +166,7 @@ public class NewCaptureActivity extends BaseActivity implements ActionBarClickLi
             isOpen = true;
         }
     }
+    public static Bitmap bitmap = null;
     /**
      * 二维码解析回调函数
      */
@@ -176,6 +177,7 @@ public class NewCaptureActivity extends BaseActivity implements ActionBarClickLi
             Bundle bundle = new Bundle();
             bundle.putInt(CodeUtils.RESULT_TYPE, CodeUtils.RESULT_SUCCESS);
             bundle.putString(CodeUtils.RESULT_STRING, result);
+            bitmap = mBitmap;
             resultIntent.putExtras(bundle);
             NewCaptureActivity.this.setResult(RESULT_OK, resultIntent);
             NewCaptureActivity.this.finish();

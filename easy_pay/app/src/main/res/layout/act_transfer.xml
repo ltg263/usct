@@ -1,119 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <com.frico.easy_pay.widget.TranslucentActionBar
         android:id="@+id/actionbar"
-        android:layout_marginTop="25dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="@color/line"
-        />
+        android:background="@color/line" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
         android:orientation="horizontal"
         android:padding="@dimen/page_left_right_margin"
-        android:background="@color/colorWhite"
 
         >
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="可用余额"
-            android:textSize="16sp"
             android:textColor="@color/color_3"
-            />
+            android:textSize="16sp" />
+
         <TextView
             android:id="@+id/tv_account_balance_can_used"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="2342.5656 USCT"
-            android:textColor="@color/color_ee303b"
             android:layout_marginLeft="44dp"
+            android:textColor="@color/color_ee303b"
             android:textSize="16sp"
-            />
+            tools:text="2342.5656 USCT" />
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="@color/line"
-        />
+        android:background="@color/line" />
 
     <LinearLayout
         android:id="@+id/ll_to_user_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
         android:orientation="horizontal"
         android:padding="@dimen/page_left_right_margin"
-        android:background="@color/colorWhite"
 
         >
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="手机号/ID"
-            android:textSize="16sp"
             android:textColor="@color/color_3"
-            />
+            android:textSize="16sp" />
+
         <EditText
             android:id="@+id/et_transfer_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
             android:background="@null"
             android:hint="请输入对方id或者手机号"
-            android:textColor="@color/color_3"
-            android:layout_marginLeft="40dp"
-            android:textSize="16sp"
             android:inputType="number"
             android:maxLength="11"
-            />
+            android:textColor="@color/color_3"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="@color/line"
-        />
+        android:background="@color/line" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
         android:orientation="horizontal"
         android:padding="@dimen/page_left_right_margin"
-        android:background="@color/colorWhite"
 
         >
+
         <TextView
             android:id="@+id/tv_transfer_tip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="转账数量"
-            android:textSize="16sp"
             android:textColor="@color/color_3"
-            />
+            android:textSize="16sp" />
+
         <EditText
             android:id="@+id/et_transfer_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
             android:background="@null"
             android:hint="请输入数量"
-            android:textColor="@color/color_3"
-            android:layout_marginLeft="45dp"
-            android:textSize="16sp"
             android:inputType="numberDecimal"
-            />
+            android:textColor="@color/color_3"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
@@ -121,52 +118,58 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="@color/line"
-        />
+        android:background="@color/line" />
 
     <LinearLayout
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
         android:orientation="horizontal"
         android:padding="@dimen/page_left_right_margin"
-        android:background="@color/colorWhite"
+        android:visibility="gone"
 
         >
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="支付密码"
-            android:textSize="16sp"
             android:textColor="@color/color_3"
-            />
+            android:textSize="16sp" />
+
         <EditText
             android:id="@+id/et_transfer_pay_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
             android:background="@null"
             android:hint="请输入支付密码"
-            android:textColor="@color/color_3"
-            android:layout_marginLeft="45dp"
-            android:textSize="16sp"
             android:inputType="numberPassword"
             android:maxLength="6"
-            />
+            android:textColor="@color/color_3"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="@color/line"
-        />
+        android:background="@color/line" />
+
+    <ImageView
+        android:id="@+id/iv_rwm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        android:src="@drawable/ic_agency_yes" />
 
 
     <View
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        />
+        android:layout_weight="1" />
 
 
     <RelativeLayout
@@ -188,7 +191,6 @@
             android:textColor="@color/colorWhite"
             android:textSize="17dp" />
     </RelativeLayout>
-
 
 
 </LinearLayout>

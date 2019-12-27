@@ -83,7 +83,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class NewHomeFragment extends BaseFragment implements ActionBarClickListener, BaseQuickAdapter.RequestLoadMoreListener, PtrHandler, NestedScrollView.OnScrollChangeListener, View.OnTouchListener {
 
-    private static String KEY_ACQID = "acqid";
+    public static String KEY_ACQID = "acqid";
     @BindView(R.id.gif_collect)
     GifImageView gifCollect;
     Unbinder unbinder;
@@ -1075,7 +1075,8 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
                     //认为是老版本的二维码，就是id
                     code = url;
                 }
-                gotoTransfer(code);
+//                gotoTransfer(code);
+                gotoTransfer(url);
             }
         }
     }
@@ -1086,7 +1087,7 @@ public class NewHomeFragment extends BaseFragment implements ActionBarClickListe
     }
 
 
-    private String getToUserIdFromUrl(String url) {
+    public static String getToUserIdFromUrl(String url) {
         Uri uri = Uri.parse(url);
         String type = uri.getQueryParameter(KEY_ACQID);
         return type;

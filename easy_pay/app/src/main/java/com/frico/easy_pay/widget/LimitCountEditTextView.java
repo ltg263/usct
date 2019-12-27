@@ -17,7 +17,7 @@ import com.frico.easy_pay.R;
  * @author pengj
  * @version 4.3 on 2016/9/21
  */
-public class LimitCountEditTextView extends android.support.v7.widget.AppCompatEditText {
+public class LimitCountEditTextView extends androidx.appcompat.widget.AppCompatEditText {
 
     private Paint mPaint;
     private int mPaintColor;

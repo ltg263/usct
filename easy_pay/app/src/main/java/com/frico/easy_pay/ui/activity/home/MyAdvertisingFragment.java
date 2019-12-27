@@ -2,11 +2,11 @@ package com.frico.easy_pay.ui.activity.home;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -116,9 +116,9 @@ public class MyAdvertisingFragment extends BaseFragment {
             public void onTabSelect(int position) {
                 viewPager.setCurrentItem(position);
                 if (position == 1) {
-                    fabBtn.setVisibility(View.VISIBLE);
+                    fabBtn.show();
                 } else {
-                    fabBtn.setVisibility(View.GONE);
+                    fabBtn.hide();
                 }
             }
 
@@ -138,9 +138,9 @@ public class MyAdvertisingFragment extends BaseFragment {
             public void onPageSelected(int position) {
                 tableLayout.setCurrentTab(position);
                 if (position == 1) {
-                    fabBtn.setVisibility(View.VISIBLE);
+                    fabBtn.show();
                 } else {
-                    fabBtn.setVisibility(View.GONE);
+                    fabBtn.hide();
                 }
             }
 
@@ -154,7 +154,7 @@ public class MyAdvertisingFragment extends BaseFragment {
     //交易 买入页面
     public void showBuyFragment(){
         viewPager.setCurrentItem(0);
-        fabBtn.setVisibility(View.GONE);
+        fabBtn.show();
     }
 
     /**

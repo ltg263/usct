@@ -24,7 +24,7 @@ import com.frico.easy_pay.R;
  * <item android:drawable="@drawable/rc_ed_pub_service_search_normal" />
  * </selector>
  */
-public class ClearWriteEditText extends android.support.v7.widget.AppCompatEditText implements View.OnFocusChangeListener, TextWatcher {
+public class ClearWriteEditText extends androidx.appcompat.widget.AppCompatEditText implements View.OnFocusChangeListener, TextWatcher {
 
     /**
      * 删除按钮的引用

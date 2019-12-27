@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 /**
  * 横向滚动TextView
  */
-public class MarqueeTextView extends android.support.v7.widget.AppCompatTextView {
+public class MarqueeTextView extends androidx.appcompat.widget.AppCompatTextView {
 
     public MarqueeTextView(Context context) {
         super(context);

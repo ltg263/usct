@@ -1,7 +1,7 @@
 package com.frico.easy_pay.animation;
 
-import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
+import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
 
 import com.frico.easy_pay.ui.activity.adapter.base.BaseQuickViewHolder;
 

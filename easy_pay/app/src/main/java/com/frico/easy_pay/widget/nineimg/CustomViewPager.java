@@ -1,7 +1,7 @@
 package com.frico.easy_pay.widget.nineimg;
 
 import android.content.Context;
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 

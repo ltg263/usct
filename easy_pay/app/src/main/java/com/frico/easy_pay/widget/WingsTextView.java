@@ -10,7 +10,7 @@ import android.util.AttributeSet;
 /**
  * 带翅膀的TextView
  */
-public class WingsTextView extends android.support.v7.widget.AppCompatTextView {
+public class WingsTextView extends androidx.appcompat.widget.AppCompatTextView {
     final static String TAG = "WingsTextView";
 
     int wingsLength = 2;

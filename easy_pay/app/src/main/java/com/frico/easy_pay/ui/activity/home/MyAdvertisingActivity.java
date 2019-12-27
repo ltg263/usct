@@ -1,9 +1,9 @@
 package com.frico.easy_pay.ui.activity.home;
 
 import android.os.Build;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 import android.view.View;
 
 import com.flyco.tablayout.CommonTabLayout;
@@ -81,9 +81,9 @@ public class MyAdvertisingActivity extends BaseActivity implements ActionBarClic
             public void onTabSelect(int position) {
                 viewPager.setCurrentItem(position);
                 if (position == 1) {
-                    fabBtn.setVisibility(View.VISIBLE);
+                    fabBtn.show();
                 } else {
-                    fabBtn.setVisibility(View.GONE);
+                    fabBtn.hide();
                 }
             }
 
@@ -103,9 +103,9 @@ public class MyAdvertisingActivity extends BaseActivity implements ActionBarClic
             public void onPageSelected(int position) {
                 tableLayout.setCurrentTab(position);
                 if (position == 1) {
-                    fabBtn.setVisibility(View.VISIBLE);
+                    fabBtn.show();
                 } else {
-                    fabBtn.setVisibility(View.GONE);
+                    fabBtn.hide();
                 }
             }
 

@@ -11,7 +11,7 @@ import com.frico.easy_pay.utils.LogUtils;
 /**
  * 自定义金额格式EditText
  */
-public class MoneyEditText extends android.support.v7.widget.AppCompatEditText {
+public class MoneyEditText extends androidx.appcompat.widget.AppCompatEditText {
     private static final String TAG = "MoneyEditText";
     private boolean textChange;
 

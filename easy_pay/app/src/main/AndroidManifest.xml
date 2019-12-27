@@ -43,6 +43,8 @@
 
     <uses-permission android:name="android.permission.READ_LOGS" />
 
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
 
     <permission
         android:name=".push.permission.MESSAGE"
@@ -304,7 +306,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Matisse.Zhihu" /> <!-- 适配6.0以上 -->
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">

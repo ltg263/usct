@@ -3,9 +3,9 @@ package com.frico.easy_pay.ui.activity.me;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.BottomSheetDialog;
-import android.support.design.widget.CoordinatorLayout;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextUtils;
@@ -460,7 +460,7 @@ public class WithdrawActivity extends BaseActivity {
         ViewGroup parent = (ViewGroup) commentView.getParent();
         parent.setBackgroundResource(R.color.transparent);
 
-        FrameLayout bottomSheet = bottomSheetDialog.getDelegate().findViewById(android.support.design.R.id.design_bottom_sheet);
+        FrameLayout bottomSheet = bottomSheetDialog.getDelegate().findViewById(R.id.design_bottom_sheet);
         if (bottomSheet != null) {
             CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) bottomSheet.getLayoutParams();
             int peekHeight = getResources().getDisplayMetrics().heightPixels;

@@ -5,12 +5,14 @@ buildscript {
             url 'https://maven.google.com/'
             name 'Google'
         }
+        maven {url 'https://dl.bintray.com/jetbrains/anko'}
         mavenCentral()
         google()
+
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'com.android.tools.build:gradle:3.5.3'
         classpath 'com.novoda:bintray-release:0.8.0'
     }
 }

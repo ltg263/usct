@@ -1,7 +1,7 @@
 package com.frico.easy_pay.dialog;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * 收单确认对话框

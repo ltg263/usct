@@ -15,7 +15,7 @@ import com.frico.easy_pay.R;
 /**
  * Description: 密码输入框
  */
-public class PasswordEditText extends android.support.v7.widget.AppCompatEditText {
+public class PasswordEditText extends androidx.appcompat.widget.AppCompatEditText {
     // 画笔
     private Paint mPaint;
     // 一个密码所占的宽度

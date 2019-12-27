@@ -2,8 +2,8 @@ package com.frico.easy_pay.ui.activity.me.message;
 
 import android.content.Intent;
 import android.os.Build;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.frico.easy_pay.R;

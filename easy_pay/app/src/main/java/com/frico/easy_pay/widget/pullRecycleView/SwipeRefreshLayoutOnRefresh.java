@@ -1,6 +1,6 @@
 package com.frico.easy_pay.widget.pullRecycleView;
 
-import android.support.v4.widget.SwipeRefreshLayout;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class SwipeRefreshLayoutOnRefresh implements SwipeRefreshLayout.OnRefreshListener {
     private PullLoadMoreRecyclerView mPullLoadMoreRecyclerView;

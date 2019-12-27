@@ -20,7 +20,7 @@ import com.frico.easy_pay.utils.DensityUtils;
 /**
  * 自定义 圆形or圆角  VIEW
  */
-public class RoundImageView extends android.support.v7.widget.AppCompatImageView {
+public class RoundImageView extends androidx.appcompat.widget.AppCompatImageView {
 
     /**
      * 图片的类型，圆形or圆角

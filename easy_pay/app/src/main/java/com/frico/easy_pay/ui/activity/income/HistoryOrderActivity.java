@@ -3,11 +3,11 @@ package com.frico.easy_pay.ui.activity.income;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.BottomSheetDialog;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,9 +33,7 @@ import com.frico.easy_pay.impl.ActionBarClickListener;
 import com.frico.easy_pay.ui.activity.adapter.HistoryListAdapter;
 import com.frico.easy_pay.ui.activity.adapter.base.BaseQuickAdapter;
 import com.frico.easy_pay.ui.activity.base.BaseActivity;
-import com.frico.easy_pay.ui.activity.me.CallCenterActivity;
 import com.frico.easy_pay.utils.LogUtils;
-import com.frico.easy_pay.utils.Prefer;
 import com.frico.easy_pay.utils.ToastUtil;
 import com.frico.easy_pay.widget.TranslucentActionBar;
 
@@ -319,7 +317,7 @@ public class HistoryOrderActivity extends BaseActivity implements ActionBarClick
         ViewGroup parent = (ViewGroup) commentView.getParent();
         parent.setBackgroundResource(R.color.transparent);
 
-        FrameLayout bottomSheet = bottomSheetDialog.getDelegate().findViewById(android.support.design.R.id.design_bottom_sheet);
+        FrameLayout bottomSheet = bottomSheetDialog.getDelegate().findViewById(R.id.design_bottom_sheet);
         if (bottomSheet != null) {
             CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) bottomSheet.getLayoutParams();
             int peekHeight = getResources().getDisplayMetrics().heightPixels;
@@ -510,7 +508,7 @@ public class HistoryOrderActivity extends BaseActivity implements ActionBarClick
         ViewGroup parent = (ViewGroup) commentView.getParent();
         parent.setBackgroundResource(R.color.transparent);
 
-        FrameLayout bottomSheet = bottomSheetDialog.getDelegate().findViewById(android.support.design.R.id.design_bottom_sheet);
+        FrameLayout bottomSheet = bottomSheetDialog.getDelegate().findViewById(R.id.design_bottom_sheet);
         if (bottomSheet != null) {
             CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) bottomSheet.getLayoutParams();
             int peekHeight = getResources().getDisplayMetrics().heightPixels;

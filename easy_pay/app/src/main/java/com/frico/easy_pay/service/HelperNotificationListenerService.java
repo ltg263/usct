@@ -18,8 +18,8 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.NotificationCompat;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -69,7 +69,7 @@ public class HelperNotificationListenerService extends NotificationListenerServi
         acquireWakeLock(this);
 
         //改成线上地址 域名+端口 服务器会实现负载均衡
-        if(! TextUtils.isEmpty(Prefer.getInstance().getToken())) {
+        if (!TextUtils.isEmpty(Prefer.getInstance().getToken())) {
             /**
              * 长连接地址
              */
@@ -93,17 +93,17 @@ public class HelperNotificationListenerService extends NotificationListenerServi
         PackageManager pm = getPackageManager();
         pm.setComponentEnabledSetting(new ComponentName(this, HelperNotificationListenerService.class),
                 PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
-        pm.setComponentEnabledSetting(new ComponentName(this,HelperNotificationListenerService.class),
+        pm.setComponentEnabledSetting(new ComponentName(this, HelperNotificationListenerService.class),
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
     }
 
     @Override
     public void onListenerConnected() {
         LogUtils.e(TAG + "--通知服务onListenerConnected---");
-        StatusBarNotification [] notificationslist = getActiveNotifications();
-        for(int i = 0;i< notificationslist.length;i++){
+        StatusBarNotification[] notificationslist = getActiveNotifications();
+        for (int i = 0; i < notificationslist.length; i++) {
             StatusBarNotification temp = notificationslist[i];
-            LogUtils.e(TAG + "--通知服务 --当前通知栏消息-第" + i + "条 ："+ temp);
+            LogUtils.e(TAG + "--通知服务 --当前通知栏消息-第" + i + "条 ：" + temp);
         }
         sendNotification();
     }
@@ -137,22 +137,22 @@ public class HelperNotificationListenerService extends NotificationListenerServi
 //            if (content.contains("收款") && content.contains("元")) {
 //                postMoney(3, content);
 //            }else if(content.contains("ABCD")){
-                postMoney(3,content,date);
+            postMoney(3, content, date);
 //            }
         } else if (Constant.LISTENING_TARGET_ALI_PKG.equals(pkg)) {
 //            if (content.contains("收款") && content.contains("元")) {
 //                postMoney(2, content);
 //            }else if(content.contains("ABCD")){
-                postMoney(2,content,date);
+            postMoney(2, content, date);
 //            }
         } else if (Constant.LISTENING_TARGET_MMS_PKG.equals(pkg)) { //短信通知
 //            if (content.contains("余额") || content.contains("银行")) {
 //                postMoney(1, content);
 //            }else if(content.contains("ABCD")){
-                postMoney(1,content,date);
+            postMoney(1, content, date);
 //            }
-        }else if(Constant.LISTENING_TARGET_YSF_PKG.equals(pkg)){
-            postMoney(4,content,date);
+        } else if (Constant.LISTENING_TARGET_YSF_PKG.equals(pkg)) {
+            postMoney(4, content, date);
         }
         LogUtils.e(TAG, "*****处理通知消息结束**");
     }
@@ -163,12 +163,12 @@ public class HelperNotificationListenerService extends NotificationListenerServi
      * @param type
      * @param content
      */
-    private void postMoney(int type,final String content,final String time) {
-        if(TextUtils.isEmpty(content)){
+    private void postMoney(int type, final String content, final String time) {
+        if (TextUtils.isEmpty(content)) {
             LogUtils.e(TAG + "--通知服务-接收到消息为空，无需发送--");
             return;
         }
-        LogUtils.e(TAG + "--通知服务-接收到消息传递到后台--"+ content);
+        LogUtils.e(TAG + "--通知服务-接收到消息传递到后台--" + content);
 
         RetrofitUtil.getInstance().apiService()
                 .sendnotice(type, content)
@@ -189,14 +189,14 @@ public class HelperNotificationListenerService extends NotificationListenerServi
                             sendCacheToService();
                         } else {
                             LogUtils.e(TAG + "--发送通知失败--" + result.getMsg());
-                            addSendFaildMsgg(type,content,time);
+                            addSendFaildMsgg(type, content, time);
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         LogUtils.e(TAG + "--发送通知失败22--" + e.getMessage());
-                        addSendFaildMsgg(type,content,time);
+                        addSendFaildMsgg(type, content, time);
                     }
 
                     @Override
@@ -210,7 +210,7 @@ public class HelperNotificationListenerService extends NotificationListenerServi
 
     @Override
     public void onNotificationRemoved(StatusBarNotification sbn) {
-        LogUtils.e(TAG,"-通知服务---onNotificationRemoved---");
+        LogUtils.e(TAG, "-通知服务---onNotificationRemoved---");
     }
 
     /**
@@ -248,7 +248,8 @@ public class HelperNotificationListenerService extends NotificationListenerServi
         content = extras.getString(Notification.EXTRA_TEXT, "");
         return content;
     }
-/**
+
+    /**
      * 获取通知消息内容
      *
      * @return
@@ -277,7 +278,7 @@ public class HelperNotificationListenerService extends NotificationListenerServi
     }
 
 
-    private void sendNotification(){
+    private void sendNotification() {
         createNotificationChannel();
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         Intent activityIntent = new Intent(this, MainActivity.class);
@@ -295,7 +296,7 @@ public class HelperNotificationListenerService extends NotificationListenerServi
         startForeground(FOREGROUND_ID, notification);// 点击不可删除
     }
 
-    private void createNotificationChannel(){
+    private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             String channelId = "chat";
             String channelName = "聊天消息";
@@ -318,13 +319,14 @@ public class HelperNotificationListenerService extends NotificationListenerServi
     }
 
     private Thread mThread;
-    private void bgServiceWork(){
-        if(mThread == null){
+
+    private void bgServiceWork() {
+        if (mThread == null) {
             mThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    while (true){
-                        Log.i(TAG,TAG + "USCT进程 t = "+System.currentTimeMillis());
+                    while (true) {
+                        Log.i(TAG, TAG + "USCT进程 t = " + System.currentTimeMillis());
                         try {
                             Thread.sleep(5000);
                         } catch (InterruptedException e) {
@@ -334,12 +336,12 @@ public class HelperNotificationListenerService extends NotificationListenerServi
                 }
             });
         }
-        if(!mThread.isAlive()){
+        if (!mThread.isAlive()) {
             mThread.start();
         }
     }
 
-    private synchronized  void addSendFaildMsgg(int type,String msgContent,String time){
+    private synchronized void addSendFaildMsgg(int type, String msgContent, String time) {
         mMsgList = getSpCacheMsgList();
         NotificationCacheItemVO item = new NotificationCacheItemVO();
         item.setNotificationContent(msgContent);
@@ -349,51 +351,50 @@ public class HelperNotificationListenerService extends NotificationListenerServi
 
         //根据时间去重复的
         NotificationCacheItemVO tempitem;
-        for(int i = 0;i< mMsgList.size();i++){
+        for (int i = 0; i < mMsgList.size(); i++) {
             tempitem = mMsgList.get(i);
-            if(TextUtils.equals(tempitem.getTime(),time)){
+            if (TextUtils.equals(tempitem.getTime(), time)) {
                 return;
             }
         }
         mMsgList.add(item);
-        LogUtils.e(TAG + "addSendFaildMsgg缓存size = "+ mMsgList.size() + "--发送通知到服务端失败---保存到缓存---" + msgContent);
+        LogUtils.e(TAG + "addSendFailedMsg缓存size = " + mMsgList.size() + "--发送通知到服务端失败---保存到缓存---" + msgContent);
         saveDataToSP(mMsgList);
     }
 
 
-    private void saveDataToSP(ArrayList<NotificationCacheItemVO> msgList){
+    private void saveDataToSP(ArrayList<NotificationCacheItemVO> msgList) {
         Gson gson = new Gson();
 //        String personInfos = jsonArray.toString(); // 将JSONArray转换得到String
         String personInfos = gson.toJson(msgList); // 将JSONArray转换得到String
-        LogUtils.e(TAG + "saveDataToSP缓存size = "+ msgList.size() + "--保存所有数据到  SP---" + personInfos);
+        LogUtils.e(TAG + "saveDataToSP缓存size = " + msgList.size() + "--保存所有数据到  SP---" + personInfos);
         Prefer.getInstance().saveNotificationMes(personInfos);
     }
 
 
-
-    private ArrayList<NotificationCacheItemVO> getSpCacheMsgList(){
+    private ArrayList<NotificationCacheItemVO> getSpCacheMsgList() {
         String getNotList = Prefer.getInstance().getAllNotificationMsges();
         Gson gson = new Gson();
         ArrayList<NotificationCacheItemVO> list2 = new ArrayList<>();
-        if(! TextUtils.isEmpty(getNotList)) {
+        if (!TextUtils.isEmpty(getNotList)) {
             list2 = gson.fromJson(getNotList, new TypeToken<List<NotificationCacheItemVO>>() {
             }.getType());
         }
         return list2;
     }
 
-    private void sendCacheToService(){
+    private void sendCacheToService() {
 
         NotificationCacheItemVO firstItem = null;
-        ArrayList<NotificationCacheItemVO> spMsgList =  mMsgList;
-        if(spMsgList.size() > 0){
+        ArrayList<NotificationCacheItemVO> spMsgList = mMsgList;
+        if (spMsgList.size() > 0) {
             firstItem = spMsgList.get(0);
-            postMoney(firstItem.getType(),firstItem.getNotificationContent(),firstItem.getTime());
+            postMoney(firstItem.getType(), firstItem.getNotificationContent(), firstItem.getTime());
             //发送出去了，就移除该对象
             mMsgList.remove(firstItem);
             //更新sp的存储
             saveDataToSP(mMsgList);
-        }else{
+        } else {
             LogUtils.e(TAG + "--sendCacheToService 缓存消息发送完毕 ！！！！！--");
         }
     }
@@ -401,7 +402,7 @@ public class HelperNotificationListenerService extends NotificationListenerServi
 
     @Override
     public void onChangeListener(NetworkInfo.State status) {
-        if(status == NetworkInfo.State.CONNECTED){
+        if (status == NetworkInfo.State.CONNECTED) {
             LogUtils.e(TAG + "--onChangeListener 网络连接上了，激活发送通知消息--");
             LogUtils.e(TAG + "--sendCacheToService 激活发送通知消息--");
             sendCacheToService();
@@ -417,6 +418,7 @@ public class HelperNotificationListenerService extends NotificationListenerServi
 
     /**
      * 阻止系统休眠和wifi休眠
+     *
      * @param ctx
      */
     @SuppressLint("InvalidWakeLockTag")
@@ -441,6 +443,7 @@ public class HelperNotificationListenerService extends NotificationListenerServi
 
     /**
      * 结束进程的时候，释放锁
+     *
      * @param ctx
      */
     private void releaseWakeLock(Context ctx) {

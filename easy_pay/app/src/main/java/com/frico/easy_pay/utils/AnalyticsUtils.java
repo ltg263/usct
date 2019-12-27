@@ -1,7 +1,7 @@
 package com.frico.easy_pay.utils;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 import com.frico.easy_pay.config.Constant;
 import com.umeng.analytics.MobclickAgent;

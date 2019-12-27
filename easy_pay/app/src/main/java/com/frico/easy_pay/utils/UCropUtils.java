@@ -2,8 +2,7 @@ package com.frico.easy_pay.utils;
 
 import android.app.Activity;
 import android.net.Uri;
-import android.support.v4.app.ActivityCompat;
-import android.widget.ImageView;
+import androidx.core.app.ActivityCompat;
 
 import com.frico.easy_pay.R;
 import com.yalantis.ucrop.UCrop;

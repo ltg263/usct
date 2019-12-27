@@ -1,6 +1,6 @@
 package com.frico.easy_pay.ui.activity.adapter.base;
 
-import android.support.annotation.LayoutRes;
+import androidx.annotation.LayoutRes;
 import android.util.SparseArray;
 import android.view.ViewGroup;
 

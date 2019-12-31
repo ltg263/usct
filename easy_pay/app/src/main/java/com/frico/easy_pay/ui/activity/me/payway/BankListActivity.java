@@ -87,20 +87,6 @@ public class BankListActivity extends BaseActivity implements ActionBarClickList
         bankListAdapter.setOnItemChildClickListener((adapter, view, position) -> {
             BankVO.ListBean listBean = bankListAdapter.getData().get(position);
             switch (view.getId()) {
-                case R.id.img_pay_delete:
-                    SimpleDialog simpleDialog = new SimpleDialog(BankListActivity.this, "确定要删除此账户?", "提示", "取消", "确定", new SimpleDialog.OnButtonClick() {
-                        @Override
-                        public void onNegBtnClick() {
-
-                        }
-
-                        @Override
-                        public void onPosBtnClick() {
-                            deleteBank(listBean.getId(), position);
-                        }
-                    });
-                    simpleDialog.show();
-                    break;
                 case R.id.view:
                     switchBtn(listBean);
                     break;
@@ -111,51 +97,6 @@ public class BankListActivity extends BaseActivity implements ActionBarClickList
             return true;
         });
 
-    }
-
-    private void deleteBank(String id, int position) {
-        show(BankListActivity.this, "删除中...");
-        RetrofitUtil.getInstance().apiService()
-                .bankdel(id)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<Result>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(Result result) {
-                        dismiss();
-                        if (result.getCode() == 1) {
-                            ToastUtil.showToast(BankListActivity.this, "删除成功");
-                            bankListAdapter.getData().remove(position);
-                            bankListAdapter.notifyDataSetChanged();
-
-                            if (bankListAdapter.getData().size() == 0) {
-                                bankListAdapter.setEmptyView(R.layout.empty_layout);
-                            }
-                        } else if (result.getCode() == 2) {
-                            ToastUtil.showToast(BankListActivity.this, "登录失效，请重新登录");
-                            SctApp.getInstance().gotoLoginActivity();
-                            finish();
-                        } else {
-                            ToastUtil.showToast(BankListActivity.this, result.getMsg());
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        dismiss();
-                        ToastUtil.showToast(BankListActivity.this, e.getMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
     }
 
     /**

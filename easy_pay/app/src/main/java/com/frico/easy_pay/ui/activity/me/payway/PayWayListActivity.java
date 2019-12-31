@@ -55,6 +55,7 @@ public class PayWayListActivity extends BaseActivity implements ActionBarClickLi
     private List<PayWayListVO.ListBean> listBeanList = new ArrayList<PayWayListVO.ListBean>();
     private List<BankVO.ListBean> banklistBeanList = new ArrayList<BankVO.ListBean>();
     List<String> listDeleteIds = new ArrayList<>();
+    List<String> listDeleteTypes = new ArrayList<>();
     @Override
     protected int setLayout() {
         return R.layout.activity_pay_way_list;
@@ -79,12 +80,13 @@ public class PayWayListActivity extends BaseActivity implements ActionBarClickLi
         tvAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LogUtils.w(listDeleteIds.toString());
-                if(listDeleteIds.size()==0){
-                    new SimpleDialog(PayWayListActivity.this,"删除项不为空").show();
-                    return;
-                }
+                LogUtils.w(listDeleteIds.toString()+";"+listDeleteTypes.toString());
+
                 if(tvAdd.getText().toString().equals("删除")){
+                    if(listDeleteIds.size()==0){
+                        new SimpleDialog(PayWayListActivity.this,"删除项不为空").show();
+                        return;
+                    }
                     SimpleDialog simpleDialog = new SimpleDialog(PayWayListActivity.this,
                             "是否确定删除?", "提示", "取消", "确定", new SimpleDialog.OnButtonClick() {
                         @Override
@@ -95,7 +97,7 @@ public class PayWayListActivity extends BaseActivity implements ActionBarClickLi
                         @Override
                         public void onPosBtnClick() {
                             show(PayWayListActivity.this, "删除中...");
-                            deleteBanks(listDeleteIds.get(0),0);
+                            deleteBanks(listDeleteIds.get(0),listDeleteTypes.get(0),0);
                         }
                     });
                     simpleDialog.setCanceledOnTouchOutside(false);
@@ -142,7 +144,7 @@ public class PayWayListActivity extends BaseActivity implements ActionBarClickLi
                 case R.id.img_pay_delete:
                     //删除支付方式
 //                    show(this,"删除"+listBean.getNickName());
-                    deleteBank(listBean.getId()+"");
+//                    deleteBank(listBean.getId()+"");
                     break;
                 case R.id.tv_set_normal:
                     //设置默认
@@ -155,8 +157,14 @@ public class PayWayListActivity extends BaseActivity implements ActionBarClickLi
                 case R.id.cb_select_del:
                     if(listDeleteIds.contains(listBean.getId())){
                         listDeleteIds.remove(listBean.getId());
+                        listDeleteTypes.remove(listBean.getType());
                     }else{
                         listDeleteIds.add(listBean.getId());
+                        if(listBean.getType()==1){
+                            listDeleteTypes.add(listBean.getType()+"");
+                        }else{
+                            listDeleteTypes.add("2");
+                        }
                     }
                     break;
             }
@@ -400,6 +408,7 @@ public class PayWayListActivity extends BaseActivity implements ActionBarClickLi
         }
         payWayListAdapter.getData().clear();
         payWayListAdapter.addData(createAdapterListFromCodeList(listBeanList));
+        payWayListAdapter.addData(createAdapterListFromBankList(banklistBeanList));
     }
 
     private List<BasePayWayListItemBean> createAdapterListFromBankList(List<BankVO.ListBean> list){
@@ -446,9 +455,9 @@ public class PayWayListActivity extends BaseActivity implements ActionBarClickLi
         return resultList;
     }
 
-    private void deleteBanks(String id,int pos){
+    private void deleteBanks(String id,String type,int pos){
         RetrofitUtil.getInstance().apiService()
-                .bankdel(id)
+                .bankdel(id,type)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<Result>() {
@@ -460,7 +469,7 @@ public class PayWayListActivity extends BaseActivity implements ActionBarClickLi
                     @Override
                     public void onNext(Result result) {
                         if(pos < listDeleteIds.size()-1){
-                            deleteBanks(listDeleteIds.get(pos+1),pos+1);
+                            deleteBanks(listDeleteIds.get(pos+1),listDeleteTypes.get(pos+1),pos+1);
                             return;
                         }
                         dismiss();
@@ -492,45 +501,6 @@ public class PayWayListActivity extends BaseActivity implements ActionBarClickLi
     }
 
 
-    private void deleteBank(String id) {
-        show(PayWayListActivity.this, "删除中...");
-        RetrofitUtil.getInstance().apiService()
-                .bankdel(id)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<Result>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(Result result) {
-                        dismiss();
-                        if (result.getCode() == 1) {
-                            ToastUtil.showToast(PayWayListActivity.this, "删除成功");
-                            getPayCodeList();
-                        } else if (result.getCode() == 2) {
-                            ToastUtil.showToast(PayWayListActivity.this, "登录失效，请重新登录");
-                            SctApp.getInstance().gotoLoginActivity();
-                            finish();
-                        } else {
-                            ToastUtil.showToast(PayWayListActivity.this, result.getMsg());
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        dismiss();
-                        ToastUtil.showToast(PayWayListActivity.this, e.getMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-    }
 
 
     private void setNormalCode(String id,boolean isAlipay) {

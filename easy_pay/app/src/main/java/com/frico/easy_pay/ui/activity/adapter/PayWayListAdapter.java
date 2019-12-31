@@ -33,10 +33,9 @@ public class PayWayListAdapter extends BaseQuickAdapter<BasePayWayListItemBean, 
         ImageView ivIcon = helper.getView(R.id.iv_icon);
         ImageView ivIconD = helper.getView(R.id.iv_icon_d);
         ImageView imgAudit = helper.getView(R.id.img_audit);
-        ImageView imgDel = helper.getView(R.id.img_pay_delete);
         View view = helper.getView(R.id.view);
         tvPayTitle.setText(item.getNickName());
-        tvAccountNo.setText(item.getAliasName());
+//        tvAccountNo.setText(item.getAliasName());
         tvCurCount.setText("当前交易USCT: " + item.getCurrentSctCount());
         rlPayBg.getLayoutParams().width = ((PayWayListActivity) mContext).getWindowManager().getDefaultDisplay().getWidth() - 80;
         if (((PayWayListActivity) mContext).getActionBarText().equals("取消")) {
@@ -54,11 +53,7 @@ public class PayWayListAdapter extends BaseQuickAdapter<BasePayWayListItemBean, 
         if (item.getVerifyStatus() == 0 || item.getVerifyStatus() == 1 || item.getVerifyStatus() == 2) {
             switchBtn.setVisibility(View.VISIBLE);
             view.setVisibility(View.VISIBLE);
-
             imgAudit.setVisibility(View.GONE);
-
-            imgDel.setVisibility(View.GONE);
-
             tvSetNormal.setVisibility(View.GONE);
             if (item.getType() == 2) {
                 tvPayTitle.setText("支付宝");
@@ -98,7 +93,6 @@ public class PayWayListAdapter extends BaseQuickAdapter<BasePayWayListItemBean, 
                 ivIconD.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_pay_wx));
             } else {
                 //只有银行卡可删除
-                imgDel.setVisibility(View.VISIBLE);
                 tvPayTitle.setText("银行卡");
                 tvUserName.setText(item.getNickName());
                 rlPayBg.setBackgroundResource(R.drawable.bg_btn_pay_way_yhk);
@@ -124,7 +118,6 @@ public class PayWayListAdapter extends BaseQuickAdapter<BasePayWayListItemBean, 
 
         helper.addOnClickListener(R.id.view);
         helper.addOnClickListener(R.id.ll_pay_bg);
-        helper.addOnClickListener(R.id.img_pay_delete);
         helper.addOnClickListener(R.id.cb_select_del);
         helper.addOnClickListener(R.id.tv_set_normal);
     }

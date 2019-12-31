@@ -306,7 +306,7 @@ public class NewMeFragment extends BaseFragment implements ActionBarClickListene
                 break;
             case R.id.tv_fragment_me_service:
                 //联系客服
-                String customerUrl = "http://y.fricobloc.com/?action=page.customerService.index";//正式的客服地址
+                String customerUrl = "http://kefu.yzf.life/?action=page.customerService.index";//正式的客服地址
 //                String customerUrl = "http://192.168.1.133:81/?action=page.customerService.index";//姚辉本地的地址
                 if (!TextUtils.isEmpty(Prefer.getInstance().getUserId())) {
                     customerUrl = customerUrl + "&acqid=" + Prefer.getInstance().getUserId();

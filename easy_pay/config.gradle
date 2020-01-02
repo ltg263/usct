@@ -1,0 +1,91 @@
+ext {
+    android = [
+            applicationId    : "com.frico.easy_pay",
+            compileSdkVersion: 28,
+            minSdkVersion    : 20,
+            targetSdkVersion : 28,
+            buildToolsVersion: "28.0.3",
+            versionCode      : 3,
+            versionName      : "1.0.2",
+    ]
+    versions = [
+            material              : "1.0.0",
+            /*网络相关*/
+            rxjava                : "2.0.2",
+            netty                 : "4.1.39.Final",
+            retrofit              : "2.3.0",
+            adapter               : "2.3.0",
+            interceptor           : "3.8.1",
+            imageloader           : "1.9.5",
+            butterknife           : "10.0.0",
+            imagepicker           : "0.5.5",
+            circleimageview       : "2.2.0",
+            okio                  : "2.2.0",
+            converter             : "2.3.0",
+            okhttputils           : "2.6.2",
+            banner                : "1.4.9",
+            /*检查权限*/
+            easypermissions       : "0.4.0",
+            /*图片裁剪*/
+            ucrop                 : "2.2.2",
+            /*图片压缩*/
+            Luban                 : "1.1.3",
+            /*glide fresco*/
+            glide                 : "4.8.0",
+            glideCompiler         : "4.8.0",
+            glideOkhttp3          : "4.8.0",
+            fresco                : "1.2.0",
+            /*条件选择器*/
+            PickerView            : "3.2.4",
+            /*tabLayout*/
+            FlycoTabLayout        : "2.1.2@aar",
+            codec                 : "1.10",
+            PhotoView             : "2.0.0",
+            swipelayout           : "1.2.0@aar",
+            switchbutton          : "0.0.3@aar",
+            gson                  : "2.8.0",
+            gif                   : "1.2.19",
+            buglyCrashreport      : "3.1.0",
+    ]
+
+    compileOptions = [
+            sourceCompatibility: JavaVersion.VERSION_1_8,
+            targetCompatibility: JavaVersion.VERSION_1_8,
+    ]
+
+
+    dependencies = [
+            material                : "com.google.android.material:material:$versions.material",
+            rxandroid               : "io.reactivex.rxjava2:rxandroid:$versions.rxjava",
+            adapter                 : "com.squareup.retrofit2:adapter-rxjava2:$versions.adapter",
+            netty                   : "io.netty:netty-all:$versions.netty",
+            converterGson           : "com.squareup.retrofit2:converter-gson:$versions.converter",
+            interceptor             : "com.squareup.okhttp3:logging-interceptor:$versions.interceptor",
+            imageloader             : "com.nostra13.universalimageloader:universal-image-loader:$versions.imageloader",
+            butterknife             : "com.jakewharton:butterknife:$versions.butterknife",
+            butterknifeCompiler     : "com.jakewharton:butterknife-compiler:$versions.butterknife",
+            imagepicker             : "com.lzy.widget:imagepicker:$versions.imagepicker",
+            circleimageview         : "de.hdodenhof:circleimageview:$versions.circleimageview",
+            okio                    : "com.squareup.okio:okio:$versions.okio",
+            retrofit                : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+            retrofitConverter       : "com.squareup.retrofit2:converter-scalars:$versions.retrofit",
+            okhttputils             : "com.zhy:okhttputils:$versions.okhttputils",
+            banner                  : "com.youth.banner:banner:$versions.banner",
+            easypermissions         : "pub.devrel:easypermissions:$versions.easypermissions",
+            ucrop                   : "com.github.yalantis:ucrop:$versions.ucrop",
+            Luban                   : "top.zibin:Luban:$versions.Luban",
+            glide                   : "com.github.bumptech.glide:glide:$versions.glide",
+            PickerView              : "com.contrarywind:Android-PickerView:$versions.PickerView",
+            FlycoTabLayout_Lib      : "com.flyco.tablayout:FlycoTabLayout_Lib:$versions.FlycoTabLayout",
+            codec                   : "commons-codec:commons-codec:$versions.codec",
+            PhotoView               : "com.github.chrisbanes:PhotoView:$versions.PhotoView",
+            fresco                  : "com.facebook.fresco:fresco:$versions.fresco",
+            frescoGif               : "com.facebook.fresco:animated-gif:$versions.fresco",
+            swipelayout             : "com.daimajia.swipelayout:library:$versions.swipelayout",
+            gson                    : "com.google.code.gson:gson:$versions.gson",
+            switchbutton            : "com.github.zcweng:switch-button:$versions.switchbutton",
+            gif                     : "pl.droidsonroids.gif:android-gif-drawable:$versions.gif",
+            buglyCrashreport        : "com.tencent.bugly:crashreport:$versions.buglyCrashreport",
+
+    ]
+}

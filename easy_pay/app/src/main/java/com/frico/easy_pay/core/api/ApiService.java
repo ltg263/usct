@@ -23,6 +23,7 @@ import com.frico.easy_pay.core.entity.TodayIncomeOrderInfoVO;
 import com.frico.easy_pay.core.entity.UpdateVO;
 import com.frico.easy_pay.core.entity.WithdrawListBaseVO;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -779,5 +780,26 @@ public interface ApiService {
     Observable<Result<MyGroupMemberListVO>> setDefaultCode(@Field("id") String id, @Field("codetype") String codetype);
 
 
+    /**
+     * 上传身份证正反面地址
+     * @param type type -上传图片用途类型（1-身份认证）
+     * @param image 图片
+     * @return
+     */
+    @POST("api_upload")
+    @FormUrlEncoded
+    Observable<Result<StartVO>> uploadImg(@Field("type")int type, @Field("image")File image);
+
+    /**
+     * 实名认证
+     * @param name 名字
+     * @param card_no   身份证号
+     * @param card_obverse_side 正面地址
+     * @param card_reverse_side 反面地址
+     * @return
+     */
+    @POST("api_certification")
+    @FormUrlEncoded
+    Observable<Result<StartVO>> certification(@Field("name") String name,@Field("card_no") String card_no,@Field("card_obverse_side")String card_obverse_side,@Field("card_reverse_side") String card_reverse_side);
 
 }

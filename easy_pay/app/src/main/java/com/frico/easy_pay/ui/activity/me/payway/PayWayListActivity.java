@@ -81,7 +81,6 @@ public class PayWayListActivity extends BaseActivity implements ActionBarClickLi
             @Override
             public void onClick(View v) {
                 LogUtils.w(listDeleteIds.toString()+";"+listDeleteTypes.toString());
-
                 if(tvAdd.getText().toString().equals("删除")){
                     if(listDeleteIds.size()==0){
                         new SimpleDialog(PayWayListActivity.this,"删除项不为空").show();
@@ -157,7 +156,11 @@ public class PayWayListActivity extends BaseActivity implements ActionBarClickLi
                 case R.id.cb_select_del:
                     if(listDeleteIds.contains(listBean.getId())){
                         listDeleteIds.remove(listBean.getId());
-                        listDeleteTypes.remove(listBean.getType());
+                        if(listBean.getType()==1){
+                            listDeleteTypes.remove(listBean.getType()+"");
+                        }else{
+                            listDeleteTypes.remove("2");
+                        }
                     }else{
                         listDeleteIds.add(listBean.getId());
                         if(listBean.getType()==1){
@@ -406,6 +409,8 @@ public class PayWayListActivity extends BaseActivity implements ActionBarClickLi
             actionbar.setRight("编辑");
             tvAdd.setText("+添加");
         }
+        listDeleteIds.clear();
+        listDeleteTypes.clear();
         payWayListAdapter.getData().clear();
         payWayListAdapter.addData(createAdapterListFromCodeList(listBeanList));
         payWayListAdapter.addData(createAdapterListFromBankList(banklistBeanList));

@@ -1,6 +1,7 @@
 package com.frico.easy_pay.ui.activity.me.agency;
 
-import android.os.Build;
+import android.app.Activity;
+import android.content.Intent;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -35,6 +36,14 @@ public class MyAgencyActivity extends BaseActivity {
     private int[] mIconSelectIds = {0, 0};
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
 
+    public static String KEY_TYPE = "key_type";
+    private int type;//1-代理 2-会员
+
+    public static void start(Activity activity, int viewType){
+        Intent intent = new Intent(activity, MyAgencyActivity.class);
+        intent.putExtra(KEY_TYPE,viewType);
+        activity.startActivity(intent);
+    }
 
     private HhrFragment adFragment;
     private HhrFragment orderFragment;
@@ -43,9 +52,18 @@ public class MyAgencyActivity extends BaseActivity {
         return R.layout.activity_my_agency;
     }
 
+    public int getType() {
+        return type;
+    }
+
     @Override
     public void initTitle() {
-        actionbar.setData("代理申请", R.drawable.ic_left_back2x, null,
+        type = getIntent().getIntExtra(KEY_TYPE,0);
+        String str = "超级VIP";
+        if(type == 1){
+            str = "商户合伙人";
+        }
+        actionbar.setData(str, R.drawable.ic_left_back2x, null,
                 0, null, new ActionBarClickListener() {
             @Override
             public void onLeftClick() {
@@ -57,9 +75,7 @@ public class MyAgencyActivity extends BaseActivity {
 
             }
         });
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            actionbar.setStatusBarHeight(getStatusBarHeight());
-        }
+        actionbar.setStatusBarHeight(getStatusBarHeight());
 
         for (int i = 0; i < mTitles.length; i++) {
             mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
@@ -76,14 +92,12 @@ public class MyAgencyActivity extends BaseActivity {
         orderFragment = HhrFragment.newInstance();
 
         fragmentList.add(adFragment);
-//        fragmentList.add(adFragment);
-        fragmentList.add(orderFragment);
+//        fragmentList.add(orderFragment);
 
-        viewPager.setScroll(true);
+        viewPager.setScroll(false);
         viewPager.setOffscreenPageLimit(2);
         viewPager.setAdapter(new MainFragmentPagerAdapter(this.getSupportFragmentManager(), fragmentList));
-//        viewPager.setCurrentItem(1);
-//        tablelayout.setCurrentTab(1);
+
         tablelayout.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {

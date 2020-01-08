@@ -298,11 +298,11 @@ public class NewMeFragment extends BaseFragment implements ActionBarClickListene
 
             case R.id.ll_agency_partner:
                 //代理合伙人
-                launch(MyAgencyActivity.class);
+                MyAgencyActivity.start(getActivity(),1);
                 break;
             case R.id.ll_agency_vip:
                 //代理VIP
-                launch(MyAgencyActivity.class);
+                MyAgencyActivity.start(getActivity(),2);
                 break;
             case R.id.tv_fragment_me_service:
                 //联系客服

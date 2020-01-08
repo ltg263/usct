@@ -74,6 +74,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LogUtils.w("当前的Activity：", getClass().getSimpleName());
         SctApp.getInstance().addActivity(this);
         registerNetChangeReceiver();
         RxBus.get().register(this);

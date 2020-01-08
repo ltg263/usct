@@ -387,11 +387,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         ivMe.setSelected(false);
         tvTrader.setSelected(true);
         ivTrader.setSelected(true);
-        switchFragment(nowFragment, traderFragment, "Ta");
-       // switchFragment(nowFragment,lobbyFragment,"Ta");
-        if(isFromWallet){
+        //switchFragment(nowFragment, traderFragment, "Ta");
+        switchFragment(nowFragment,lobbyFragment,"Ta");
+      /*  if(isFromWallet){
             traderFragment.showBuyFragment();
-        }
+        }*/
     }
 
 

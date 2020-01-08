@@ -10,4 +10,5 @@ public class BusAction {
     public static final String REFRESH_MONEY = "REFRESH_MONEY";
     public static final String SOCKET_CONTENT = "SOCKET_CONTENT";
     public static final String SOCKET_ORDER_PUBLIC_NOTIFY = "SOCKET_ORDER_PUBLIC_NOTIFY";
+    public static final String UPLOAD_IMG = "UPLOAD_IMG";
 }

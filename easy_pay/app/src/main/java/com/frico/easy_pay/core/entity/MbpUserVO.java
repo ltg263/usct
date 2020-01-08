@@ -76,8 +76,17 @@ public class MbpUserVO implements Serializable {
     private int is_activate ;                   // 是否激活:0=未激活,1=已激活
     private int is_activate_money;              // 激活金额
 
-    private String is_vip;
+    private String is_vip;                  //0-非vip 1-vip
 
+    private int is_certification;       //0-未认证 1-已认证 2-待审核 3-审核失败
+
+    public int getIs_certification() {
+        return is_certification;
+    }
+
+    public void setIs_certification(int is_certification) {
+        this.is_certification = is_certification;
+    }
 
     public void setIsVip(String isVip) {
         this.is_vip = isVip;

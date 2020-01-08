@@ -128,7 +128,7 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:gravity="center_vertical"
-                android:hint="1000.00~5000.00"
+                android:hint="100.00~100000.00"
                 android:inputType="numberDecimal"
                 android:maxLines="1" />
 
@@ -401,10 +401,26 @@
         android:textColor="#FF333333"
         android:textSize="16sp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_lobby"
+
+    <com.frico.easy_pay.refresh.RefreshGitHeaderView
+        android:id="@+id/rotate_header_list_view_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:ptr_duration_to_close="1500"
+        app:ptr_duration_to_close_header="1000"
+        app:ptr_keep_header_when_refresh="true"
+        app:ptr_pull_to_fresh="false"
+        app:ptr_ratio_of_header_height_to_refresh="1.0"
+        app:ptr_resistance="3">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_lobby"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"/>
+
+    </com.frico.easy_pay.refresh.RefreshGitHeaderView>
+
 
 
 </LinearLayout>

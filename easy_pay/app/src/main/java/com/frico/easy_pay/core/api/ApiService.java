@@ -21,7 +21,11 @@ import com.frico.easy_pay.core.entity.Result;
 import com.frico.easy_pay.core.entity.StartVO;
 import com.frico.easy_pay.core.entity.TodayIncomeOrderInfoVO;
 import com.frico.easy_pay.core.entity.UpdateVO;
+import com.frico.easy_pay.core.entity.UserCertificationVO;
 import com.frico.easy_pay.core.entity.WithdrawListBaseVO;
+import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.List;
@@ -30,6 +34,7 @@ import java.util.Map;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import retrofit2.Retrofit;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -782,13 +787,13 @@ public interface ApiService {
 
     /**
      * 上传身份证正反面地址
-     * @param type type -上传图片用途类型（1-身份认证）
-     * @param image 图片
+     *
+     * @param file 图片
      * @return
      */
+    @Multipart
     @POST("api_upload")
-    @FormUrlEncoded
-    Observable<Result<StartVO>> uploadImg(@Field("type")int type, @Field("image")File image);
+    Observable<Result<JsonObject>> uploadImg(@Part MultipartBody.Part file, @PartMap Map<String, RequestBody> map);
 
     /**
      * 实名认证
@@ -800,6 +805,19 @@ public interface ApiService {
      */
     @POST("api_certification")
     @FormUrlEncoded
-    Observable<Result<StartVO>> certification(@Field("name") String name,@Field("card_no") String card_no,@Field("card_obverse_side")String card_obverse_side,@Field("card_reverse_side") String card_reverse_side);
+    Observable<Result<String>> certification(@Field("name") String name,@Field("card_no") String card_no,@Field("card_obverse_side")String card_obverse_side,@Field("card_reverse_side") String card_reverse_side);
 
+    @GET("api_get_user_certification")
+    Observable<Result<UserCertificationVO>> getUserCertification();
+
+    /**
+     *
+     * @param amount 数量
+     * @param payType 支付方式
+     * @return
+     */
+
+    @POST("api_randombuytradeadvert")
+    @FormUrlEncoded
+    Observable<Result<String>> randomBuy(@Field("amount")String amount,@Field("paytype")int payType);
 }

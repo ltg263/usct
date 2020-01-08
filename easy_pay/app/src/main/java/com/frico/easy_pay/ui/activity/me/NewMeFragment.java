@@ -333,11 +333,8 @@ public class NewMeFragment extends BaseFragment implements ActionBarClickListene
                 });
                 simpleDialog.show();
                 break;
-            case R.id.iv_fragment_me_head:
-                // 个人信息页面
-                MyAccountInfoActivity.start(getActivity(), mUserInfoData);
-                break;
             case R.id.tv_fragment_me_name:
+            case R.id.iv_fragment_me_head:
                 // 个人信息页面
                 MyAccountInfoActivity.start(getActivity(), mUserInfoData);
                 break;

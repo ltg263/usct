@@ -128,6 +128,7 @@ public class AffirmOrderActivity extends BaseActivity implements ActionBarClickL
     private String imgUrl;
 
     private String imgPath;
+    private int payType;
 
     @Override
     protected int setLayout() {
@@ -137,6 +138,7 @@ public class AffirmOrderActivity extends BaseActivity implements ActionBarClickL
     @Override
     public void initTitle() {
         OrderNo = getIntent().getStringExtra("orderno");
+        payType = getIntent().getIntExtra("payType", 0);
         LogUtils.e("--需要支付的订单号--" + OrderNo);
         actionbar.setData("确认订单", R.drawable.ic_left_back2x, null, 0, "取消订单", this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -268,6 +270,7 @@ public class AffirmOrderActivity extends BaseActivity implements ActionBarClickL
 
                                 DealOrderVO.TradeinfoBean tradeinfo = dealOrderVO.getTradeinfo();
                                 DealOrderVO.TradeinfoBean._$1Bean tradeinfo_$1 = tradeinfo.get_$1();
+                                setSelected();
                                 if (tradeinfo_$1 != null) {
                                     tvReceiptName.setText(tradeinfo_$1.getAccountname() != null ? tradeinfo_$1.getAccountname() : "");
                                     tvReceiptBank.setText(tradeinfo_$1.getBankname() != null ? tradeinfo_$1.getBankname() : "");
@@ -297,6 +300,61 @@ public class AffirmOrderActivity extends BaseActivity implements ActionBarClickL
                     }
                 });
 
+    }
+
+    private void setSelected() {
+        switch (payType) {
+            case 0:
+                break;
+            case 1:
+                imgBank.setSelected(true);
+                llOrderBank.setVisibility(View.VISIBLE);
+                llOrderZfbWx.setVisibility(View.GONE);
+                payWay = 1;
+                break;
+            case 2:
+                imgZfb.setSelected(true);
+                llOrderBank.setVisibility(View.GONE);
+                llOrderZfbWx.setVisibility(View.VISIBLE);
+                payWay=2;
+                UiUtils.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (dealOrderVO != null) {
+                            DealOrderVO.TradeinfoBean._$2Bean bean = dealOrderVO.getTradeinfo().get_$2();
+                            if (bean != null) {
+                                tvReceiptAccount.setText(bean.getAccountname() != null ? bean.getAccountname() : "");
+                                if (bean.getImg() != null) {
+                                    imgUrl = bean.getImg();
+                                    Glide.with(AffirmOrderActivity.this).asBitmap().load(bean.getImg()).into(imgReceiptEwm);
+                                }
+                            }
+                        }
+                    }
+                });
+                break;
+            case 3:
+                imgWx.setSelected(true);
+                llOrderBank.setVisibility(View.GONE);
+                llOrderZfbWx.setVisibility(View.VISIBLE);
+                payWay=3;
+                UiUtils.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (dealOrderVO != null) {
+                            DealOrderVO.TradeinfoBean._$2Bean bean = dealOrderVO.getTradeinfo().get_$3();
+                            if (bean != null) {
+                                tvReceiptAccount.setText(bean.getAccountname() != null ? bean.getAccountname() : "");
+                                if (bean.getImg() != null) {
+                                    imgUrl = bean.getImg();
+                                    Glide.with(AffirmOrderActivity.this).asBitmap().load(bean.getImg()).into(imgReceiptEwm);
+                                }
+                            }
+                        }
+                    }
+                });
+                break;
+        }
     }
 
     /**
@@ -349,7 +407,7 @@ public class AffirmOrderActivity extends BaseActivity implements ActionBarClickL
                     return;
                 }
 
-                if(TextUtils.isEmpty(imgPath)){
+                if (TextUtils.isEmpty(imgPath)) {
                     ToastUtil.showToast(AffirmOrderActivity.this, "请上传凭证");
                     return;
                 }
@@ -634,15 +692,16 @@ public class AffirmOrderActivity extends BaseActivity implements ActionBarClickL
 
     /**
      * 点击我已付款
+     *
      * @param transferimage 凭证图片url
      */
-    private void paycomplete(String paypassword,String transferimage) {
+    private void paycomplete(String paypassword, String transferimage) {
         if (dealOrderVO == null)
             return;
 
         show(AffirmOrderActivity.this, "确定中...");
         RetrofitUtil.getInstance().apiService()
-                .paycomplete(dealOrderVO.getOrderno(), payWay, etPayName.getText().toString(), paypassword,transferimage)
+                .paycomplete(dealOrderVO.getOrderno(), payWay, etPayName.getText().toString(), paypassword, transferimage)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<Result>() {
@@ -793,6 +852,7 @@ public class AffirmOrderActivity extends BaseActivity implements ActionBarClickL
     private static final int PERMISSION_CAMERA = 110;
     private static final int IMAGE_PICKER_EWM = 105;
     private boolean mIsReSelected;//是否重新选择了图片
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -821,7 +881,6 @@ public class AffirmOrderActivity extends BaseActivity implements ActionBarClickL
             }
         }
     }
-
 
 
     /**
@@ -892,8 +951,8 @@ public class AffirmOrderActivity extends BaseActivity implements ActionBarClickL
                         dismiss();
                         if (result.getCode() == 1) {
                             //图片上传成功
-                            if(! TextUtils.isEmpty(result.getData())) {
-                                paycomplete(pw,result.getData());
+                            if (!TextUtils.isEmpty(result.getData())) {
+                                paycomplete(pw, result.getData());
                             }
                         } else if (result.getCode() == 2) {
                             ToastUtil.showToast(AffirmOrderActivity.this, "登录失效，请重新登录");

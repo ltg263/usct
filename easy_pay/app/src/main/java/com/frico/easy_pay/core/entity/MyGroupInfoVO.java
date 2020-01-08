@@ -4,7 +4,7 @@ public class MyGroupInfoVO {
 
         private int team_level;           //": "无",等级
         private String teamleveltext;           //": "无",等级 描述
-        private String direct_nums;             //": 4,  直推的数量
+        private int direct_nums;             //": 4,  直推的数量
         private int team_nums;               //": 22,    团队数量
         private String total_profit;            //": 0
 
@@ -17,11 +17,11 @@ public class MyGroupInfoVO {
         this.teamleveltext = teamleveltext;
     }
 
-    public String getDirect_nums() {
+    public int getDirect_nums() {
         return direct_nums;
     }
 
-    public void setDirect_nums(String direct_nums) {
+    public void setDirect_nums(int direct_nums) {
         this.direct_nums = direct_nums;
     }
 

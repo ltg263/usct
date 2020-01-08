@@ -12,8 +12,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.frico.easy_pay.R;
+import com.frico.easy_pay.SctApp;
 import com.frico.easy_pay.core.api.RetrofitUtil;
-import com.frico.easy_pay.core.entity.AdVO;
+import com.frico.easy_pay.core.entity.ApplyInfo;
 import com.frico.easy_pay.core.entity.Result;
 import com.frico.easy_pay.ui.activity.base.BaseFragment;
 import com.frico.easy_pay.utils.LogUtils;
@@ -61,64 +62,42 @@ public class HhrFragment extends BaseFragment {
         RxBus.get().register(this);
         unbinder = ButterKnife.bind(this, view);
         activity = (MyAgencyActivity) getActivity();
-
-        initNetData(0);
+        activity.show(getActivity(), "获取信息中...");
+        initNetData(activity.getType());
         return view;
     }
 
 
     /**
      * 获取底部列表数据数据
-     *
-     * @param page
      */
-    private void initNetData(int page) {
-        LogUtils.w("---------------------------");
-        if (true) {
-            ll.setVisibility(View.GONE);
-            rl.setVisibility(View.VISIBLE);
-            submit.setVisibility(View.GONE);
-            switch (page){
-                case 0://未审核
-                    ll.setVisibility(View.VISIBLE);
-                    rl.setVisibility(View.GONE);
-                    submit.setVisibility(View.VISIBLE);
-                    submit.setText("提交申请");
-                    break;
-                case 1://审核中
-                    iv.setImageResource(R.drawable.ic_agency_shz);
-                    text.setText("您的商户合伙人申请正在审核中 \n请耐心等待...");
-                    break;
-                case 2://审核通过
-                    iv.setImageResource(R.drawable.ic_agency_yes);
-                    text.setText("恭喜您! \n您的商户合伙人申请审核已通过~");
-                    break;
-                case 3://审核失败
-                    iv.setImageResource(R.drawable.ic_agency_no);
-                    text.setText("很抱歉~ \n您的商户合伙人申请审核未通过");
-                    submit.setVisibility(View.VISIBLE);
-                    submit.setText("重新申请");
-                    break;
-            }
-            return;
-        }
+    private void initNetData(int type) {
         RetrofitUtil.getInstance().apiService()
-                .advert(1, 0, page)
+                .applyInfo(type)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<Result<AdVO>>() {
+                .subscribe(new Observer<Result<ApplyInfo>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(Result<AdVO> result) {
-
+                    public void onNext(Result<ApplyInfo> result) {
+                        activity.dismiss();
+                        if (result.getCode() == 1) {
+                            appleySita(result);
+                        } else if (result.getCode() == 2) {
+                            ToastUtil.showToast(getActivity(), "登录失效，请重新登录");
+                            SctApp.getInstance().gotoLoginActivity();
+                        } else {
+                            ToastUtil.showToast(getActivity(), result.getMsg());
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        activity.dismiss();
                         ToastUtil.showToast(activity, e.getMessage());
                     }
 
@@ -129,19 +108,62 @@ public class HhrFragment extends BaseFragment {
                 });
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        RxBus.get().unregister(this);
-        if (unbinder != null) {
-            unbinder.unbind();
+    private void appleySita(Result<ApplyInfo> result) {
+        if(result.getData()==null){
+            //未审核
+            ll.setVisibility(View.VISIBLE);
+            rl.setVisibility(View.GONE);
+            submit.setVisibility(View.VISIBLE);
+            submit.setText("提交申请");
+            return;
+        }
+        switch (result.getData().getStatus()){
+            case 0://审核中
+            case 3://审核中
+                ll.setVisibility(View.GONE);
+                rl.setVisibility(View.VISIBLE);
+                submit.setVisibility(View.GONE);
+                iv.setImageResource(R.drawable.ic_agency_shz);
+                if(activity.getType()==1){
+                    text.setText("您的商户合伙人申请正在审核中 \n请耐心等待...");
+                }else{
+                    text.setText("您的超级VIP申请正在审核中 \n请耐心等待...");
+                }
+                break;
+            case 5://审核通过
+                ll.setVisibility(View.GONE);
+                rl.setVisibility(View.VISIBLE);
+                submit.setVisibility(View.GONE);
+                iv.setImageResource(R.drawable.ic_agency_yes);
+                if(activity.getType()==1){
+                    text.setText("恭喜您! \n您的商户合伙人申请审核已通过~");
+                }else{
+                    text.setText("恭喜您! \n您的超级VIP审核已通过~");
+                }
+                break;
+            case 6://审核失败
+                ll.setVisibility(View.GONE);
+                rl.setVisibility(View.VISIBLE);
+                iv.setImageResource(R.drawable.ic_agency_no);
+                if(activity.getType()==1){
+                    text.setText("很抱歉~ \n您的商户合伙人申请审核未通过");
+                }else{
+                    text.setText("很抱歉~ \n您的超级VIP申请审核未通过");
+                }
+                submit.setVisibility(View.VISIBLE);
+                submit.setText("重新申请");
+                break;
         }
     }
+
 
     @OnClick(R.id.submit)
     public void onViewClicked() {
         if(submit.getText().toString().equals("重新申请")){
-
+            ll.setVisibility(View.VISIBLE);
+            rl.setVisibility(View.GONE);
+            submit.setVisibility(View.VISIBLE);
+            submit.setText("提交申请");
             return;
         }
         if (TextUtils.isEmpty(etName.getText().toString())) {
@@ -151,6 +173,51 @@ public class HhrFragment extends BaseFragment {
         if (TextUtils.isEmpty(etPhone.getText().toString())) {
             ToastUtil.showToast(getContext(), "请输入手机号");
             return;
+        }
+        LogUtils.w(etName.getText().toString()+";"+etPhone.getText().toString()+";"+activity.getType()+"");
+        activity.show(getActivity(),"提交信息中...");
+        RetrofitUtil.getInstance().apiService()
+                .agentApply(etName.getText().toString(),etPhone.getText().toString(),activity.getType())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<Result>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Result result) {
+                        if (result.getCode() == 1) {
+                            initNetData(activity.getType());
+                        } else if (result.getCode() == 2) {
+                            activity.dismiss();
+                            ToastUtil.showToast(getActivity(), "登录失效，请重新登录");
+                            SctApp.getInstance().gotoLoginActivity();
+                        } else {
+                            activity.dismiss();
+                            ToastUtil.showToast(getActivity(), result.getMsg());
+                        }
+                    }
+//
+                    @Override
+                    public void onError(Throwable e) {
+                        activity.dismiss();
+                        ToastUtil.showToast(activity, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        RxBus.get().unregister(this);
+        if (unbinder != null) {
+            unbinder.unbind();
         }
     }
 

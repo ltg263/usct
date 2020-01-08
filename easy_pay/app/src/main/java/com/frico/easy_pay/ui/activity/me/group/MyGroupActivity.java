@@ -318,7 +318,7 @@ public class MyGroupActivity extends BaseActivity implements BaseQuickAdapter.Re
                             if (mIsMyGroup) {
                                 //我的团队130
                                 tvGroupTagName.setText(data.getTeamleveltext());
-                                tvMyGroupFirstCount.setText(Html.fromHtml(getResources().getString(R.string.group_num, data.getDirect_nums())));
+                                tvMyGroupFirstCount.setText(Html.fromHtml(getResources().getString(R.string.group_num, data.getDirect_nums() + "")));
                                 tvMyGroupCountAll.setText(Html.fromHtml(getResources().getString(R.string.group_num, data.getTeam_nums() + "")));
                                 tvMyGroupSctAmount.setText(Html.fromHtml(getResources().getString(R.string.group_num_no, data.getTotal_profit())));
 

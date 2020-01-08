@@ -38,6 +38,7 @@ public class PayWayListAdapter extends BaseQuickAdapter<BasePayWayListItemBean, 
 //        tvAccountNo.setText(item.getAliasName());
         tvCurCount.setText("当前交易USCT: " + item.getCurrentSctCount());
         rlPayBg.getLayoutParams().width = ((PayWayListActivity) mContext).getWindowManager().getDefaultDisplay().getWidth() - 80;
+        cbSelectDel.setChecked(false);
         if (((PayWayListActivity) mContext).getActionBarText().equals("取消")) {
             cbSelectDel.setVisibility(View.VISIBLE);
         } else {

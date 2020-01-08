@@ -84,7 +84,7 @@ public class WithdrawActivity extends BaseActivity {
     private String mPassword;
     private WithdrawSureDialog mWithdrawSureDialog;
     private BnakListAdapter mAdapter;
-
+//
     public static void start(Activity activity) {
         activity.startActivity(new Intent(activity, WithdrawActivity.class));
     }

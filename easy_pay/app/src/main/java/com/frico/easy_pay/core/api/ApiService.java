@@ -1,6 +1,7 @@
 package com.frico.easy_pay.core.api;
 
 import com.frico.easy_pay.core.entity.AdVO;
+import com.frico.easy_pay.core.entity.ApplyInfo;
 import com.frico.easy_pay.core.entity.BankVO;
 import com.frico.easy_pay.core.entity.ChongBiInfoVO;
 import com.frico.easy_pay.core.entity.DealOrderVO;
@@ -317,6 +318,22 @@ public interface ApiService {
     @GET("api_advert")
     Observable<Result<AdVO>> advert(@Query("status") int status, @Query("tradeway") int tradeway, @Query("page") int page);
 
+    /**
+     * 申请信息会员
+     *
+     * @return
+     */
+    @GET("api_apply_info")
+    Observable<Result<ApplyInfo>> applyInfo(@Query("type") int type);
+
+    /**
+     * 代理/超级会员申请 
+     *
+     * @return
+     */
+    @POST("api_agent_apply")
+    @FormUrlEncoded
+    Observable<Result<DealOrderVO>> agentApply(@Field("real_name") String real_name, @Field("mobile") String mobile, @Field("type") int type);
 
     /**
      * 发布广告
@@ -579,7 +596,7 @@ public interface ApiService {
      */
     @HTTP(method = "DELETE", path = "api_bankdel", hasBody = true)
     @FormUrlEncoded
-    Observable<Result> bankdel(@Field("id") String id , @Field("type") String type);
+    Observable<Result> bankdel(@Field("id") String id, @Field("type") String type);
 
 
     /**
@@ -756,6 +773,18 @@ public interface ApiService {
     Observable<Result<MyGroupMemberListVO>> getMyTeamLower(@Query("acqid") String acqid, @Query("page") int page);
 
     /**
+     * 二维码转账
+     * <p>
+     * @param  type        -{int}            0-转账，1-提现（默认0）
+     * @param  paycode   -{string}           二维码地址(type == 1必传)
+     *  @param  paycompany -{string}          支付公司（微信支付/支付宝）
+     * @return
+     */
+    @POST("api_transfer")
+    @FormUrlEncoded
+    Observable<Result<MyGroupMemberListVO>> transferBalance(@Field("type") int type, @Field("amount") String amount, @Field("paypassword") String paypassword,@Field("paycode") String paycode,@Field("paycompany") String paycompany);
+
+    /**
      * 会员间转账
      *
      * @return
@@ -771,7 +800,7 @@ public interface ApiService {
      */
     @POST("api_transfer")
     @FormUrlEncoded
-    Observable<Result<MyGroupMemberListVO>> transferBalance(@Field("acqid") String acqid, @Field("amount") String amount, @Field("paypassword") String paypassword,@Field("isnum") int isnum);
+    Observable<Result<MyGroupMemberListVO>> transferBalance(@Field("acqid") String acqid, @Field("amount") String amount, @Field("paypassword") String paypassword, @Field("isnum") int isnum);
 
     /**
      * 会员间转账

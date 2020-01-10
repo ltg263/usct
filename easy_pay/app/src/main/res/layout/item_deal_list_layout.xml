@@ -40,6 +40,7 @@
         android:padding="1dp"
         tools:text="赠送3%"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:textColor="@color/color_ff8e1f"
         />
 

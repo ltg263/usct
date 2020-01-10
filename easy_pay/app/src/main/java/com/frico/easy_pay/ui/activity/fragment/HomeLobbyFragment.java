@@ -341,11 +341,12 @@ public class HomeLobbyFragment extends BaseFragment implements OnTabSelectListen
         }
 
 
+        if (buyWay==NONE){
+            ToastUtil.showToast(activity, "请选择支付方式");
+            return;
+        }
 
         switch (buyWay) {
-            case NONE:
-                ToastUtil.showToast(activity, "请选择支付方式");
-                break;
             case ALI_PAY://payType=2
                 //支付宝
                 payType = 2;

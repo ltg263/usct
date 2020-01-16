@@ -405,6 +405,11 @@ public class NewMeFragment extends BaseFragment implements ActionBarClickListene
 
     @Override
     public void onRightClick() {
+        String messageListUrl = "http://y.fricobloc.com/DCApi/index.php/Home/Index/roomlistPage";
+        if (!TextUtils.isEmpty(Prefer.getInstance().getUserId())) {
+            messageListUrl = messageListUrl + "?acqid=" + Prefer.getInstance().getUserId();
+        }
+        CallCenterActivity.start(activity, false, "消息列表", messageListUrl, WebUrlActivity.TYPE_MSG_LIST);
 
     }
 

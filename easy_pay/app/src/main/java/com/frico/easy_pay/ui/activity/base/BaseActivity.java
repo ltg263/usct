@@ -24,8 +24,6 @@ import android.os.Message;
 import android.os.Process;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import androidx.core.app.NotificationManagerCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.view.View;
@@ -33,7 +31,9 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-import com.hwangjr.rxbus.RxBus;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationManagerCompat;
+
 import com.frico.easy_pay.SctApp;
 import com.frico.easy_pay.dialog.LoadDialog;
 import com.frico.easy_pay.dialog.SimpleDialog;
@@ -42,7 +42,9 @@ import com.frico.easy_pay.service.HelperNotificationListenerService;
 import com.frico.easy_pay.utils.AnalyticsUtils;
 import com.frico.easy_pay.utils.LogUtils;
 import com.frico.easy_pay.utils.StatusTextColorUtils;
+import com.frico.easy_pay.utils.UiUtils;
 import com.frico.easy_pay.widget.CustomToast;
+import com.hwangjr.rxbus.RxBus;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -73,6 +75,10 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && UiUtils.isTranslucentOrFloating(this)) {
+            UiUtils.fixOrientation(this);
+            LogUtils.i("api 26 全屏横竖屏切换 crash");
+        }
         super.onCreate(savedInstanceState);
         LogUtils.w("当前的Activity：", getClass().getSimpleName());
         SctApp.getInstance().addActivity(this);
@@ -97,6 +103,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         AnalyticsUtils.onPause(this);
         toBackground();
     }
+
+
+
+
+
 
     /**
      * 设置状态栏

@@ -45,6 +45,8 @@
     <string name="buy_tip" translatable="false">
         1、您购买的USCT已经在平台完成委托锁定，请放心支付\n2、数字货币购买将随机匹配不同卖家,同一个卖家所使用的银行卡也可能不同,请按照每次所显示的付款信息打款,请勿直接打款到之前充值过的卡号,否则可能无法到账,造成的损失平台概不负责。\n3、转账时请勿填写任何备注!包括数字货币、USCT、充值、美金、外汇等字样。否则可能导致卖家账户和您的账户被冻结,造成的损失平台概不负责。\n4、根据国家相关法律规定,购买数字货币仅支持自然人之间的点对点转账交易兑换.
 </string>
+    <string name="certification_shz" translatable="false">您的实名认证正在审核中\n请耐心等待...</string>
+    <string name="certification_wtg" translatable="false">很抱歉~\n您的实名认证审核未通过</string>
 
 
 </resources>

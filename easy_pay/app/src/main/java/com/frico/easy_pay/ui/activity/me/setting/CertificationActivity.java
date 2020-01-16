@@ -4,23 +4,24 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.frico.easy_pay.R;
+import com.frico.easy_pay.SctApp;
 import com.frico.easy_pay.core.api.RetrofitUtil;
 import com.frico.easy_pay.core.entity.Result;
 import com.frico.easy_pay.core.entity.UserCertificationVO;
 import com.frico.easy_pay.core.utils.BusAction;
+import com.frico.easy_pay.core.utils.Constants;
 import com.frico.easy_pay.impl.ActionBarClickListener;
 import com.frico.easy_pay.ui.activity.base.BaseActivity;
-import com.frico.easy_pay.ui.activity.me.payway.AddZfbActivity;
 import com.frico.easy_pay.utils.LogUtils;
 import com.frico.easy_pay.utils.LuBanUtils;
 import com.frico.easy_pay.utils.MatisseUtils;
@@ -33,19 +34,13 @@ import com.google.gson.JsonObject;
 import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
-import com.hwangjr.rxbus.thread.EventThread;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.download.ImageDownloader;
 import com.yalantis.ucrop.UCrop;
 import com.zhihu.matisse.Matisse;
-import com.zhy.http.okhttp.OkHttpUtils;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -81,6 +76,16 @@ public class CertificationActivity extends BaseActivity implements ActionBarClic
     private static final int IMAGE_PICKER_FRONT = 107;
     private static final int FRONT = 10;
     private static final int REVERSE = 20;
+    @BindView(R.id.ll_certification)
+    LinearLayout llCertification;
+    @BindView(R.id.iv)
+    ImageView iv;
+    @BindView(R.id.text)
+    TextView text;
+    @BindView(R.id.ll_no_pass)
+    LinearLayout llNoPass;
+    @BindView(R.id.tv_re_submit)
+    TextView tvReSubmit;
 
     @Override
     protected int setLayout() {
@@ -97,36 +102,76 @@ public class CertificationActivity extends BaseActivity implements ActionBarClic
 
     @Override
     protected void initData() {
-        RetrofitUtil.getInstance()
-                .apiService()
-                .getUserCertification()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<Result<UserCertificationVO>>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
+        switch (SctApp.mUserInfoData.getIs_certification()) {
+            //0-未认证 1-已认证 2-待审核 3-审核失败
+            case 0:
+                //doNothing
+                break;
+            case 1:
 
-                    }
+                RetrofitUtil.getInstance()
+                        .apiService()
+                        .getUserCertification()
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.io())
+                        .subscribe(new Observer<Result<UserCertificationVO>>() {
+                            @Override
+                            public void onSubscribe(Disposable d) {
 
-                    @Override
-                    public void onNext(Result<UserCertificationVO> userCertificationVOResult) {
-                        LogUtils.e(userCertificationVOResult.getData().toString());
-                        if (userCertificationVOResult.getData()!=null){
-                            //etCertificationName.setText();
-                        }
-                    }
+                            }
 
-                    @Override
-                    public void onError(Throwable e) {
+                            @Override
+                            public void onNext(Result<UserCertificationVO> userCertificationVOResult) {
+                                LogUtils.e(userCertificationVOResult.getData().toString());
+                                if (userCertificationVOResult.getData() != null) {
+                                    UserCertificationVO.UserCertificationBean data = userCertificationVOResult.getData().getUserCertification();
+                                    etCertificationName.setText(data.getRealname());
+                                    etCertificationNum.setText(data.getIdnum());
+                                    etCertificationName.setFocusable(false);
+                                    etCertificationNum.setFocusable(false);
+                                    Glide.with(CertificationActivity.this).load(Constants.BASE_URL + data.getId_card_obverse()).error(R.drawable.id_card_front).into(ivCertificationFront);
+                                    Glide.with(CertificationActivity.this).load(Constants.BASE_URL + data.getId_card_reverse()).error(R.drawable.id_card_reverse).into(ivCertificationReverse);
+                                }
+                            }
 
-                    }
+                            @Override
+                            public void onError(Throwable e) {
 
-                    @Override
-                    public void onComplete() {
+                            }
 
-                    }
-                });
+                            @Override
+                            public void onComplete() {
 
+                            }
+                        });
+                break;
+            case 2:
+                //审核中
+                llCertification.setVisibility(View.GONE);
+                llNoPass.setVisibility(View.VISIBLE);
+                tvSubmit.setVisibility(View.GONE);
+                iv.setImageResource(R.drawable.ic_agency_shz);
+                text.setText(R.string.certification_shz);
+                break;
+            case 3:
+                //未通过
+                llCertification.setVisibility(View.GONE);
+                tvSubmit.setVisibility(View.GONE);
+                llNoPass.setVisibility(View.VISIBLE);
+                iv.setImageResource(R.drawable.ic_agency_no);
+                tvReSubmit.setVisibility(View.VISIBLE);
+                text.setText(R.string.certification_wtg);
+                break;
+        }
+
+
+    }
+
+    private void reSubmit() {
+        llCertification.setVisibility(View.VISIBLE);
+        tvSubmit.setVisibility(View.VISIBLE);
+        llNoPass.setVisibility(View.GONE);
+        tvReSubmit.setVisibility(View.GONE);
     }
 
     @Override
@@ -136,7 +181,7 @@ public class CertificationActivity extends BaseActivity implements ActionBarClic
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.iv_certification_front, R.id.iv_certification_reverse, R.id.tv_submit})
+    @OnClick({R.id.iv_certification_front, R.id.iv_certification_reverse, R.id.tv_submit,R.id.tv_re_submit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_certification_front:
@@ -144,7 +189,7 @@ public class CertificationActivity extends BaseActivity implements ActionBarClic
                 if (EasyPermissions.hasPermissions(this, params)) {
 
                     //具备权限 直接进行操作
-                    MatisseUtils.selectImg(CertificationActivity.this, IMAGE_PICKER_FRONT, selected_num,true);
+                    MatisseUtils.selectImg(CertificationActivity.this, IMAGE_PICKER_FRONT, selected_num, true);
                 } else {
                     //权限拒绝 申请权限
                     EasyPermissions.requestPermissions(this, "为了您更好使用本应用，请允许应用获取以下权限", PERMISSION_CAMERA, params);
@@ -155,7 +200,7 @@ public class CertificationActivity extends BaseActivity implements ActionBarClic
                 if (EasyPermissions.hasPermissions(this, params)) {
 
                     //具备权限 直接进行操作
-                    MatisseUtils.selectImg(CertificationActivity.this, IMAGE_PICKER_REVERSE, selected_num,true);
+                    MatisseUtils.selectImg(CertificationActivity.this, IMAGE_PICKER_REVERSE, selected_num, true);
                 } else {
                     //权限拒绝 申请权限
                     EasyPermissions.requestPermissions(this, "为了您更好使用本应用，请允许应用获取以下权限", PERMISSION_CAMERA, params);
@@ -164,32 +209,37 @@ public class CertificationActivity extends BaseActivity implements ActionBarClic
             case R.id.tv_submit:
                 submit();
                 break;
+            case R.id.tv_re_submit:
+                reSubmit();
+                break;
         }
     }
 
-    static String card_obverse_side="";
-    static String card_reverse_side="";
+
+
+    static String card_obverse_side = "";
+    static String card_reverse_side = "";
     private static int uploadIndex = 0;
 
     private void submit() {
-        if (TextUtils.isEmpty(etCertificationName.getText().toString().trim())){
-            ToastUtil.showToast(this,"请输入姓名");
+        if (TextUtils.isEmpty(etCertificationName.getText().toString().trim())) {
+            ToastUtil.showToast(this, "请输入姓名");
             return;
         }
-        if (TextUtils.isEmpty(etCertificationNum.getText().toString().trim())){
-            ToastUtil.showToast(this,"请输入身份证号码");
+        if (TextUtils.isEmpty(etCertificationNum.getText().toString().trim())) {
+            ToastUtil.showToast(this, "请输入身份证号码");
             return;
         }
-        if (imgPath1==null||"".equals(imgPath1)){
-            ToastUtil.showToast(this,"请上传身份证正面图");
+        if (imgPath1 == null || "".equals(imgPath1)) {
+            ToastUtil.showToast(this, "请上传身份证正面图");
             return;
         }
-        if (imgPath2==null||"".equals(imgPath2)){
-            ToastUtil.showToast(this,"请上传身份证反面图");
+        if (imgPath2 == null || "".equals(imgPath2)) {
+            ToastUtil.showToast(this, "请上传身份证反面图");
             return;
         }
-        uploadIndex=0;
-        show(this,"上传中");
+        uploadIndex = 0;
+        show(this, "上传中");
         File file = new File(imgPath1);
         Map<String, RequestBody> map = new HashMap<>();
         map.put("type", toRequestBody("1"));
@@ -198,7 +248,7 @@ public class CertificationActivity extends BaseActivity implements ActionBarClic
         MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
         RetrofitUtil.getInstance()
                 .apiService()
-                .uploadImg(body,map)
+                .uploadImg(body, map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<Result<JsonObject>>() {
@@ -209,20 +259,20 @@ public class CertificationActivity extends BaseActivity implements ActionBarClic
 
                     @Override
                     public void onNext(Result<JsonObject> stringResult) {
-                            LogUtils.e(stringResult.getData().toString());
+                        LogUtils.e(stringResult.getData().toString());
 
-                            JsonElement path = stringResult.getData().get("path");
-                            card_obverse_side = path.getAsString();
-                            LogUtils.e(card_obverse_side);
-                            uploadIndex++;
-                            // myHandler.sendEmptyMessage(1);
-                            RxBus.get().post(BusAction.UPLOAD_IMG,"");
+                        JsonElement path = stringResult.getData().get("path");
+                        card_obverse_side = path.getAsString();
+                        LogUtils.e(card_obverse_side);
+                        uploadIndex++;
+                        // myHandler.sendEmptyMessage(1);
+                        RxBus.get().post(BusAction.UPLOAD_IMG, "");
 
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        LogUtils.e("ERROR:"+e.toString());
+                        LogUtils.e("ERROR:" + e.toString());
                     }
 
                     @Override
@@ -239,7 +289,7 @@ public class CertificationActivity extends BaseActivity implements ActionBarClic
         MultipartBody.Part body2 = MultipartBody.Part.createFormData("image", file.getName(), requestFile2);
         RetrofitUtil.getInstance()
                 .apiService()
-                .uploadImg(body2,map2)
+                .uploadImg(body2, map2)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<Result<JsonObject>>() {
@@ -250,16 +300,16 @@ public class CertificationActivity extends BaseActivity implements ActionBarClic
 
                     @Override
                     public void onNext(Result<JsonObject> stringResult) {
-                            JsonElement path = stringResult.getData().get("path");
-                            card_reverse_side = path.getAsString();
-                            uploadIndex++;
-                            RxBus.get().post(BusAction.UPLOAD_IMG,"");
-                            //myHandler.sendEmptyMessage(1);
+                        JsonElement path = stringResult.getData().get("path");
+                        card_reverse_side = path.getAsString();
+                        uploadIndex++;
+                        RxBus.get().post(BusAction.UPLOAD_IMG, "");
+                        //myHandler.sendEmptyMessage(1);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        LogUtils.e("ERROR:"+e.toString());
+                        LogUtils.e("ERROR:" + e.toString());
                     }
 
                     @Override
@@ -270,12 +320,11 @@ public class CertificationActivity extends BaseActivity implements ActionBarClic
     }
 
 
-
     @Subscribe(tags = {@Tag(BusAction.UPLOAD_IMG)})
     public void toCommit(String data) {
-        if (uploadIndex==2){
+        if (uploadIndex == 2) {
             RetrofitUtil.getInstance().apiService()
-                    .certification(etCertificationName.getText().toString(),etCertificationNum.getText().toString(),card_obverse_side,card_reverse_side)
+                    .certification(etCertificationName.getText().toString(), etCertificationNum.getText().toString(), card_obverse_side, card_reverse_side)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe(new Observer<Result<String>>() {
@@ -288,17 +337,17 @@ public class CertificationActivity extends BaseActivity implements ActionBarClic
                         @Override
                         public void onNext(Result<String> stringResult) {
 
-                            if (stringResult.getCode()==1){
+                            if (stringResult.getCode() == 1) {
 
-                            }else {
-                                ToastUtil.showToast(CertificationActivity.this,stringResult.getMsg());
+                            } else {
+                                ToastUtil.showToast(CertificationActivity.this, stringResult.getMsg());
                             }
                             dismiss();
                         }
 
                         @Override
                         public void onError(Throwable e) {
-                            LogUtils.e("ERROR:"+e.toString());
+                            LogUtils.e("ERROR:" + e.toString());
                             dismiss();
                         }
 
@@ -310,7 +359,6 @@ public class CertificationActivity extends BaseActivity implements ActionBarClic
                     });
         }
     }
-
 
 
     /**
@@ -333,26 +381,28 @@ public class CertificationActivity extends BaseActivity implements ActionBarClic
     public void onRightClick() {
 
     }
+
     private boolean mIsReSelected;//是否重新选择了图片
     private String imgPath;
     private String imgPath1;
     private String imgPath2;
+
     /**
      * 压缩图片
      *
      * @param uri
      */
-    private void compressImg(Uri uri,ImageView imageView,int type) {
+    private void compressImg(Uri uri, ImageView imageView, int type) {
         LuBanUtils.compressImg(CertificationActivity.this, uri, new LuBanUtils.OnMyCompressListener() {
                     @Override
                     public void onSuccess(final File file) {
 
                         mIsReSelected = true;
                         imgPath = file.getPath();
-                        if (type==FRONT){
+                        if (type == FRONT) {
                             imgPath1 = imgPath;
-                        }else if (type==REVERSE){
-                            imgPath2=imgPath;
+                        } else if (type == REVERSE) {
+                            imgPath2 = imgPath;
                         }
                         LogUtils.e("压缩后的图片路径---" + imgPath);
                         setImg(imageView);
@@ -395,7 +445,7 @@ public class CertificationActivity extends BaseActivity implements ActionBarClic
                             e.printStackTrace();
                         }
 
-                        UCropUtils.cropImg(CertificationActivity.this, uri, destinationUri,FRONT);
+                        UCropUtils.cropImg(CertificationActivity.this, uri, destinationUri, FRONT);
 
                         break;
                     case IMAGE_PICKER_REVERSE:
@@ -407,15 +457,15 @@ public class CertificationActivity extends BaseActivity implements ActionBarClic
                             e.printStackTrace();
                         }
                         LogUtils.e(destinationUri2.toString());
-                        UCropUtils.cropImg(CertificationActivity.this, uri2, destinationUri2,REVERSE);
+                        UCropUtils.cropImg(CertificationActivity.this, uri2, destinationUri2, REVERSE);
                         break;
                     case FRONT:
                         Uri croppedFileUri = UCrop.getOutput(data);
-                        UiUtils.runOnUiThread(() -> compressImg(croppedFileUri,ivCertificationFront,FRONT));
+                        UiUtils.runOnUiThread(() -> compressImg(croppedFileUri, ivCertificationFront, FRONT));
                         break;
                     case REVERSE:
                         Uri croppedFileUri2 = UCrop.getOutput(data);
-                        UiUtils.runOnUiThread(() -> compressImg(croppedFileUri2,ivCertificationReverse,REVERSE));
+                        UiUtils.runOnUiThread(() -> compressImg(croppedFileUri2, ivCertificationReverse, REVERSE));
                         break;
                     case UCrop.RESULT_ERROR:
                         Toast.makeText(CertificationActivity.this, "图片裁切失败, 请稍后重试", Toast.LENGTH_SHORT).show();

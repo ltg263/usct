@@ -476,7 +476,7 @@ public class OrderFragment extends BaseFragment implements BaseQuickAdapter.Requ
      */
     private void gotoOpposite(DealOrderItemVO dealOrderItemVO){
         //消息列表
-        String messageListUrl = "http://y.fricobloc.com/?action=page.customerService.index";
+        String messageListUrl = "http://kefu.yzf.life/?action=page.customerService.index";//正式的客服地址
         String toAcqid = "600002";
         if (dealOrderItemVO.getButtontype() == 1) { //买入]
             toAcqid = dealOrderItemVO.getByuserid();

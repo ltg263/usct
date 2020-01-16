@@ -355,7 +355,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="25dp"
-                            android:text="收款账号:"
+                            android:text="收款姓名"
                             android:textColor="@color/color_9"
                             android:textSize="15dp" />
 

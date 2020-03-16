@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.frico.usct.widget.TranslucentActionBar
+        android:id="@+id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/tv_one_details"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_marginLeft="19dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="19dp"
+                android:background="@drawable/ic_wallet_account2x">
+
+                <LinearLayout
+                    android:id="@+id/ll_count_lay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="26dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_all_count_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="可用数量"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="16sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_all_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="30sp"
+                            tools:text="23451.7878" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="USCT"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/ll_usct_action"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_count_lay"
+                    android:layout_marginLeft="26dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/tv_buy"
+                        android:layout_width="80dp"
+                        android:layout_height="28dp"
+                        android:background="@drawable/shape_white_14dp"
+                        android:gravity="center"
+                        android:text="充值"
+                        android:textColor="@color/color_ee303b"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:id="@+id/tv_out_glod"
+                        android:layout_width="80dp"
+                        android:layout_height="28dp"
+                        android:layout_marginLeft="1dp"
+                        android:background="@drawable/bg_bottom_circle_white_rect"
+                        android:gravity="center"
+                        android:text="提现"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:id="@+id/tv_transfer"
+                        android:layout_width="80dp"
+                        android:layout_height="28dp"
+                        android:layout_marginLeft="15dp"
+                        android:background="@drawable/bg_bottom_circle_white_rect"
+                        android:gravity="center"
+                        android:text="转账"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="12dp"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/tv_money_record"
+                        android:layout_width="80dp"
+                        android:layout_height="28dp"
+                        android:layout_marginLeft="15dp"
+                        android:background="@drawable/bg_bottom_circle_white_rect"
+                        android:gravity="center"
+                        android:text="明细"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="12dp"
+                        android:visibility="visible" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_usct_action"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="26dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_in_from_usdt"
+                        android:layout_width="80dp"
+                        android:layout_height="28dp"
+                        android:layout_marginLeft="1dp"
+                        android:background="@drawable/bg_bottom_circle_white_rect"
+                        android:gravity="center"
+                        android:text="USDT充值"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:id="@+id/tv_out_usdt"
+                        android:layout_width="80dp"
+                        android:layout_height="28dp"
+                        android:layout_marginLeft="15dp"
+                        android:background="@drawable/bg_bottom_circle_white_rect"
+                        android:gravity="center"
+                        android:text="USDT提币"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="12dp"
+                        android:visibility="visible" />
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/tv_two_details"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginLeft="19dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="19dp"
+                android:background="@drawable/ic_wallet_can2x">
+
+                <LinearLayout
+                    android:id="@+id/ll_work_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="26dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_today_income_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="佣金收益"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="16sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_can_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="30sp"
+                            tools:text="345.9988" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="USCT"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_work_money_btn_lay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/tv_total_can"
+                    android:layout_below="@+id/ll_work_money"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_work_money_out_glod"
+                        android:layout_width="80dp"
+                        android:layout_height="28dp"
+                        android:layout_marginLeft="26dp"
+                        android:background="@drawable/shape_blue_14dp"
+                        android:gravity="center"
+                        android:text="提现"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="12dp"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tv_work_money_transfer"
+                        android:layout_width="80dp"
+                        android:layout_height="28dp"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/bg_bottom_circle_white_rect"
+                        android:gravity="center"
+                        android:text="转余额"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="12dp" />
+
+
+                    <TextView
+                        android:id="@+id/tv_work_money_commission_record"
+                        android:layout_width="80dp"
+                        android:layout_height="28dp"
+                        android:layout_marginLeft="15dp"
+                        android:background="@drawable/bg_bottom_circle_white_rect"
+                        android:gravity="center"
+                        android:text="明细"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="12dp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_total_can"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="26dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="20dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14dp"
+                    tools:text="累计收益: 22234.5678 USCT" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/tv_three_details"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginLeft="19dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="19dp"
+                android:background="@drawable/ic_wallet_earnings2x"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:id="@+id/ll_earnings_count_lay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="26dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_earnings_count_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="红包"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="16sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_earnings_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="30sp"
+                            tools:text="2345.0989" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="USCT"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/tv_earnings_record"
+                            android:layout_width="80dp"
+                            android:layout_height="28dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/bg_bottom_circle_white_rect"
+                            android:gravity="center"
+                            android:text="明细"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="12dp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_total_earnings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_earnings_count_lay"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="26dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14dp"
+                    tools:text="累计释放: 22334 USCT" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/tv_four_details"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginLeft="19dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="19dp"
+                android:background="@drawable/ic_wallet_freeze2x"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="26dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_freeze_count_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="交易冻结"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="16sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_freeze_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="30sp"
+                            tools:text="- 3434.5675" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="USCT"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/tv_freeze_record"
+                            android:layout_width="80dp"
+                            android:layout_height="28dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/bg_bottom_circle_white_rect"
+                            android:gravity="center"
+                            android:text="明细"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="12dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_tips"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="21dp"
+                android:layout_marginBottom="40dp"
+                android:lineSpacingExtra="3dp"
+                android:textColor="@color/color_9"
+                android:textSize="12dp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

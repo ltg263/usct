@@ -1,0 +1,181 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <com.frico.usct.widget.TranslucentActionBar
+        android:id="@+id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        >
+        <LinearLayout
+            android:id="@+id/ll_top_scroll_order_lay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/color_f9f9f9"
+            android:gravity="left|center_vertical"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="@dimen/page_left_right_margin"
+            android:visibility="gone"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_notify_income_top"
+                android:visibility="visible"
+                />
+
+            <com.frico.usct.widget.AutoScrollTextView
+                android:id="@+id/rtv_top_scroll_intro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="i am text"
+                android:textSize="12sp"
+                android:textColor="@color/color_3"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:shadowColor="#ffdd00"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_income_top_notify_lay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="15dp"
+            android:background="@color/color_fff7f6"
+            >
+            <TextView
+                android:id="@+id/tv_income_notify_top_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                tools:text="系统通知：定于10月17号上午10点上线新版本"
+                android:textColor="@color/color_f13825"
+                android:textSize="14sp"
+                />
+            <ImageView
+                android:id="@+id/iv_income_top_notify_close_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_close_notify"
+                android:padding="5dp"
+                android:layout_marginRight="@dimen/page_left_right_margin"
+                />
+
+
+        </LinearLayout>
+
+
+
+
+        <TextView
+            android:id="@+id/tv_income_tool_today_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="今日已成功抢单10次,累计收款4562.24元"
+            android:textSize="14sp"
+            android:textColor="@color/color_9"
+            android:layout_marginTop="5dp"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_income_loot_can_used_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="可抢USCT:0.0000"
+            android:layout_marginTop="5dp"
+            android:textSize="18sp"
+            android:textColor="@color/color_3"
+            android:textStyle="bold"
+            />
+        <Button
+            android:id="@+id/btn_income_loot_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开始抢单"
+            android:textSize="17sp"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/selector_btn_income_loot_open"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            />
+
+        <TextView
+            android:id="@+id/tv_income_activate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_income_list_btn_submit"
+            android:text="请先激活"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:layout_marginTop="10dp"
+            />
+
+
+        <ImageView
+            android:id="@+id/iv_start_loot"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/anim_list_start_loot"
+            />
+
+        <TextView
+            android:id="@+id/tv_income_loot_status_intro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击开始抢单"
+            android:textColor="@color/color_3"
+            android:textSize="16sp"
+            />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/cardview_light_background"
+        />
+
+
+    <com.frico.usct.refresh.RefreshGitHeaderView
+        android:id="@+id/rotate_header_list_view_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:ptr_duration_to_close="1500"
+        app:ptr_duration_to_close_header="1000"
+        app:ptr_keep_header_when_refresh="true"
+        app:ptr_pull_to_fresh="false"
+        app:ptr_ratio_of_header_height_to_refresh="1.0"
+        app:ptr_resistance="3">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_recy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never" />
+
+    </com.frico.usct.refresh.RefreshGitHeaderView>
+
+</LinearLayout>

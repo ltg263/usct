@@ -1,0 +1,208 @@
+apply plugin: 'com.android.application'
+
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd_HH-mm", TimeZone.getTimeZone("GMT+08:00"))
+}
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+
+    lintOptions {
+        abortOnError false
+    }
+    signingConfigs {
+        prod {
+            storeFile file("easypay.jks")
+            storePassword "ep123321"
+            keyAlias "easypay"
+            keyPassword "ep123321"
+        }
+    }
+    productFlavors {
+        def prodSigningVariable = signingConfigs.prod
+        //测试版本
+        dev {
+            applicationId "com.frico.uscttest"
+            signingConfig prodSigningVariable
+            manifestPlaceholders = [
+                    APP_ENV                : "dev",
+                    APP_NAME               : "测试易支付",
+                    APP_HOST               : "173.248.225.100",
+                    APP_PORT               : 7272,
+                    DEFAULT_HTTP_SERVER_URL: "http://173.248.225.100:201/",
+                    DEFAULT_H5_SERVER_URL  : "https://shareh5.yzf.life",//最新的H5的域名
+
+                    NOTIFICATION_ID        : 1001
+            ]
+        }
+        //商用发布版本
+        customers {
+            applicationId "com.frico.usct"
+            signingConfig prodSigningVariable
+            manifestPlaceholders = [
+                    APP_ENV                : "prod",
+                    APP_NAME               : "易支付",
+                    APP_HOST               : "173.248.225.100",//最新的ip
+                    APP_PORT               : 7272,
+                    DEFAULT_HTTP_SERVER_URL: "https://api.yzf.life/",//最新的域名
+                    DEFAULT_H5_SERVER_URL  : "https://shareh5.yzf.life",//最新的H5的域名
+                    NOTIFICATION_ID        : 1002
+            ]
+        }
+        //内部版本
+        internal {
+            applicationId "com.nmw.sctnb"
+            signingConfig prodSigningVariable
+            manifestPlaceholders = [
+                    APP_ENV                : "prod",
+                    APP_NAME               : "内部USCT数字银行",
+                    APP_HOST               : "120.79.242.180",
+                    APP_PORT               : 7272,
+                    DEFAULT_HTTP_SERVER_URL: "http://pay.fricobloc.com/",
+                    DEFAULT_H5_SERVER_URL  : "https://scth5.fricobloc.com/",//最新的H5的域名
+                    NOTIFICATION_ID        : 1003
+            ]
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+    defaultConfig {
+        applicationId "com.frico.usct"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        flavorDimensions "versionCode"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi-v7a'
+        }
+
+        sourceSets {
+            main {
+                jniLibs.srcDirs = ['libs']
+            }
+        }
+
+        buildTypes {
+            //是否开启zip优化
+//            zipAlignEnabled true
+
+            debug {
+                minifyEnabled false
+                signingConfig signingConfigs.prod
+                signingConfig signingConfigs.prod
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                buildConfigField "boolean", "IS_SHOW_LOG", SHOW_LOG
+            }
+
+            release {
+                minifyEnabled false
+                signingConfig signingConfigs.prod
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                buildConfigField "boolean", "IS_SHOW_LOG", NOT_SHOW_LOG
+            }
+
+            android.applicationVariants.all { variant ->
+                variant.outputs.all {
+//                    def outputFile = output.outputFile
+//                    def fileName
+//                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                    // 输出apk名称为XXapp1.4.0_2017-02-14.apk
+//                        if (variant.buildType.name.equals('release')) {
+                    outputFileName = "app_${productFlavors[0].name}_${defaultConfig.versionName}_${variant.buildType.name}_c${defaultConfig.versionCode}_${releaseTime()}.apk"
+//                        } else (variant.buildType.name.equals('debug')) {
+//                            outputFileName = "SCT_app${defaultConfig.versionName}_${releaseTime()}_debug.apk"
+//                        }
+//                        output.outputFile = new File(outputFile.parent, fileName)
+//                        outputFileName = fileName
+//                    }
+                }
+            }
+        }
+
+    }
+
+    dependencies {
+        implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+        implementation rootProject.ext.dependencies.material
+        implementation rootProject.ext.dependencies.rxandroid
+        implementation rootProject.ext.dependencies.adapter
+        implementation rootProject.ext.dependencies.netty
+        implementation rootProject.ext.dependencies.converterGson
+        implementation rootProject.ext.dependencies.interceptor
+        implementation rootProject.ext.dependencies.imageloader
+
+        implementation('com.hwangjr.rxbus:rxbus:2.0.0-beta') {
+            exclude(group: 'io.reactivex')
+        }
+        /*通讯*/
+
+        /*butterknife*/
+        implementation rootProject.ext.dependencies.butterknife
+        annotationProcessor rootProject.ext.dependencies.butterknifeCompiler
+        /*相册库*/
+        implementation rootProject.ext.dependencies.imagepicker
+        /*圆形头像*/
+        implementation rootProject.ext.dependencies.circleimageview
+        /*网络请求库*/
+        implementation rootProject.ext.dependencies.okio
+        implementation rootProject.ext.dependencies.retrofit
+        implementation rootProject.ext.dependencies.retrofitConverter
+        implementation rootProject.ext.dependencies.okhttputils
+        implementation rootProject.ext.dependencies.banner
+        /*检查权限*/
+        implementation rootProject.ext.dependencies.easypermissions
+        /*图片裁剪*/
+        implementation rootProject.ext.dependencies.ucrop
+        /*图片压缩*/
+        implementation rootProject.ext.dependencies.Luban
+        /*glide*/
+        implementation rootProject.ext.dependencies.glide
+        /*条件选择器*/
+        implementation rootProject.ext.dependencies.PickerView
+        /*各种样式tablayout*/
+        implementation rootProject.ext.dependencies.FlycoTabLayout_Lib
+        implementation rootProject.ext.dependencies.codec
+        implementation rootProject.ext.dependencies.PhotoView
+        implementation rootProject.ext.dependencies.fresco
+        /*支持 GIF 动图，需要添加*/
+        implementation rootProject.ext.dependencies.frescoGif
+
+
+        testImplementation 'junit:junit:4.12'
+        androidTestImplementation 'com.android.support.test:runner:1.0.2'
+        androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+        implementation project(':matisse')
+//        implementation project(':zxing')
+        implementation project(':qzzxing')
+
+
+        implementation rootProject.ext.dependencies.swipelayout
+        implementation rootProject.ext.dependencies.gson
+        implementation rootProject.ext.dependencies.switchbutton
+        implementation rootProject.ext.dependencies.gif
+        implementation rootProject.ext.dependencies.buglyCrashreport
+
+
+    }
+}

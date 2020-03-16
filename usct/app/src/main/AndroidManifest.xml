@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.frico.usct">
+
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" /> <!-- 取得读取sd卡的权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 打电话的权限 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" /> <!-- Wifi related -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_BSCI_DRM" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" /> <!-- 向SD卡中创建或者删除的权限。 -->
+    <uses-permission android:name="android.permission.READ_OWNER_DATA" />
+    <uses-permission android:name="andorid.permission.MONUN_UNMOUNT_FILESYSTEMS" />
+
+    <uses-feature android:name="android.hardware.camera.flash" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_TASKS" /> <!-- 摄像头 -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 控制振动器 -->
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- 防止设备休眠 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" /> <!-- 获取联系人信息，demo中演示发送通讯录消息 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- 华为 配置开始 < -->
+    <!-- HMS-SDK引导升级HMS功能，访问OTA服务器需要网络权限 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- HMS-SDK引导升级HMS功能，保存下载的升级包需要SD卡写权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 检测网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 检测wifi状态 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 为了获取用户手机的IMEI，用来唯一的标识用户。 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 如果是安卓8.0，应用编译配置的targetSdkVersion>=26，请务必添加以下权限 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" /> <!-- 华为 配置结束 < -->
+    <!-- MeiZu 配置开始 < -->
+    <!-- 兼容 flyme5.0 以下版本，魅族内部集成 pushSDK 必填，不然无法收到 消息 -->
+    <uses-permission android:name="com.meizu.flyme.push.permission.RECEIVE" />
+
+    <uses-permission android:name="android.permission.READ_LOGS" />
+
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
+
+    <permission
+        android:name=".push.permission.MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name=".push.permission.MESSAGE" /> <!-- 兼容 flyme3.0 配置权限 -->
+    <uses-permission android:name="com.meizu.c2dm.permission.RECEIVE" /> <!-- MeiZu 配置结束 -->
+    <!-- 后台权限 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission
+        android:name="android.permission.DEVICE_POWER"
+        tools:ignore="ProtectedPermissions" />
+
+    <application
+        android:name="com.frico.usct.SctApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launch_image"
+        android:label="${APP_NAME}"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:networkSecurityConfig="@xml/network_security_config"
+        tools:replace="android:label">
+        <meta-data
+            android:name="DEFAULT_HTTP_SERVER_URL"
+            android:value="${DEFAULT_HTTP_SERVER_URL}" />
+        <meta-data
+            android:name="DEFAULT_H5_SERVER_URL"
+            android:value="${DEFAULT_H5_SERVER_URL}" />
+        <meta-data
+            android:name="APP_ENV"
+            android:value="${APP_ENV}" />
+        <meta-data
+            android:name="APP_NAME"
+            android:value="${APP_NAME}" />
+        <meta-data
+            android:name="APP_HOST"
+            android:value="${APP_HOST}" />
+        <meta-data
+            android:name="APP_PORT"
+            android:value="${APP_PORT}" />
+        <meta-data
+            android:name="NOTIFICATION_ID"
+            android:value="${NOTIFICATION_ID}" />
+
+
+        <activity
+            android:name="com.frico.usct.ui.activity.NewLaunchActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Main_NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.frico.usct.ui.activity.AdActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.frico.usct.ui.activity.me.setting.SettingActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.frico.usct.ui.activity.me.AddressSelectActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.frico.usct.ui.activity.me.setting.CertificationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.agency.MyAgencyActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.frico.usct.ui.activity.qrcode.NewCaptureActivity"
+            android:screenOrientation="portrait">
+
+            <!-- <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+                 <action android:name="android.intent.action.VIEW" />
+
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>-->
+        </activity>
+        <activity
+            android:name="com.frico.usct.ui.activity.GuideActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Main_NoActionBar" />
+        <activity
+            android:name="com.frico.usct.ui.activity.LoginActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:theme="@style/Main_NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.frico.usct.ui.activity.RegisterActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.WebUrlActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.CallCenterActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name="com.frico.usct.ui.activity.MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.message.MessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.setting.NoticeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.message.MessageDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.setting.AboutSCTActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.setting.ShareActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.wallet.WalletActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.wallet.NewWalletActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.LaunchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.wallet.BalanceTransferActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.wallet.BalanceTransferFromUsdtActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.wallet.BalanceTransferWithdrawToUsdtActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.payway.AddPayWayActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.payway.PayWayListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.WithdrawActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.WithdrawOrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.payway.PayWayActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.payway.BankListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.home.MyAdvertisingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.income.HistoryOrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.setting.AccountSaveActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.wallet.MoneyDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.wallet.MoneyThreeDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.wallet.MoneyTwoDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.wallet.MoneyFourDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.ShowMyQrcodeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.qrcode.ShowQrCodeActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name="com.frico.usct.ui.activity.me.setting.SetPayPwdActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.frico.usct.ui.activity.home.PublishAdActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.frico.usct.ui.activity.AffirmOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.setting.BindPhoneActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.setting.ChangePhoneActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.setting.ChangeMailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.setting.ChangeLoginPwdActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.setting.ForgetLoginPwdActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.frico.usct.ui.activity.income.AppealActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.payway.AddZfbActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.payway.AddBankActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.frico.usct.ui.activity.ShareImgActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.setting.DoTaskActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.info.MyAccountInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.info.AccountInfoEditNickNameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.me.group.MyGroupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.frico.usct.ui.activity.income.IncomeFillterActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name="com.frico.usct.ui.activity.ImagePreviewActivity" /> <!-- 图片裁剪界面 -->
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Matisse.Zhihu" /> <!-- 适配6.0以上 -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path" />
+        </provider>
+
+        <service
+            android:name="com.frico.usct.service.HelperNotificationListenerService"
+            android:label="${APP_NAME}"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name="com.frico.usct.receiver.SmsReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+                <!-- 接收收到信息的广播 -->
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

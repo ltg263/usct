@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.frico.usct.widget.TranslucentActionBar
+        android:id="@+id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:background="@drawable/bg_qr_code"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:text="扫二维码向我付款"
+            android:textSize="14sp"
+            android:textColor="@color/faa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/iv_qr_code"
+            android:layout_marginTop="15dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"/>
+
+            <TextView
+                android:id="@+id/tv_qr_code_download"
+                android:background="@drawable/shape_bg_grey_text"
+                android:layout_marginTop="50dp"
+                android:gravity="center"
+                android:text="保存图片到本地"
+                android:textSize="12sp"
+                android:drawablePadding="2dp"
+                android:drawableLeft="@drawable/download"
+                android:textColor="@color/f999"
+                android:layout_width="140dp"
+                android:layout_height="35dp"/>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

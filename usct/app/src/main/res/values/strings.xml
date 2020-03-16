@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_sct_name" translatable="false">易支付</string>
+    <string name="login" translatable="false">登录</string>
+    <string name="cancel" translatable="false">取消</string>
+    <string name="complete" translatable="false">已完成</string>
+    <string name="forget_password" translatable="false">忘记密码?</string>
+    <string name="register_account" translatable="false">立即注册</string>
+    <string name="get_verification_code" translatable="false">获取验证码</string>
+    <string name="please_et_phone" translatable="false">请输入手机号</string>
+    <string name="please_et_code" translatable="false">请输入验证码</string>
+    <string name="get_ver_code" translatable="false">获取验证码</string>
+    <string name="jumping" translatable="false">跳转中</string>
+    <string name="confirm" translatable="false">确定</string>
+    <string name="loading" translatable="false">正在加载中...</string>
+    <string name="load_failed" translatable="false">加载失败</string>
+    <string name="load_end" translatable="false">已加载全部数据</string>
+    <string name="getCode" translatable="false">s</string>
+    <string name="editMobile" translatable="false">手机号码输入有误</string>
+    <string name="editCode" translatable="false">验证码输入有误</string>
+    <string name="expand" translatable="false">全文</string>
+    <string name="shink" translatable="false">收起</string>
+    <string name="income_loot_top_intro" translatable="false">今日已成功抢单 &lt;font color=#FFA64C&gt;%1$s&lt;/font&gt; 次, 累计收款 &lt;font color=#FFA64C&gt;%2$s&lt;/font&gt;  USCT </string>
+
+    <string name="group_num" translatable="false">&lt;font color=#FFB266 &gt;%1$s&lt;/font&gt;  人 </string>
+    <string name="group_num_no" translatable="false">&lt;font color=#FFB266 &gt;%1$s&lt;/font&gt;</string>
+
+    <string name="withdraw_rate_count_intro" translatable="false">本次提现&lt;font color=#FFA64C&gt;%1$s&lt;/font&gt;元（手续费&lt;font color=#FFA64C&gt;%2$s&lt;/font&gt;元）</string>
+    <string name="time_duo_down" translatable="false">倒计时：&lt;font color=#FFA54D &gt;%1$s&lt;/font&gt;</string>
+    <string name="collection" translatable="false">收款：&lt;font color=#FF7F7F &gt;%1$s  CNY&lt;/font&gt;</string>
+
+    <string name="alipay" translatable="false">支付宝支付</string>
+    <string name="usable_sum" translatable="false">可用数量</string>
+    <string name="usct" translatable="false">USCT</string>
+    <string name="withdraw" translatable="false">提现</string>
+    <string name="transfer" translatable="false">转账</string>
+    <string name="recharge" translatable="false">USCT充值</string>
+    <string name="bring" translatable="false">USCT提币</string>
+    <string name="transfer_balance" translatable="false">转余额</string>
+    <string name="click_to_buy" translatable="false">点击开始抢单</string>
+    <string name="load_more_text" translatable="false">加载更多</string>
+
+    <string name="buy_tip_top" translatable="false">数字货币交易须知</string>
+
+    <string name="buy_tip" translatable="false">
+        1、您购买的USCT已经在平台完成委托锁定，请放心支付\n2、数字货币购买将随机匹配不同卖家,同一个卖家所使用的银行卡也可能不同,请按照每次所显示的付款信息打款,请勿直接打款到之前充值过的卡号,否则可能无法到账,造成的损失平台概不负责。\n3、转账时请勿填写任何备注!包括数字货币、USCT、充值、美金、外汇等字样。否则可能导致卖家账户和您的账户被冻结,造成的损失平台概不负责。\n4、根据国家相关法律规定,购买数字货币仅支持自然人之间的点对点转账交易兑换.
+</string>
+    <string name="certification_shz" translatable="false">您的实名认证正在审核中\n请耐心等待...</string>
+    <string name="certification_wtg" translatable="false">很抱歉~\n您的实名认证审核未通过</string>
+
+
+</resources>

@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/task_do_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:padding="5dp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="20dp"
+        >
+        <ImageView
+            android:id="@+id/iv_title_bar_left_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_left_blck"
+            android:padding="10dp"
+            />
+
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/task_do_top_intro" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_task_do_top"
+                    android:visibility="visible"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                    <TextView
+                        android:id="@+id/tv_top_intro_give_money"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="最高可得"
+                        android:textSize="18sp"
+                        android:textColor="@color/color_c15620"
+                        android:gravity="center_horizontal"
+                        android:layout_marginTop="40dp"
+                        />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_below="@+id/tv_top_intro_give_money"
+                        android:gravity="center_horizontal"
+                        >
+                        <TextView
+                            android:id="@+id/tv_top_count_give_money"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="888"
+                            android:textSize="55sp"
+                            android:textColor="@color/color_d02828"
+                            android:layout_below="@+id/tv_top_intro_give_money"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="30dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_top_count_unit_give_money"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="USCT"
+                            android:textColor="@color/color_d02828"
+                            android:textSize="20sp"
+                            android:layout_toRightOf="@+id/tv_top_count_give_money"
+                            android:layout_alignBaseline="@+id/tv_top_count_give_money"
+                            />
+
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+
+            </FrameLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-30dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_task_do_line_left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的任务"
+                    android:textColor="@color/color_be5224"
+                    android:textSize="19sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_task_do_line_right" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/page_left_right_margin"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="@dimen/page_left_right_margin"
+                android:background="@drawable/bg_share_bottom_circle_white"
+                android:minHeight="200dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/img_icon_set_pw"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_task_do_set_login_pw" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_content_set_login_pw_lay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="8dp"
+                        android:layout_toRightOf="@+id/img_icon_set_pw"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_set_login_pw"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@+id/v_center_v_line_login_pw"
+                            android:layout_gravity="center_vertical"
+                            android:text="设置登录密码"
+                            android:textColor="@color/color_3"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:id="@+id/tv_set_login_pw_give_sct"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/v_center_v_line_login_pw"
+                            android:text="+2SCT币"
+                            android:textColor="#ffc4724e"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_set_login_pw_togo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/icon_task_do_togo" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginLeft="@dimen/page_left_right_margin"
+                    android:layout_marginRight="@dimen/page_left_right_margin"
+                    android:background="@drawable/line_imaginary"
+                    android:layerType="software"
+                    android:hardwareAccelerated="true"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/img_icon_set_pay_pw"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_task_do_set_pay_pw" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_content_set_pay_pw_lay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="8dp"
+                        android:layout_toRightOf="@+id/img_icon_set_pay_pw"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_set_pay_pw"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="设置支付密码"
+                            android:textColor="@color/color_3"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:id="@+id/tv_set_pay_pw_give_sct"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+2SCT币"
+                            android:textColor="#ffc4724e"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_set_pay_pw_togo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/icon_task_do_togo" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginLeft="@dimen/page_left_right_margin"
+                    android:layout_marginRight="@dimen/page_left_right_margin"
+                    android:background="@drawable/line_imaginary"
+                    android:layerType="software"
+                    android:hardwareAccelerated="true"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/img_icon_set_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_task_do_emal" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_content_set_email_lay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="8dp"
+                        android:layout_toRightOf="@+id/img_icon_set_email"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_set_email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="绑定邮箱"
+                            android:textColor="@color/color_3"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:id="@+id/tv_set_email_give_sct"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+2SCT币"
+                            android:textColor="#ffc4724e"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_set_email_togo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/icon_task_do_togo" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginLeft="@dimen/page_left_right_margin"
+                    android:layout_marginRight="@dimen/page_left_right_margin"
+                    android:background="@drawable/line_imaginary"
+                    android:layerType="software"
+                    android:hardwareAccelerated="true"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/img_icon_set_pay_way"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_task_do_set_pay_way" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_content_set_pay_way_lay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="8dp"
+                        android:layout_toRightOf="@+id/img_icon_set_pay_way"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_set_pay_way"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@+id/v_center_v_line_login_pw"
+                            android:layout_gravity="center_vertical"
+                            android:text="添加收款方式"
+                            android:textColor="@color/color_3"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:id="@+id/tv_set_pay_way_give_sct"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/v_center_v_line_login_pw"
+                            android:text="+2SCT币"
+                            android:textColor="#ffc4724e"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_set_pay_way_togo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/icon_task_do_togo" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginLeft="@dimen/page_left_right_margin"
+                    android:layout_marginRight="@dimen/page_left_right_margin"
+                    android:background="@drawable/line_imaginary"
+                    android:layerType="software"
+                    android:hardwareAccelerated="true"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/img_icon_set_nick"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_task_do_set_header" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_content_set_nick_lay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="8dp"
+                        android:layout_toRightOf="@+id/img_icon_set_nick"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_set_nick"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@+id/v_center_v_line_login_pw"
+                            android:layout_gravity="center_vertical"
+                            android:text="设置头像和昵称"
+                            android:textColor="@color/color_3"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:id="@+id/tv_set_nick_give_sct"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/v_center_v_line_login_pw"
+                            android:text="+2USCT币"
+                            android:textColor="#ffc4724e"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_set_nick_togo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/icon_task_do_togo" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginLeft="@dimen/page_left_right_margin"
+                    android:layout_marginRight="@dimen/page_left_right_margin"
+                    android:background="@drawable/line_imaginary"
+                    android:layerType="software"
+                    android:hardwareAccelerated="true"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="更多任务,敬请期待"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_c4724e"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="26dp"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

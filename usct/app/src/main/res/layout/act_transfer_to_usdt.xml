@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.frico.usct.widget.TranslucentActionBar
+        android:id="@+id/actionbar"
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/line"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/page_left_right_margin"
+        android:background="@color/colorWhite"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="钱包地址"
+            android:textSize="16sp"
+            android:textColor="@color/color_3"
+            />
+        <EditText
+            android:id="@+id/tv_account_balance_can_used"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text=""
+            android:hint="请输入钱包地址"
+            android:background="@null"
+            android:textColor="@color/color_ee303b"
+            android:layout_marginLeft="44dp"
+            android:textSize="16sp"
+            android:textIsSelectable="true"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/line"
+        />
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/line"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/page_left_right_margin"
+        android:background="@color/colorWhite"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="转账数量"
+            android:textSize="16sp"
+            android:textColor="@color/color_3"
+            />
+        <EditText
+            android:id="@+id/et_transfer_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="请输入数量"
+            android:textColor="@color/color_3"
+            android:layout_marginLeft="45dp"
+            android:textSize="16sp"
+            android:inputType="numberDecimal"
+            />
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/line"
+        />
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/page_left_right_margin"
+        android:background="@color/colorWhite"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="支付密码"
+            android:textSize="16sp"
+            android:textColor="@color/color_3"
+            />
+        <EditText
+            android:id="@+id/et_transfer_pay_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="请输入支付密码"
+            android:textColor="@color/color_3"
+            android:layout_marginLeft="45dp"
+            android:textSize="16sp"
+            android:inputType="numberPassword"
+            android:maxLength="6"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/line"
+        />
+
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+
+    <RelativeLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorWhite"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/tv_submit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@drawable/selector_bg_btn_blue"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/colorWhite"
+            android:textSize="17dp" />
+    </RelativeLayout>
+
+
+
+</LinearLayout>

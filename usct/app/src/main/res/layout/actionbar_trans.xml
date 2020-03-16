@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lay_transroot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <!--声明了一个高度为0.0dp的 statusbar，
+    背景为透明，然后获取状态栏高度并赋值到它上，
+    来实现兼容。事实证明，这样做的兼容效果最好。-->
+    <View
+        android:id="@+id/v_statusbar"
+        android:layout_width="match_parent"
+        android:layout_height="0.0dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/lay_actionbar_left"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            android:paddingRight="25dp">
+
+            <ImageView
+                android:id="@+id/iv_actionbar_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ic_left_back2x" />
+
+            <TextView
+                android:id="@+id/tv_actionbar_left"
+                style="@style/text_black"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/iv_actionbar_left"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="返回"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_actionbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="标题"
+            android:textColor="@color/color_3"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:id="@+id/lay_actionbar_right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:paddingLeft="25dp"
+            android:paddingRight="10dp">
+            <ImageView
+                android:id="@+id/iv_actionbar_right2"
+                android:layout_toRightOf="@id/iv_actionbar_right"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/iv_actionbar_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_actionbar_right"
+                style="@style/text_black"
+                android:layout_toLeftOf="@+id/iv_actionbar_right"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <View
+        style="@style/line"
+        android:visibility="gone" />
+</LinearLayout>

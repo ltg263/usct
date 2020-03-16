@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryDark">#1E8AE8</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="main_background_gray">#F6F6F6</color>
+    <color name="main_bg_color">#F3F4F8</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="hint_color">#CCCCCC</color>
+    <color name="certification_color">#5B9AEA</color>
+    <color name="transparent_half">#50ffffff</color>
+    <color name="line">#badedede</color>
+    <color name="main_btn_selected_color">#fdaba0</color>
+    <color name="main_btn_normal_color">#8d99b2</color>
+    <color name="color_3">#333333</color>
+    <color name="color_6">#666666</color>
+    <color name="color_red">#F43531</color>
+    <color name="color_eca0a5">#eca0a5</color>
+    <color name="color_c">#cccccc</color>
+    <color name="red53">#F43531</color>
+    <color name="color_9">#999999</color>
+    <color name="divider">#ffd2d2d2</color>
+    <color name="notice">#ff8e1f</color>
+    <color name="notic_bule">#4977FF</color>
+
+    <color name="edit_da_color">#dbdbdb</color>
+    <color name="main_bule">#3786fd</color>
+    <color name="main_gray">#ced5e5</color>
+    <color name="main_orange">#ff532b</color>
+    <color name="main_orange_orther">#ff8e1f</color>
+    <color name="edit_hint_color">#dbdbdb</color>
+    <color name="color_eae9e9">#EAE9E9</color>
+    <color name="color_be5224">#BE5224</color>
+    <color name="color_fde5b3">#FDE5B3</color>
+    <color name="color_c4724e">#c4724e</color>
+    <color name="color_c15620">#C15620</color>
+    <color name="color_d02828">#d02828</color>
+    <color name="color_f5f6f6">#f5f6f6</color>
+    <color name="color_f7f7f7">#f7f7f7</color>
+    <color name="color_cbe3ff">#cbe3ff</color>
+    <color name="color_ff8e1f">#ff8e1f</color>
+    <color name="color_13825">#f13825</color>
+    <color name="color_fb341f">#FB341F</color>
+    <color name="color_ee303b">#EE303B</color>
+    <color name="color_fe840c">#fe840c</color>
+    <color name="color_dbdbdb">#dbdbdb</color>
+    <color name="color_3786fd">#3786fd</color>
+    <color name="color_f9f9f9">#f9f9f9</color>
+    <color name="color_f13825">#f13825</color>
+    <color name="color_fff7f6">#0ffff7f6</color>
+    <color name="color_e4eefd">#e4eefd</color>
+    <color name="color_5e5e5e">#5e5e5e</color>
+    <color name="wallet_card_text_color">#FF333333</color>
+    <color name="wallet_line_color">#FFE5E5E5</color>
+    <color name="f666">#FF666666</color>
+    <color name="F6F7F8">#FFF6F7F8</color>
+    <color name="f999">#FF999999</color>
+    <color name="f69f">#FF6699FF</color>
+    <color name="fddd">#FFDDDDDD</color>
+    <color name="fccc">#FFCCCCCC</color>
+    <color name="faa">#FFAAAAAA</color>
+
+    <!--收款方式-->
+    <color name="pay_wx">#5CE68A</color>
+    <color name="pay_yhk">#1AC0D0</color>
+    <color name="pay_zfb">#7FB2FF</color>
+    <color name="pay_ysf">#FF7575</color>
+    <color name="pay_jhzf">#FFBF7F</color>
+    <color name="pay_shz">#666</color>
+
+</resources>

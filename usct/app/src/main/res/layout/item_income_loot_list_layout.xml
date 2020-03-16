@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:background="@drawable/shape_white_3dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="15dp">
+
+   <ImageView
+       android:id="@+id/img_income_loot_icon"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:src="@drawable/icon_loot_weixin"
+       />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="收款:"
+            android:textSize="15sp"
+            android:textColor="@color/color_9"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="别名:"
+            android:textSize="15sp"
+            android:textColor="@color/color_9"
+            android:layout_marginTop="5dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="时间:"
+            android:textSize="15sp"
+            android:textColor="@color/color_9"
+            android:layout_marginTop="5dp"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        >
+        <TextView
+            android:id="@+id/tv_income_loot_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="20000.00 CNY"
+            android:textSize="15sp"
+            android:textColor="@color/color_ff8e1f"
+            />
+        <TextView
+            android:id="@+id/tv_income_loot_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="75565656"
+            android:textSize="15sp"
+            android:textColor="@color/color_3"
+            android:layout_marginTop="5dp"
+            />
+        <TextView
+            android:id="@+id/tv_income_create_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="0.0000 USCT"
+            android:textSize="15sp"
+            android:textColor="@color/color_3"
+            android:layout_marginTop="5dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+        <TextView
+            android:id="@+id/tv_income_residue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="02:58"
+            android:textColor="@color/color_13825"
+            android:textSize="15sp"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_income_money_submit_btn"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_income_list_btn_submit"
+            android:text="收款确认"
+            android:textSize="14sp"
+            android:textColor="@color/colorWhite"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            />
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
+
